@@ -1,0 +1,13 @@
+pane	config	0	0	:-Z	0	sourab-Lenovo-G50-80	:/home/sourab	0	vim	:vim .vimrc
+pane	config	0	0	:-Z	1	sourab-Lenovo-G50-80	:/home/sourab	1	vim	:vim .tmux.conf
+pane	config	1	1	:*	0	sourab-Lenovo-G50-80	:/home/sourab/my_workspace/cp/sourab-notes/git	0	vim	:vim gitnotes.txt
+pane	config	1	1	:*	1	sourab-Lenovo-G50-80	:/home/sourab/my_workspace/cp/sourab-notes/terminal_config	1	vim	:vim terminalnotes.txt
+pane	config	1	1	:*	2	sourab-Lenovo-G50-80	:/home/sourab/my_workspace/cp/sourab-notes/vim	0	vim	:vim 1notes.txt
+pane	mywork	0	1	:*	0	sourab-Lenovo-G50-80	:/home/sourab/my_workspace/notes/webdev/html/practise	1	zsh	:
+pane	mywork	2	0	:-Z	0	sourab-Lenovo-G50-80	:/home/sourab/my_workspace/cp/sourab-notes/webdev/html/webdevnotes	1	vim	:vim styling.txt
+pane	mywork	2	0	:-Z	1	sourab-Lenovo-G50-80	:/home/sourab/my_workspace/cp/sourab-notes	0	zsh	:
+window	config	0	:config	0	:-Z	c223,151x40,0,0{80x40,0,0,1,70x40,81,0,2}	off
+window	config	1	:doc	1	:*	256d,151x40,0,0{75x40,0,0,5,75x40,76,0[75x20,76,0,3,75x19,76,21,4]}	off
+window	mywork	0	:practise	1	:*	ac43,151x40,0,0,6	off
+window	mywork	2	:sass	0	:-Z	6fe2,151x40,0,0{75x40,0,0,8,75x40,76,0,7}	off
+state	mywork	config

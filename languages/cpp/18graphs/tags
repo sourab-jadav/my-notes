@@ -1,0 +1,335 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/sourab/cppfiles/graphs/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	/9369f180/
+AP	18articulation_point.cpp	/^void Graph::AP() $/;"	f	class:Graph	typeref:typename:void
+AP	18articulation_point.java	/^	void AP() $/;"	m	class:Graph
+AP	25articulation.cpp	/^void Graph::AP() $/;"	f	class:Graph	typeref:typename:void
+AP	25articulation.java	/^	void AP() $/;"	m	class:Graph
+APUtil	18articulation_point.cpp	/^void Graph::APUtil(int u, bool visited[], int disc[], int low[], int parent[], bool ap[]) $/;"	f	class:Graph	typeref:typename:void
+APUtil	18articulation_point.java	/^	void APUtil(int u, boolean visited[], int disc[], $/;"	m	class:Graph
+APUtil	25articulation.cpp	/^void Graph::APUtil(int u, bool visited[], int disc[], int low[], int parent[], bool ap[]) $/;"	f	class:Graph	typeref:typename:void
+APUtil	25articulation.java	/^	void APUtil(int u, boolean visited[], int disc[], $/;"	m	class:Graph
+AdjListNode	13shortest_path_in_dag.cpp	/^	AdjListNode(int _v, int _w) { v = _v; weight = _w;} $/;"	f	class:AdjListNode	file:
+AdjListNode	13shortest_path_in_dag.cpp	/^class AdjListNode $/;"	c	file:
+AdjListNode	13shortest_path_in_dag.java	/^    AdjListNode(int _v, int _w) { v = _v; weight = _w; }$/;"	m	class:AdjListNode
+AdjListNode	13shortest_path_in_dag.java	/^class AdjListNode$/;"	c
+BFS	5bfs.cpp	/^void BFS(vector<int> adj[], int V, int s) $/;"	f	typeref:typename:void
+BFS	5bfs.java	/^	static void BFS(ArrayList<ArrayList<Integer>> adj,int V,int s) $/;"	m	class:Graph
+BFS	5bfs_on_disconnected_graph.cpp	/^void BFS(vector<int> adj[], int s, bool visited[]) $/;"	f	typeref:typename:void
+BFS	5bfs_on_disconnected_graph.java	/^	static void BFS(ArrayList<ArrayList<Integer>> adj,int s, boolean[] visited) $/;"	m	class:Graph
+BFS	5print_number_of_islands.cpp	/^void BFS(vector<int> adj[], int s, bool visited[]) $/;"	f	typeref:typename:void
+BFS	5print_number_of_islands.java	/^	static void BFS(ArrayList<ArrayList<Integer>> adj,int s, boolean[] visited) $/;"	m	class:Graph
+BFS	7shortest_path_in_unweigted_graph.cpp	/^void BFS(vector<int> adj[], int V, int s,int dist[]) $/;"	f	typeref:typename:void
+BFS	7shortest_path_in_unweigted_graph.java	/^	static void BFS(ArrayList<ArrayList<Integer>> adj,int V,int s, int[] dist) $/;"	m	class:Graph
+BFSDin	5bfs_on_disconnected_graph.cpp	/^void BFSDin(vector<int> adj[], int V){$/;"	f	typeref:typename:void
+BFSDin	5bfs_on_disconnected_graph.java	/^	static void BFSDin(ArrayList<ArrayList<Integer>> adj, int V){$/;"	m	class:Graph
+BFSDin	5print_number_of_islands.cpp	/^int BFSDin(vector<int> adj[], int V){$/;"	f	typeref:typename:int
+BFSDin	5print_number_of_islands.java	/^	static int BFSDin(ArrayList<ArrayList<Integer>> adj, int V){$/;"	m	class:Graph
+BellmanFord	17bellmanford_algo.cpp	/^void BellmanFord(struct Graph* graph, int src) $/;"	f	typeref:typename:void
+BellmanFord	17bellmanford_algo.java	/^	void BellmanFord(Graph graph, int src) $/;"	m	class:Graph
+DFS	12topological_sorting_dfs_based_algo.cpp	/^void DFS(vector<int> adj[], int u,stack<int> &st, bool visited[]) $/;"	f	typeref:typename:void
+DFS	12topological_sorting_dfs_based_algo.java	/^    static void DFS(ArrayList<ArrayList<Integer>> adj, int u,Stack<Integer> st, boolean visited[/;"	m	class:Graph
+DFS	6dfs.cpp	/^void DFS(vector<int> adj[], int V, int s){$/;"	f	typeref:typename:void
+DFS	6dfs.java	/^	static void DFS(ArrayList<ArrayList<Integer>> adj, int V, int s){$/;"	m	class:Graph
+DFS	6dfs_for_connected_comp.cpp	/^int DFS(vector<int> adj[], int V){$/;"	f	typeref:typename:int
+DFS	6dfs_for_connected_comp.java	/^	static int DFS(ArrayList<ArrayList<Integer>> adj, int V){$/;"	m	class:Graph
+DFS	6dfs_for_disconnected_comp.cpp	/^void DFS(vector<int> adj[], int V){$/;"	f	typeref:typename:void
+DFS	6dfs_for_disconnected_comp.java	/^	static void DFS(ArrayList<ArrayList<Integer>> adj, int V){$/;"	m	class:Graph
+DFS	8detect_cycles_in_undirected_graph.cpp	/^bool DFS(vector<int> adj[], int V){$/;"	f	typeref:typename:bool
+DFS	8detect_cycles_in_undirected_graph.java	/^	static boolean DFS(ArrayList<ArrayList<Integer>> adj, int V){$/;"	m	class:Graph
+DFS	9detect_cycles_in_directed_graph.cpp	/^bool DFS(vector<int> adj[], int V){$/;"	f	typeref:typename:bool
+DFS	9detect_cycles_in_directed_graph.java	/^	static boolean DFS(ArrayList<ArrayList<Integer>> adj, int V){$/;"	m	class:Graph
+DFSRec	6dfs.cpp	/^void DFSRec(vector<int> adj[], int s, bool visited[]) $/;"	f	typeref:typename:void
+DFSRec	6dfs.java	/^	static void DFSRec(ArrayList<ArrayList<Integer>> adj,int s, boolean[] visited) $/;"	m	class:Graph
+DFSRec	6dfs_for_connected_comp.cpp	/^void DFSRec(vector<int> adj[], int s, bool visited[]) $/;"	f	typeref:typename:void
+DFSRec	6dfs_for_connected_comp.java	/^	static void DFSRec(ArrayList<ArrayList<Integer>> adj,int s, boolean[] visited) $/;"	m	class:Graph
+DFSRec	6dfs_for_disconnected_comp.cpp	/^void DFSRec(vector<int> adj[], int s, bool visited[]) $/;"	f	typeref:typename:void
+DFSRec	6dfs_for_disconnected_comp.java	/^	static void DFSRec(ArrayList<ArrayList<Integer>> adj,int s, boolean[] visited) $/;"	m	class:Graph
+DFSRec	8detect_cycles_in_undirected_graph.cpp	/^bool DFSRec(vector<int> adj[], int s,bool visited[], int parent) $/;"	f	typeref:typename:bool
+DFSRec	8detect_cycles_in_undirected_graph.java	/^	static boolean DFSRec(ArrayList<ArrayList<Integer>> adj,int s, boolean[] visited, int parent) $/;"	m	class:Graph
+DFSRec	9detect_cycles_in_directed_graph.cpp	/^bool DFSRec(vector<int> adj[], int s,bool visited[], bool recSt[]) $/;"	f	typeref:typename:bool
+DFSRec	9detect_cycles_in_directed_graph.java	/^	static boolean DFSRec(ArrayList<ArrayList<Integer>> adj,int s, boolean[] visited, boolean[] rec/;"	m	class:Graph
+DFSUtil	16kosaraju_algo.cpp	/^void Graph::DFSUtil(int v, bool visited[]) $/;"	f	class:Graph	typeref:typename:void
+DFSUtil	16kosaraju_algo.java	/^	void DFSUtil(int v,boolean visited[]) $/;"	m	class:Graph
+E	17bellmanford_algo.cpp	/^	int V, E; $/;"	m	struct:Graph	typeref:typename:int	file:
+E	17bellmanford_algo.java	/^	int V, E; $/;"	f	class:Graph
+E	21kruskals_algo.cpp	/^	int V, E; $/;"	m	class:Graph	typeref:typename:int	file:
+E	21kruskals_algo.java	/^	int V, E; \/\/ V-> no. of vertices & E->no.of edges $/;"	f	class:Graph
+Edge	17bellmanford_algo.cpp	/^struct Edge { $/;"	s	file:
+Edge	17bellmanford_algo.java	/^		Edge() $/;"	m	class:Graph.Edge
+Edge	17bellmanford_algo.java	/^	class Edge { $/;"	c	class:Graph
+Edge	21kruskals_algo.cpp	/^class Edge $/;"	c	file:
+Edge	21kruskals_algo.java	/^	class Edge implements Comparable<Edge> $/;"	c	class:Graph
+Gfg	14prims_algo.java	/^class Gfg { $/;"	c
+Gfg	15djikstra_algo.java	/^class Gfg { $/;"	c
+Graph	10topological_sorting.java	/^class Graph { $/;"	c
+Graph	11detect_cycle_in_directed_graph_part2.java	/^class Graph { $/;"	c
+Graph	12topological_sorting_dfs_based_algo.java	/^class Graph { $/;"	c
+Graph	13shortest_path_in_dag.cpp	/^Graph::Graph(int V) $/;"	f	class:Graph
+Graph	13shortest_path_in_dag.cpp	/^class Graph $/;"	c	file:
+Graph	13shortest_path_in_dag.java	/^    Graph(int v)$/;"	m	class:Graph
+Graph	13shortest_path_in_dag.java	/^class Graph$/;"	c
+Graph	16kosaraju_algo.cpp	/^Graph::Graph(int V) $/;"	f	class:Graph
+Graph	16kosaraju_algo.cpp	/^class Graph $/;"	c	file:
+Graph	16kosaraju_algo.java	/^	Graph(int v) $/;"	m	class:Graph
+Graph	16kosaraju_algo.java	/^class Graph $/;"	c
+Graph	17bellmanford_algo.cpp	/^struct Graph { $/;"	s	file:
+Graph	17bellmanford_algo.java	/^	Graph(int v, int e) $/;"	m	class:Graph
+Graph	17bellmanford_algo.java	/^class Graph { $/;"	c
+Graph	18articulation_point.cpp	/^Graph::Graph(int V) $/;"	f	class:Graph
+Graph	18articulation_point.cpp	/^class Graph $/;"	c	file:
+Graph	18articulation_point.java	/^	Graph(int v) $/;"	m	class:Graph
+Graph	18articulation_point.java	/^class Graph $/;"	c
+Graph	19bridges.cpp	/^Graph::Graph(int V) $/;"	f	class:Graph
+Graph	19bridges.cpp	/^class Graph $/;"	c	file:
+Graph	19bridges.java	/^	Graph(int v) $/;"	m	class:Graph
+Graph	19bridges.java	/^class Graph $/;"	c
+Graph	20tarzens_algo.cpp	/^Graph::Graph(int V) $/;"	f	class:Graph
+Graph	20tarzens_algo.cpp	/^class Graph $/;"	c	file:
+Graph	20tarzens_algo.java	/^Graph(int v) $/;"	m	class:Graph
+Graph	20tarzens_algo.java	/^class Graph{ $/;"	c
+Graph	21kruskals_algo.cpp	/^class Graph $/;"	c	file:
+Graph	21kruskals_algo.java	/^	Graph(int v, int e) $/;"	m	class:Graph
+Graph	21kruskals_algo.java	/^class Graph $/;"	c
+Graph	25articulation.cpp	/^Graph::Graph(int V) $/;"	f	class:Graph
+Graph	25articulation.cpp	/^class Graph $/;"	c	file:
+Graph	25articulation.java	/^	Graph(int v) $/;"	m	class:Graph
+Graph	25articulation.java	/^class Graph $/;"	c
+Graph	4adjacencylist.java	/^class Graph { $/;"	c
+Graph	4adjacencymatrix.cpp	/^  Graph(int numVertices) {$/;"	f	class:Graph	file:
+Graph	4adjacencymatrix.cpp	/^class Graph {$/;"	c	file:
+Graph	4adjacencymatrix.java	/^  public Graph(int numVertices) {$/;"	m	class:Graph
+Graph	4adjacencymatrix.java	/^public class Graph {$/;"	c
+Graph	5bfs.java	/^class Graph { $/;"	c
+Graph	5bfs_on_disconnected_graph.java	/^class Graph { $/;"	c
+Graph	5print_number_of_islands.java	/^class Graph { $/;"	c
+Graph	6dfs.java	/^class Graph { $/;"	c
+Graph	6dfs_for_connected_comp.java	/^class Graph { $/;"	c
+Graph	6dfs_for_disconnected_comp.java	/^class Graph { $/;"	c
+Graph	7shortest_path_in_unweigted_graph.java	/^class Graph { $/;"	c
+Graph	8detect_cycles_in_undirected_graph.java	/^class Graph { $/;"	c
+Graph	9detect_cycles_in_directed_graph.java	/^class Graph { $/;"	c
+INF	13shortest_path_in_dag.cpp	/^#define INF /;"	d	file:
+KruskalMST	21kruskals_algo.cpp	/^void KruskalMST(Graph* graph) $/;"	f	typeref:typename:void
+KruskalMST	21kruskals_algo.java	/^	void KruskalMST() $/;"	m	class:Graph
+Main	13shortest_path_in_dag.java	/^class Main$/;"	c
+NIL	18articulation_point.cpp	/^#define NIL /;"	d	file:
+NIL	18articulation_point.java	/^	static final int NIL = -1; $/;"	f	class:Graph
+NIL	19bridges.cpp	/^#define NIL /;"	d	file:
+NIL	19bridges.java	/^	static final int NIL = -1; $/;"	f	class:Graph
+NIL	20tarzens_algo.cpp	/^#define NIL /;"	d	file:
+NIL	25articulation.cpp	/^#define NIL /;"	d	file:
+NIL	25articulation.java	/^	static final int NIL = -1; $/;"	f	class:Graph
+SCC	20tarzens_algo.cpp	/^void Graph::SCC() $/;"	f	class:Graph	typeref:typename:void
+SCC	20tarzens_algo.java	/^void SCC() $/;"	m	class:Graph
+SCCUtil	20tarzens_algo.cpp	/^void Graph::SCCUtil(int u, int disc[], int low[], stack<int> *st, bool stackMember[]) $/;"	f	class:Graph	typeref:typename:void
+SCCUtil	20tarzens_algo.java	/^void SCCUtil(int u, int low[], int disc[], boolean stackMember[], Stack<Integer> st) $/;"	m	class:Graph
+Time	20tarzens_algo.java	/^private int Time; $/;"	f	class:Graph	file:
+Union	21kruskals_algo.cpp	/^void Union(subset subsets[], int x, int y) $/;"	f	typeref:typename:void
+Union	21kruskals_algo.java	/^	void Union(subset subsets[], int x, int y) $/;"	m	class:Graph
+V	13shortest_path_in_dag.cpp	/^	int V;$/;"	m	class:Graph	typeref:typename:int	file:
+V	13shortest_path_in_dag.java	/^    private int V;$/;"	f	class:Graph	file:
+V	14prims_algo.cpp	/^#define V /;"	d	file:
+V	14prims_algo.java	/^    static final int V=4;$/;"	f	class:Gfg
+V	15djikstra_algo.cpp	/^#define V /;"	d	file:
+V	15djikstra_algo.java	/^    static final int V=4;$/;"	f	class:Gfg
+V	16kosaraju_algo.cpp	/^	int V; $/;"	m	class:Graph	typeref:typename:int	file:
+V	16kosaraju_algo.java	/^	private int V; $/;"	f	class:Graph	file:
+V	17bellmanford_algo.cpp	/^	int V, E; $/;"	m	struct:Graph	typeref:typename:int	file:
+V	17bellmanford_algo.java	/^	int V, E; $/;"	f	class:Graph
+V	18articulation_point.cpp	/^	int V; $/;"	m	class:Graph	typeref:typename:int	file:
+V	18articulation_point.java	/^	private int V; $/;"	f	class:Graph	file:
+V	19bridges.cpp	/^	int V; \/\/ No. of vertices $/;"	m	class:Graph	typeref:typename:int	file:
+V	19bridges.java	/^	private int V; $/;"	f	class:Graph	file:
+V	20tarzens_algo.cpp	/^	int V; $/;"	m	class:Graph	typeref:typename:int	file:
+V	20tarzens_algo.java	/^private int V; $/;"	f	class:Graph	file:
+V	21kruskals_algo.cpp	/^	int V, E; $/;"	m	class:Graph	typeref:typename:int	file:
+V	21kruskals_algo.java	/^	int V, E; \/\/ V-> no. of vertices & E->no.of edges $/;"	f	class:Graph
+V	25articulation.cpp	/^	int V; $/;"	m	class:Graph	typeref:typename:int	file:
+V	25articulation.java	/^	private int V; $/;"	f	class:Graph	file:
+addEdge	10topological_sorting.cpp	/^void addEdge(vector<int> adj[], int u, int v){$/;"	f	typeref:typename:void
+addEdge	10topological_sorting.java	/^	static void addEdge(ArrayList<ArrayList<Integer>> adj, int u, int v) $/;"	m	class:Graph
+addEdge	11detect_cycle_in_directed_graph_part2.cpp	/^void addEdge(vector<int> adj[], int u, int v){$/;"	f	typeref:typename:void
+addEdge	11detect_cycle_in_directed_graph_part2.java	/^	static void addEdge(ArrayList<ArrayList<Integer>> adj, int u, int v) $/;"	m	class:Graph
+addEdge	12topological_sorting_dfs_based_algo.cpp	/^void addEdge(vector<int> adj[], int u, int v){$/;"	f	typeref:typename:void
+addEdge	12topological_sorting_dfs_based_algo.java	/^	static void addEdge(ArrayList<ArrayList<Integer>> adj, int u, int v) $/;"	m	class:Graph
+addEdge	13shortest_path_in_dag.cpp	/^void Graph::addEdge(int u, int v, int weight) $/;"	f	class:Graph	typeref:typename:void
+addEdge	13shortest_path_in_dag.java	/^    void addEdge(int u, int v, int weight)$/;"	m	class:Graph
+addEdge	16kosaraju_algo.cpp	/^void Graph::addEdge(int v, int w) $/;"	f	class:Graph	typeref:typename:void
+addEdge	16kosaraju_algo.java	/^	void addEdge(int v, int w) { adj[v].add(w); } $/;"	m	class:Graph
+addEdge	18articulation_point.cpp	/^void Graph::addEdge(int v, int w) $/;"	f	class:Graph	typeref:typename:void
+addEdge	18articulation_point.java	/^	void addEdge(int v, int w) $/;"	m	class:Graph
+addEdge	19bridges.cpp	/^void Graph::addEdge(int v, int w) $/;"	f	class:Graph	typeref:typename:void
+addEdge	19bridges.java	/^	void addEdge(int v, int w) $/;"	m	class:Graph
+addEdge	20tarzens_algo.cpp	/^void Graph::addEdge(int v, int w) $/;"	f	class:Graph	typeref:typename:void
+addEdge	20tarzens_algo.java	/^void addEdge(int v,int w) $/;"	m	class:Graph
+addEdge	25articulation.cpp	/^void Graph::addEdge(int v, int w) $/;"	f	class:Graph	typeref:typename:void
+addEdge	25articulation.java	/^	void addEdge(int v, int w) $/;"	m	class:Graph
+addEdge	4adjacencylist.cpp	/^void addEdge(vector<int> adj[], int u, int v) $/;"	f	typeref:typename:void
+addEdge	4adjacencylist.java	/^	static void addEdge(ArrayList<ArrayList<Integer> > adj, int u, int v) $/;"	m	class:Graph
+addEdge	4adjacencymatrix.cpp	/^  void addEdge(int i, int j) {$/;"	f	class:Graph	typeref:typename:void	file:
+addEdge	4adjacencymatrix.java	/^  public void addEdge(int i, int j) {$/;"	m	class:Graph
+addEdge	5bfs.cpp	/^void addEdge(vector<int> adj[], int u, int v){$/;"	f	typeref:typename:void
+addEdge	5bfs.java	/^	static void addEdge(ArrayList<ArrayList<Integer>> adj, int u, int v) $/;"	m	class:Graph
+addEdge	5bfs_on_disconnected_graph.cpp	/^void addEdge(vector<int> adj[], int u, int v){$/;"	f	typeref:typename:void
+addEdge	5bfs_on_disconnected_graph.java	/^	static void addEdge(ArrayList<ArrayList<Integer>> adj, int u, int v) $/;"	m	class:Graph
+addEdge	5print_number_of_islands.cpp	/^void addEdge(vector<int> adj[], int u, int v){$/;"	f	typeref:typename:void
+addEdge	5print_number_of_islands.java	/^	static void addEdge(ArrayList<ArrayList<Integer>> adj, int u, int v) $/;"	m	class:Graph
+addEdge	6dfs.cpp	/^void addEdge(vector<int> adj[], int u, int v){$/;"	f	typeref:typename:void
+addEdge	6dfs.java	/^	static void addEdge(ArrayList<ArrayList<Integer>> adj, int u, int v) $/;"	m	class:Graph
+addEdge	6dfs_for_connected_comp.cpp	/^void addEdge(vector<int> adj[], int u, int v){$/;"	f	typeref:typename:void
+addEdge	6dfs_for_connected_comp.java	/^	static void addEdge(ArrayList<ArrayList<Integer>> adj, int u, int v) $/;"	m	class:Graph
+addEdge	6dfs_for_disconnected_comp.cpp	/^void addEdge(vector<int> adj[], int u, int v){$/;"	f	typeref:typename:void
+addEdge	6dfs_for_disconnected_comp.java	/^	static void addEdge(ArrayList<ArrayList<Integer>> adj, int u, int v) $/;"	m	class:Graph
+addEdge	7shortest_path_in_unweigted_graph.cpp	/^void addEdge(vector<int> adj[], int u, int v){$/;"	f	typeref:typename:void
+addEdge	7shortest_path_in_unweigted_graph.java	/^	static void addEdge(ArrayList<ArrayList<Integer>> adj, int u, int v) $/;"	m	class:Graph
+addEdge	8detect_cycles_in_undirected_graph.cpp	/^void addEdge(vector<int> adj[], int u, int v){$/;"	f	typeref:typename:void
+addEdge	8detect_cycles_in_undirected_graph.java	/^	static void addEdge(ArrayList<ArrayList<Integer>> adj, int u, int v) $/;"	m	class:Graph
+addEdge	9detect_cycles_in_directed_graph.cpp	/^void addEdge(vector<int> adj[], int u, int v){$/;"	f	typeref:typename:void
+addEdge	9detect_cycles_in_directed_graph.java	/^	static void addEdge(ArrayList<ArrayList<Integer>> adj, int u, int v) $/;"	m	class:Graph
+adj	13shortest_path_in_dag.cpp	/^	list<AdjListNode> *adj; $/;"	m	class:Graph	typeref:typename:list<AdjListNode> *	file:
+adj	13shortest_path_in_dag.java	/^    private LinkedList<AdjListNode> adj[];$/;"	f	class:Graph	file:
+adj	16kosaraju_algo.cpp	/^	list<int> *adj; $/;"	m	class:Graph	typeref:typename:list<int> *	file:
+adj	16kosaraju_algo.java	/^	private LinkedList<Integer> adj[]; $/;"	f	class:Graph	file:
+adj	18articulation_point.cpp	/^	list<int> *adj; $/;"	m	class:Graph	typeref:typename:list<int> *	file:
+adj	18articulation_point.java	/^	private LinkedList<Integer> adj[]; $/;"	f	class:Graph	file:
+adj	19bridges.cpp	/^	list<int> *adj; \/\/ A dynamic array of adjacency lists $/;"	m	class:Graph	typeref:typename:list<int> *	file:
+adj	19bridges.java	/^	private LinkedList<Integer> adj[]; $/;"	f	class:Graph	file:
+adj	20tarzens_algo.cpp	/^	list<int> *adj; $/;"	m	class:Graph	typeref:typename:list<int> *	file:
+adj	20tarzens_algo.java	/^private LinkedList<Integer> adj[]; $/;"	f	class:Graph	file:
+adj	25articulation.cpp	/^	list<int> *adj; $/;"	m	class:Graph	typeref:typename:list<int> *	file:
+adj	25articulation.java	/^	private LinkedList<Integer> adj[]; $/;"	f	class:Graph	file:
+adjMatrix	4adjacencymatrix.cpp	/^  bool** adjMatrix;$/;"	m	class:Graph	typeref:typename:bool **	file:
+adjMatrix	4adjacencymatrix.java	/^  private boolean adjMatrix[][];$/;"	f	class:Graph	file:
+bridge	19bridges.cpp	/^void Graph::bridge() $/;"	f	class:Graph	typeref:typename:void
+bridge	19bridges.java	/^	void bridge() $/;"	m	class:Graph
+bridgeUtil	19bridges.cpp	/^void Graph::bridgeUtil(int u, bool visited[], int disc[], $/;"	f	class:Graph	typeref:typename:void
+bridgeUtil	19bridges.java	/^	void bridgeUtil(int u, boolean visited[], int disc[], int low[], int parent[]) $/;"	m	class:Graph
+compareTo	21kruskals_algo.java	/^		public int compareTo(Edge compareEdge) $/;"	m	class:Graph.Edge
+createGraph	17bellmanford_algo.cpp	/^struct Graph* createGraph(int V, int E) $/;"	f	typeref:struct:Graph *
+createGraph	21kruskals_algo.cpp	/^Graph* createGraph(int V, int E) $/;"	f	typeref:typename:Graph *
+dest	17bellmanford_algo.cpp	/^	int src, dest, weight; $/;"	m	struct:Edge	typeref:typename:int	file:
+dest	17bellmanford_algo.java	/^		int src, dest, weight; $/;"	f	class:Graph.Edge
+dest	21kruskals_algo.cpp	/^	int src, dest, weight; $/;"	m	class:Edge	typeref:typename:int	file:
+dest	21kruskals_algo.java	/^		int src, dest, weight; $/;"	f	class:Graph.Edge
+dfs	adjmatrix.cpp	/^void dfs(vector<int>adj[],int v,int s)$/;"	f	typeref:typename:void
+dfsrec	adjmatrix.cpp	/^void dfsrec(vector<int>adj[],int s,bool visited[])$/;"	f	typeref:typename:void
+djikstra	15djikstra_algo.cpp	/^vector<int> djikstra(int graph[V][V],int src) $/;"	f	typeref:typename:vector<int>
+djikstra	15djikstra_algo.java	/^	public static int[] djikstra(int graph[][], int src) $/;"	m	class:Gfg
+edge	17bellmanford_algo.cpp	/^	struct Edge* edge; $/;"	m	struct:Graph	typeref:struct:Edge *	file:
+edge	17bellmanford_algo.java	/^	Edge edge[]; $/;"	f	class:Graph
+edge	21kruskals_algo.cpp	/^	Edge* edge; $/;"	m	class:Graph	typeref:typename:Edge *	file:
+edge	21kruskals_algo.java	/^	Edge edge[]; \/\/ collection of all edges $/;"	f	class:Graph
+fillOrder	16kosaraju_algo.cpp	/^void Graph::fillOrder(int v, bool visited[], stack<int> &s) $/;"	f	class:Graph	typeref:typename:void
+fillOrder	16kosaraju_algo.java	/^	void fillOrder(int v, boolean visited[], Stack stack) $/;"	m	class:Graph
+find	21kruskals_algo.cpp	/^int find(subset subsets[], int i) $/;"	f	typeref:typename:int
+find	21kruskals_algo.java	/^	int find(subset subsets[], int i) $/;"	m	class:Graph
+getTranspose	16kosaraju_algo.cpp	/^Graph Graph::getTranspose() $/;"	f	class:Graph	typeref:typename:Graph
+getTranspose	16kosaraju_algo.java	/^	Graph getTranspose() $/;"	m	class:Graph
+getV	13shortest_path_in_dag.cpp	/^	int getV()	 { return v; } $/;"	f	class:AdjListNode	typeref:typename:int	file:
+getV	13shortest_path_in_dag.java	/^    int getV() { return v; }$/;"	m	class:AdjListNode
+getWeight	13shortest_path_in_dag.cpp	/^	int getWeight() { return weight; } $/;"	f	class:AdjListNode	typeref:typename:int	file:
+getWeight	13shortest_path_in_dag.java	/^    int getWeight() { return weight; }$/;"	m	class:AdjListNode
+main	10topological_sorting.cpp	/^int main() $/;"	f	typeref:typename:int
+main	10topological_sorting.java	/^	public static void main(String[] args) $/;"	m	class:Graph
+main	11detect_cycle_in_directed_graph_part2.cpp	/^int main() $/;"	f	typeref:typename:int
+main	11detect_cycle_in_directed_graph_part2.java	/^	public static void main(String[] args) $/;"	m	class:Graph
+main	12topological_sorting_dfs_based_algo.cpp	/^int main() $/;"	f	typeref:typename:int
+main	12topological_sorting_dfs_based_algo.java	/^	public static void main(String[] args) $/;"	m	class:Graph
+main	13shortest_path_in_dag.cpp	/^int main() $/;"	f	typeref:typename:int
+main	13shortest_path_in_dag.java	/^    public static void main(String args[])$/;"	m	class:Main
+main	14prims_algo.cpp	/^int main() $/;"	f	typeref:typename:int
+main	14prims_algo.java	/^	public static void main(String[] args) $/;"	m	class:Gfg
+main	15djikstra_algo.cpp	/^int main() $/;"	f	typeref:typename:int
+main	15djikstra_algo.java	/^	public static void main(String[] args) $/;"	m	class:Gfg
+main	16kosaraju_algo.cpp	/^int main() $/;"	f	typeref:typename:int
+main	16kosaraju_algo.java	/^	public static void main(String args[]) $/;"	m	class:Graph
+main	17bellmanford_algo.cpp	/^int main() $/;"	f	typeref:typename:int
+main	17bellmanford_algo.java	/^	public static void main(String[] args) $/;"	m	class:Graph
+main	18articulation_point.cpp	/^int main() $/;"	f	typeref:typename:int
+main	18articulation_point.java	/^	public static void main(String args[]) $/;"	m	class:Graph
+main	19bridges.cpp	/^int main() $/;"	f	typeref:typename:int
+main	19bridges.java	/^	public static void main(String args[]) $/;"	m	class:Graph
+main	20tarzens_algo.cpp	/^int main() $/;"	f	typeref:typename:int
+main	20tarzens_algo.java	/^public static void main(String args[]) $/;"	m	class:Graph
+main	21kruskals_algo.cpp	/^int main() $/;"	f	typeref:typename:int
+main	21kruskals_algo.java	/^	public static void main (String[] args) $/;"	m	class:Graph
+main	25articulation.cpp	/^int main() $/;"	f	typeref:typename:int
+main	25articulation.java	/^	public static void main(String args[]) $/;"	m	class:Graph
+main	4adjacencylist.cpp	/^int main() $/;"	f	typeref:typename:int
+main	4adjacencylist.java	/^	public static void main(String[] args) $/;"	m	class:Graph
+main	4adjacencymatrix.cpp	/^int main() {$/;"	f	typeref:typename:int
+main	4adjacencymatrix.java	/^  public static void main(String args[]) {$/;"	m	class:Graph
+main	5bfs.cpp	/^int main() $/;"	f	typeref:typename:int
+main	5bfs.java	/^	public static void main(String[] args) $/;"	m	class:Graph
+main	5bfs_on_disconnected_graph.cpp	/^int main() $/;"	f	typeref:typename:int
+main	5bfs_on_disconnected_graph.java	/^	public static void main(String[] args) $/;"	m	class:Graph
+main	5print_number_of_islands.cpp	/^int main() $/;"	f	typeref:typename:int
+main	5print_number_of_islands.java	/^	public static void main(String[] args) $/;"	m	class:Graph
+main	6dfs.cpp	/^int main() $/;"	f	typeref:typename:int
+main	6dfs.java	/^	public static void main(String[] args) $/;"	m	class:Graph
+main	6dfs_for_connected_comp.cpp	/^int main() $/;"	f	typeref:typename:int
+main	6dfs_for_connected_comp.java	/^	public static void main(String[] args) $/;"	m	class:Graph
+main	6dfs_for_disconnected_comp.cpp	/^int main() $/;"	f	typeref:typename:int
+main	6dfs_for_disconnected_comp.java	/^	public static void main(String[] args) $/;"	m	class:Graph
+main	7shortest_path_in_unweigted_graph.cpp	/^int main() $/;"	f	typeref:typename:int
+main	7shortest_path_in_unweigted_graph.java	/^	public static void main(String[] args) $/;"	m	class:Graph
+main	8detect_cycles_in_undirected_graph.cpp	/^int main() $/;"	f	typeref:typename:int
+main	8detect_cycles_in_undirected_graph.java	/^	public static void main(String[] args) $/;"	m	class:Graph
+main	9detect_cycles_in_directed_graph.cpp	/^int main() $/;"	f	typeref:typename:int
+main	9detect_cycles_in_directed_graph.java	/^	public static void main(String[] args) $/;"	m	class:Graph
+main	adjmatrix.cpp	/^int main(){$/;"	f	typeref:typename:int
+myComp	21kruskals_algo.cpp	/^int myComp(const void* a, const void* b) $/;"	f	typeref:typename:int
+numVertices	4adjacencymatrix.cpp	/^  int numVertices;$/;"	m	class:Graph	typeref:typename:int	file:
+numVertices	4adjacencymatrix.java	/^  private int numVertices;$/;"	f	class:Graph	file:
+parent	21kruskals_algo.cpp	/^	int parent; $/;"	m	class:subset	typeref:typename:int	file:
+parent	21kruskals_algo.java	/^		int parent, rank; $/;"	f	class:Graph.subset
+primMST	14prims_algo.cpp	/^int primMST(int graph[V][V]) $/;"	f	typeref:typename:int
+primMST	14prims_algo.java	/^	public static int primMST(int graph[][]) $/;"	m	class:Gfg
+printArr	17bellmanford_algo.cpp	/^void printArr(int dist[], int n) $/;"	f	typeref:typename:void
+printArr	17bellmanford_algo.java	/^	void printArr(int dist[], int V) $/;"	m	class:Graph
+printGraph	4adjacencylist.cpp	/^void printGraph(vector<int> adj[], int V) $/;"	f	typeref:typename:void
+printGraph	4adjacencylist.java	/^	static void printGraph(ArrayList<ArrayList<Integer>> adj) $/;"	m	class:Graph
+printSCCs	16kosaraju_algo.cpp	/^void Graph::printSCCs() $/;"	f	class:Graph	typeref:typename:void
+printSCCs	16kosaraju_algo.java	/^	void printSCCs() $/;"	m	class:Graph
+rank	21kruskals_algo.cpp	/^	int rank; $/;"	m	class:subset	typeref:typename:int	file:
+rank	21kruskals_algo.java	/^		int parent, rank; $/;"	f	class:Graph.subset
+removeEdge	4adjacencymatrix.cpp	/^  void removeEdge(int i, int j) {$/;"	f	class:Graph	typeref:typename:void	file:
+removeEdge	4adjacencymatrix.java	/^  public void removeEdge(int i, int j) {        $/;"	m	class:Graph
+shortestPath	13shortest_path_in_dag.cpp	/^void Graph::shortestPath(int s) $/;"	f	class:Graph	typeref:typename:void
+shortestPath	13shortest_path_in_dag.java	/^    void shortestPath(int s)$/;"	m	class:Graph
+src	17bellmanford_algo.cpp	/^	int src, dest, weight; $/;"	m	struct:Edge	typeref:typename:int	file:
+src	17bellmanford_algo.java	/^		int src, dest, weight; $/;"	f	class:Graph.Edge
+src	21kruskals_algo.cpp	/^	int src, dest, weight; $/;"	m	class:Edge	typeref:typename:int	file:
+src	21kruskals_algo.java	/^		int src, dest, weight; $/;"	f	class:Graph.Edge
+subset	21kruskals_algo.cpp	/^class subset $/;"	c	file:
+subset	21kruskals_algo.java	/^	class subset $/;"	c	class:Graph
+time	18articulation_point.java	/^	int time = 0; $/;"	f	class:Graph
+time	19bridges.java	/^	int time = 0; $/;"	f	class:Graph
+time	25articulation.java	/^	int time = 0; $/;"	f	class:Graph
+toString	4adjacencymatrix.cpp	/^  void toString() {$/;"	f	class:Graph	typeref:typename:void	file:
+toString	4adjacencymatrix.java	/^  public String toString() {$/;"	m	class:Graph
+topologicalSort	10topological_sorting.cpp	/^void topologicalSort(vector<int> adj[], int V) $/;"	f	typeref:typename:void
+topologicalSort	10topological_sorting.java	/^	static void topologicalSort(ArrayList<ArrayList<Integer>> adj, int V) $/;"	m	class:Graph
+topologicalSort	11detect_cycle_in_directed_graph_part2.cpp	/^void topologicalSort(vector<int> adj[], int V) $/;"	f	typeref:typename:void
+topologicalSort	11detect_cycle_in_directed_graph_part2.java	/^	static void topologicalSort(ArrayList<ArrayList<Integer>> adj, int V) $/;"	m	class:Graph
+topologicalSort	12topological_sorting_dfs_based_algo.cpp	/^void topologicalSort(vector<int> adj[], int V) $/;"	f	typeref:typename:void
+topologicalSort	12topological_sorting_dfs_based_algo.java	/^    static void topologicalSort(ArrayList<ArrayList<Integer>> adj, int V) $/;"	m	class:Graph
+topologicalSortUtil	13shortest_path_in_dag.cpp	/^void Graph::topologicalSortUtil(int v, bool visited[], stack<int> &Stack) $/;"	f	class:Graph	typeref:typename:void
+topologicalSortUtil	13shortest_path_in_dag.java	/^    void topologicalSortUtil(int v, Boolean visited[], Stack stack)$/;"	m	class:Graph
+v	13shortest_path_in_dag.cpp	/^	int v; $/;"	m	class:AdjListNode	typeref:typename:int	file:
+v	13shortest_path_in_dag.java	/^    private int v;$/;"	f	class:AdjListNode	file:
+weight	13shortest_path_in_dag.cpp	/^	int weight; $/;"	m	class:AdjListNode	typeref:typename:int	file:
+weight	13shortest_path_in_dag.java	/^    private int weight;$/;"	f	class:AdjListNode	file:
+weight	17bellmanford_algo.cpp	/^	int src, dest, weight; $/;"	m	struct:Edge	typeref:typename:int	file:
+weight	17bellmanford_algo.java	/^		int src, dest, weight; $/;"	f	class:Graph.Edge
+weight	21kruskals_algo.cpp	/^	int src, dest, weight; $/;"	m	class:Edge	typeref:typename:int	file:
+weight	21kruskals_algo.java	/^		int src, dest, weight; $/;"	f	class:Graph.Edge

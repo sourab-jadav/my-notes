@@ -1,0 +1,41 @@
+solidfy what you have learned 
+
+
+promodoro technique
+
+The original technique has six steps:
+
+    Decide on the task to be done.
+    Set the pomodoro timer (typically for 25 minutes).[1]
+    Work on the task.
+    End work when the timer rings and take a short break (typically 5–10 minutes).[5]
+    If you have finished fewer than three pomodoros, go back to Step 2 and repeat until you go through all three pomodoros.
+    After three pomodoros are done, take the fourth pomodoro and then take a long break (typically 20 to 30 minutes). Once the long break is finished, return to step 2.
+
+    4 promodoros in total
+
+
+how to google like a pro---
+
+    use " " for a specific keywords
+    type ctrl+f to open the search box
+
+    --norrowing the search
+        
+        use -(high fun) to exclude the a specific keyword
+
+
+        ---taking screenshot in max
+            shift command 3 --screenshot of entire screen
+            mouse changes into + take selective screenshot
+
+            shift command 4 + space  --screenshot of active window
+
+
+            ---windosw
+                print screen--entrie screen
+                alt+print screen -current window
+
+
+ Examples of password managers include LastPass, 1Password, and Google Chrome's password manager.
+

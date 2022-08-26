@@ -1,0 +1,146 @@
+git commit 
+
+git commit -m "the firs mesago"
+git commit -am "the first message"
+
+=============to make changes to the previous commit=======
+git add file.txt 
+git commit --amend
+git config --user.email
+git config --user.name
+git config --global init.defaultBranch main
+git config --global color.ui auto
+git log
+git log --oneline
+
+
+git branch <branch name>
+git switch  <branch name>
+git switch -   -->to move from detached head state
+git switch -c <branch nname> to create and swith all in one go
+git branch -v to view more information about the branch
+
+git checkout <branch name> same as switch 
+chekcout git worktree 
+
+
+------------>deleting a branch
+
+       git branch -d <bug fix> 
+       git branch -D <branch name> ------->force delete
+
+-----------------difffing-------
+
+
+git diff head  --> list all the changes to the working directory since your last commit
+git diff head currentworkdir
+
+git diff staged --> diff current directory staging area
+git diff cached --> diff last commit and staging area
+
+git diff head [filename] get the diff of the specific file
+(or) git diff --staged [filename]
+
+git diff branch1..branch2  list the difference between the branch1 and branch2
+git diff commit1..commit2  to compare between the two commits
+**git diff HEAD~1 HEAD  (or) git diff HEAD--> to comare currrent head and previous head
+git diff HEAD HEAD~1 OR  git diff HEAD~1
+**git diff -->unstaged changes
+git diff HEAD --> staged and unstaged changes
+
+
+
+=======================stashing=========
+while switching to the other branch you don't want the uncommited changes to come with you
+
+    you can stash them by 
+
+    -->git stash
+
+    git stash pop  --> will pop out the changes from stash to the current branch
+
+    git stash apply --> to apply whatever is stash away without remvinng it from the stash 
+
+    git stash -u --> to include the untracked files
+
+
+
+you can add multiple stashes by doing the git stash
+then too cehck git stash list
+git stash apply stash@{2}
+git stash drop stash@{3}
+git stash clear --> to clear out all the stashes
+
+
+
+
+
+==============================time travelling================
+    git checkout <hash>     to view the prvious commits
+    (or) git checkout head~1
+    --------->for discarding changes back to the head state
+            git checkout head <filename>
+            git checkout -- <file>
+    git switch -c new_branch
+    git add .
+    git commit -m "new commit"
+        ------------------git restore-------------j w
+        not undoable
+        same as git checkout head == git restore <filename>
+        restores using head as the default source
+        or git restore --source HEAD~1 HOME.HTML
+       git restore --staged <filename> -->remoove from staging area 
+       git reset <hash>  -->goes to commit but changes will be there
+       git reset --hard <hash> --> removes the changes also
+       git revert <hash> --> undoes the changes by creating the commit
+
+=========================
+
+
+
+git remote add <name> <url>
+git remote rename <old> <new>
+git remote remote <name>
+git push remote branch
+git push origin pancake:waffle  push local pancake branch to remote waffle branch
+setting up the upstream git push -u origin master  
+once upstream is set you can use git push(shorthand cmmd)
+git branch -r  to view the remmote branches our local repo knows about
+git checkout origin/master
+git branch -M main  --> for renameing the repo
+markdown it demo  ---> visite this site
+
+********************rebasing********** 
+            git switch feature
+            git rebase master
+
+
+                    --alternative to merging
+                    --as a cleanup tool
+                    git rebase -i <hash>
+
+
+
+
+=======================git tags===============
+
+---viewing the tags--
+
+
+    git tag -l "*beta*"
+    git tag -l "17*"
+    git tag -l "*17*"
+    
+--checkout tag
+
+    git checkout <tag>
+
+========================================git worktree======================================== 
+
+
+    allow you have multiple commits checkouted at the same time
+    git clone 
+    git branch -a
+    git clone --bare <clone link> git-worktree.nvim
+    what is git blame 
+    

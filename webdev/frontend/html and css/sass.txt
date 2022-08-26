@@ -1,0 +1,145 @@
+extensions  sass compiler
+
+folder styles
+    
+    style.scss
+
+    header{
+        background lighblue;
+        --click on the watch sass button and link the created .css file to the html page
+        display:flex;
+        justify-content:center;
+        --look for the style .css file 
+    } 
+
+    $primarybtn:red;
+
+    header button{
+        background:red;  --bacground:$primarybtn;
+
+    }
+
+    .contact button{
+        backgroound:red;
+
+    }
+
+
+$textcolor:rgb(43,43,43);
+
+color:$textcolor;
+
+
+
+    header{
+        background lighblue;
+        display:flex;
+        justify-content:center;
+        --look for the style .css file 
+        button{
+                background:red;  --bacground:$primarybtn;
+
+            }
+
+        p{
+
+        }
+
+        .maintext{
+
+        }
+        --equal to 
+            header button{
+
+            }
+            header p{
+
+            }
+
+    } 
+
+
+    header{
+        background lighblue;
+        display:flex;
+        justify-content:center;
+        --look for the style .css file 
+        button{
+                background:red;  --bacground:$primarybtn;
+
+                           &:hover{
+                               background:red;
+                           }
+                           &::after{
+                               content:"helo ooo";
+                           }
+            }
+
+    }
+
+
+
+
+in the styles folder add _header.scss
+
+in the styles.scss @import "./header" ;
+
+create new file _variables.scss
+
+in the style.scss
+
+
+header{
+    @include name();
+
+}
+
+
+@mixin name{
+
+
+    height:100vh;
+    display:flex;
+    align-items:center;
+
+}
+
+
+.contact{
+    @include name(column,red);
+}
+
+
+-------------using parameters in the functions created above
+
+
+    
+@mixin name($direction,$background){
+
+
+    height:100vh;
+    display:flex;
+    align-items:center;
+justify-contant:center;
+flex-direction:$direction;
+background:$background;
+
+}
+
+
+
+.contact{
+    @extend header;
+    background:lightcoral;
+    background:rba(168,56,58);--overrided
+
+    -+/*
+    width:100%-20%;
+}
+
+
+
+==============================compiling sass using the terminal
+
+
+

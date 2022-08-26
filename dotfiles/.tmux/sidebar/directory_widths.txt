@@ -1,0 +1,5 @@
+/home/sourab	37
+/home/sourab	40
+/home/sourab	40
+/home/sourab/my_workspace/notes/tmux	40
+/home/sourab/my_workspace/notes/tmux	40

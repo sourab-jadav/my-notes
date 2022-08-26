@@ -1,0 +1,16 @@
+pane	config	0	0	:-	0	sourab-Lenovo-G50-80	:/home/sourab	0	vim	:vim .vimrc
+pane	config	0	0	:-	1	sourab-Lenovo-G50-80	:/home/sourab	1	vim	:vim .tmux.conf
+pane	config	1	1	:*	0	sourab-Lenovo-G50-80	:/home/sourab/my_workspace/cp/sourab-notes/terminal_config	0	vim	:vim terminalnotes.txt
+pane	config	1	1	:*	1	sourab-Lenovo-G50-80	:/home/sourab/my_workspace/cp/sourab-notes/vim	1	vim	:vim 1notes.txt
+pane	config	1	1	:*	2	sourab-Lenovo-G50-80	:/home/sourab/my_workspace/cp/sourab-notes/git	0	vim	:vim gitnotes.txt
+pane	mywork	0	1	:*	0	sourab-Lenovo-G50-80	:/home/sourab/my_workspace/cp/sourab-notes	1	zsh	:
+pane	webdev	0	0	:-	0	sourab-Lenovo-G50-80	:/home/sourab/my_workspace/notes/webdev/html/html-css-course-master/final	0	vim	:vim style.css
+pane	webdev	0	0	:-	1	sourab-Lenovo-G50-80	:/home/sourab/my_workspace/notes/webdev/html/html-css-course-master/final	1	vim	:vim index.html
+pane	webdev	1	1	:*	0	sourab-Lenovo-G50-80	:/home/sourab/my_workspace/notes/webdev/html/html-css-course-master/final/07-Omnifood-Desktop	0	vim	:vim index.html
+pane	webdev	1	1	:*	1	sourab-Lenovo-G50-80	:/home/sourab/my_workspace/notes/webdev/html/html-css-course-master/final/07-Omnifood-Desktop/css	1	zsh	:
+window	config	0	:config	0	:-	c223,151x40,0,0{80x40,0,0,1,70x40,81,0,2}	off
+window	config	1	:doc	1	:*	a625,151x40,0,0{75x40,0,0,3,75x40,76,0[75x20,76,0,10,75x19,76,21,4]}	off
+window	mywork	0	:zsh	1	:*	ac42,151x40,0,0,5	:
+window	webdev	0	:html	0	:-	533e,151x41,0,0{80x41,0,0,6,70x41,81,0,7}	off
+window	webdev	1	:javascript	1	:*	6fe3,151x40,0,0{75x40,0,0,8,75x40,76,0,9}	off
+state	config	mywork

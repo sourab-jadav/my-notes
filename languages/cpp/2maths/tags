@@ -1,0 +1,34 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+countDigits	1countdigits.cpp	/^int countDigits(int x)$/;"	f
+countTrailingZeros	4trailingzeroes.cpp	/^ int countTrailingZeros(int n)$/;"	f
+fact	3factorial.cpp	/^int fact(int n)$/;"	f
+fact	3factorial.cpp	/^int fact(int x)$/;"	f
+gcd	5gcd.cpp	/^ int gcd(int a, int b)$/;"	f
+gcd	6lcm.cpp	/^ int gcd(int a, int b)$/;"	f
+isPal	2palindromecheck.cpp	/^bool isPal(int n)$/;"	f
+isPal	temp.cpp	/^bool isPal(int n)$/;"	f
+isPrime	7checkforprime.cpp	/^ bool isPrime(int n)$/;"	f
+lcm	6lcm.cpp	/^int lcm(int a, int b)$/;"	f
+main	10stieveoferethotheves.cpp	/^int main() {$/;"	f
+main	11computingpower.cpp	/^int main() {$/;"	f
+main	12iterativepower.cpp	/^int main() {$/;"	f
+main	1countdigits.cpp	/^int main() {$/;"	f
+main	2palindromecheck.cpp	/^int main() {$/;"	f
+main	3factorial.cpp	/^int main() {$/;"	f
+main	4trailingzeroes.cpp	/^int main() {$/;"	f
+main	5gcd.cpp	/^int main() {$/;"	f
+main	6lcm.cpp	/^int main() {$/;"	f
+main	7checkforprime.cpp	/^int main() {$/;"	f
+main	8primefactors.cpp	/^int main() {$/;"	f
+main	9alldivisors.cpp	/^int main() {$/;"	f
+main	temp.cpp	/^int main() {$/;"	f
+power	11computingpower.cpp	/^ int power(int x, int n)$/;"	f
+power	12iterativepower.cpp	/^int power(int x, int n)$/;"	f
+printDivisors	9alldivisors.cpp	/^ void printDivisors(int n)$/;"	f
+printPrimeFactors	8primefactors.cpp	/^ void printPrimeFactors(int n)$/;"	f
+sieve	10stieveoferethotheves.cpp	/^ void sieve(int n)$/;"	f

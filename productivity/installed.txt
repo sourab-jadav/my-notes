@@ -1,0 +1,9 @@
+flat pa
+
+prettier installed using the npm
+
+tidy is installed for html and css code formatting
+
+cppcheck is installed for cpp formation
+
+vscode-language-servers done using npm

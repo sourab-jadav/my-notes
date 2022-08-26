@@ -1,0 +1,320 @@
+--------links
+soft link if you remove the file the link will be pointed to the null
+ln -s <path of the file>
+hark link if you remove the file the link will not be pointed to the null and its still there ln <path of the file>
+
+
+
+
+read
+w
+x-execture -running a program
+u-you
+g-group
+o-other
+
+
+to differ between the direc and the files             ---ls -F 
+to list the size in the human readable format         ---ls -lh 
+to lsit horizintally all contents                     ---ls -ax 
+
+
+
+
+
+****************************************chmod command**************************************** 
+
+-rw-rw-r-- 1 sourab sourab 0 May 15 19:54 jerry
+ man chmod
+
+chmod g-w jerry
+ls -l jerry
+-rw-r--r-- 1 sourab sourab 0 May 15 19:54 jerry
+
+
+ chmod a-r jerry
+ ls -l jerry
+--w------- 1 sourab sourab 0 May 15 19:54 jerry
+
+
+ chmod u-w jerry
+ ls -l jerry
+---------- 1 sourab sourab 0 May 15 19:54 jerry
+
+
+rm jerry
+rm: remove write-protected regular empty file 'jerry'? n
+cat jerry
+cat: jerry: Permission denied
+
+
+
+chmod u+rw jerry
+ls -l jerry
+-rw------- 1 sourab sourab 0 May 15 19:54 jerry
+chmod g+rw jerry
+ls -l jerry
+-rw-rw---- 1 sourab sourab 0 May 15 19:54 jerry
+chmod o+r jerry
+ls -l jerry
+-rw-rw-r-- 1 sourab sourab 0 May 15 19:54 jerry
+
+
+mkdir seinfield                                             ---ls -ltr      
+drwxrwxr-x 2 sourab sourab 4096 May 15 20:02 seinfield
+chmod a-x seinfield
+cd seinfield
+cd - //to move to the previous location
+cd: permission denied: seinfield
+ls --help ==>more descriptive
+
+
+--------------------------------------------------------------------------------
+                        (to send and append to a file)
+
+
+to send the output to the file specified                                --tee
+prints the output and that output is sent to the file specifiedj
+
+
+echo "david puddy is elina's booy friennd" | tee eliane-david
+david puddy is elina's booy friennd
+
+echo "david puddy is elina's booy friennd" | tee eliane-david
+david puddy is elina's booy friennd
+
+echo "david puddy is elina's booy friennd" | tee -a eliane-david
+david puddy is elina's booy friennd
+
+cat eliane-david
+david puddy is elina's booy friennd
+david puddy is elina's booy friennd
+
+
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+ ==>to count the number of the words in the file                    --wc -c  
+ls -l | tee file1 file2 file3
+ls -l | tee fiel{1..4}.txt
+
+
+
+==============PIPES====================
+is used by the shell too connect the utput ofone commnd directly to the iput of another commmand
+
+
+
+
+==========to change the shell================>use chsh
+cd /etc
+ls -ltr | more
+
+
+
+
+==========================MORE================
+more  is the command which gives the output of a file one page at a time 
+
+
+
+TAIL==============
+to get the last line of the output
+ls -l | tail -1
+
+
+
+
+FILE MAINTENCE COMMANDS============
+cp
+cp -r <direc_name> <create the direc>  we can also cp a directory and its contents using -r flag
+rm
+mv
+mkdir
+rmdir or rm -r
+chgrp
+chown
+chown sourab:sourab puddy(filename) 
+
+
+
+===============================	file DISPALY COMMMNDS=========
+CAT
+MORE
+LESS                                 --with vi mode
+HEAD                                 --first lines
+head -n <number of lines>
+TAIL                                 --last lines of afiles
+========================
+	
+
+
+================FILTERS/TEXT PROCESSORS COMMANDS=======
+CUT
+cut -c1-2 jerry
+je
+je
+to
+dr
+-r
+Su
+fi
+se
+
+=========================	AWK=================
+for priting the columsn
+❯ awk '{print $1}' jerry
+nithin
+ravi
+srija
+srikkath
+sourab
+ravi
+yash
+harish
+mohammet
+
+
+GREP======================
+ctrl-r is used to search from your command history press ctrl-r to navigate again through that entries
+is used to search in the file
+grep nithin jerry
+nithin chatla
+
+
+
+=========================================
+	SORT
+	sort alphabeticaly by default
+	sort -r alphabeticall by defalut
+
+
+
+	=========================
+	UNIQ
+	always use sort befoore uniq
+
+
+
+	======================
+	WC
+    jerry  seinfield
+    cat jerry | wc -l
+    9
+
+	=================COMPARING FILES==================
+	diff  file1 and file2
+
+
+
+	====================COMPRESS AND UNCOMPLRESS FILE============
+	tar
+	tar cvf sourab.tar 
+	tar xvf(to extract everythinng) <tar_file>
+    tar -zxvf jdk-<version> -C /opt/java
+    sudo update-alternatives --install /usr/bin/java java /opt/java/jadk<version>/bin/java
+	gzip <tar _file>	//to coompress the tar file
+	gzip
+	gzip -d or gunzip   //to uncompress the tar file
+
+
+
+
+
+
+	=====================truncate the file size====chop the file size====
+cat temp
+puffyshirt giddyup yadayad akavorka serrenitynow festivus
+ls -l temp
+-rw-rw-r-- 1 sourab sourab 58 May 15 22:37 temp
+truncate -s 40 temp
+cat temp
+puffyshirt giddyup yadayad akavorka serr%  
+o
+
+
+
+===============================================COMBINING AND SPLITING THE FILES====================
+	split -l 2 countries sep
+
+
+
+	==================================SED COMMAND ================
+	sed 's/kenny/lenny/g' seinfeld-characters //will only change in the output not to the file 
+	sed -i  's/kenny/lenny/g' seinfeld-characters //will actually change inside the file
+	sed '/seinfeld/d' seinfeld-characters //all the lines that has the seinfeld are gone
+	---------------deleting the empty lines in a file------------
+	sed '/^$/d' (anything that is startinng anything that is ending has nothing in the middle)  seinfeld-chaaracters
+	sed '1d' seinfeld-characters
+	sed '1,2d' seinfeld-characters
+	---------------replacing spaces with tabs-------------
+    sed -i 's/\t/ /g' seinfeld-charaters
+
+    to show lines within the specified range----------->
+    sed -n 12,18d seinfeld-characters
+    sed  12,18d seinfeld-characters //exclude line between the 12 and 18
+    sed G seinfeld-chracters  //empty line afer every non empty line inn the file
+    sed '8!s/seinfled/s/g' seinfeld-chracters
+
+===========================================USER ACCOUNT MANAGEMENT==============
+
+
+COMMANDS:
+	
+	useradd spidername
+	id spidername
+	groupadd superheroes
+	cat /etc/groups
+	userdel -r spidername
+	groupdel <grupname>
+	usermod  -G <groupname> <username>(you want too add to the group)
+	grep spiderman /etc/group
+    chgrp -R superheros spidername
+
+
+	FILE:
+		/etc/passwd
+		/etc/group
+		/etc/shodow
+
+
+
+=======================for checking the disk spcace=========
+        df -h
+        lsblk
+        ==========for finding the host name===
+        hostname
+        ====================setting the icons==============
+
+
+
+=======================npm===============
+create npm script to run prittier specific for that project
+npm i prettier --save-dev
+./node-modules/.bin/prittier --single-quote --write './src/**/*.(ts,json,css,json)'
+
+
+=============fonts==========
+visit the nerdfonts in the github and go to the doc of hack folder for font settings
+put the fonts in 
+fc-chache -v
+
+fc-list | grep "hack"
+
+
+
+
+
+===============to manage brightness from the command line
+ xrandr -q | grep "connected"
+eDP-1 connected primary 1366x768+0+0 (normal left inverted right x axis y axis) 344mm x 194mm
+HDMI-1 disconnected (normal left inverted right x axis y axis)
+DP-1 disconnected (normal left inverted right x axis y axis)
+HDMI-2 disconnected (normal left inverted right x axis y axis)
+❯ xrandr --output eDP-1 --brightness 0.5
+
+

@@ -1,0 +1,14 @@
+alt+shift+j --opening the developer tools
+cmd+apt+j
+
+variable initialization        --let js='amazing';
+if statement                if(js=='amazing')alert('jaavscript is fun')
+
+            
+            history
+                
+
+                es6-es2015(biggest update to the language ever)
+                alfter es11 --every year new update
+
+

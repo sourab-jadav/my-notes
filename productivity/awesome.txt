@@ -1,0 +1,13 @@
+alt j,k   --for moving down and up the panes
+alt+shift j,k --for moving the panes down and up
+
+alt +m for maximizing the pane under the cursor showing the top title bar
+alt+f for --------------------------------------leaving title bar behind (full screen)
+
+ctrl+alt+space --enter into the floating mode
+ctrl+alt+n      --gets the minized tabs
+alt+n               minimize the tab 
+
+alt+h and alt+l to adjust the screen size
+
+alt+space to change the layout

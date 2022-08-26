@@ -1,0 +1,390 @@
+skyblue color #109ad
+
+
+
+
+too align the container at the middle of the page
+
+
+        --> set the width to 800px
+        ==> set margin 0 auto
+        to will the coontainer set width 100%
+
+for grey color for the background use f7f7f7
+
+
+    background :linear-gradient(to top right,#65dfc9,#6cdbeb)
+    background-color: black;
+
+
+    =======================basic styling============
+border-color black;
+border-style dotted;
+border-top: 10px solid #1098ad;
+
+cursor:pointer
+
+
+
+for anchor margin top bottom doesnt works yyou have to display it as 
+display:        inline block
+
+
+
+
+
+text transform uppercase
+transform:scale(1.5); //to increase the size of the image inplace
+text align center 
+text decoration none;
+text decorationo underlined oranged
+
+                    ================styling links=========
+
+                    4 stleing links
+                    a:link
+                    a:visited
+                    a:hover
+                    a:active
+
+                    ===================================
+
+font style italic
+font weight bold
+
+
+line height 1.5
+
+
+===========================pseudo elements=============
+
+li:last-child {
+    list-style : square
+  margin-bottom: 0;
+}
+
+li:nth-child(even) {
+  /* color: red; */
+}
+
+
+h1::first-letter {
+  font-style: normal;
+  margin-right: 5px;
+}
+
+
+h3 + p::first-line {
+  /* color: red; */
+}
+
+
+/* Misconception: this won't work! */
+article p:first-child {
+  color: red;
+}
+
+
+
+h2::before {
+  content: "TOP";
+  background-color: #ffe70e;
+  color: #444;
+  font-size: 16px;
+  font-weight: bold;
+  display: inline-block;
+  padding: 5px 10px;
+  position: absolute;
+  top: -10px;
+  right: -25px;
+}
+
+
+
+box-sizing:border-box;
+
+
+
+
+================flexbox=====================
+
+
+
+display:flex
+if the height of the 1 child one number then all other childs gets adjusted to that number 
+
+
+    gap:   ========> no need of margin in the flexcontiner   
+    align-items:center;
+    align-items:flex-start;
+    align-items:flex-end;
+    align-items:stretch===========>by default
+
+
+    justify-content:center;
+    justify-content:space-between;
+    justify-content:flex-start;---->by default
+
+
+            other three properites
+
+            flex-direction:row|row-reverse|column
+            flex-rap:nowrap:wrap:wrap-reverse
+            align-content:flex:flex-start:flex-end;
+
+    display:flex;
+    flex-direction:column
+    gap:12px
+
+
+    =======flex-items; applied in the items classes
+
+    align-self:auto;
+    flex-grow:0:<enteger>
+    flex-shrink:1:<lenght>  //shrinks when it goes out of the container
+    flex-basis:auto:<length>
+    flex:0 1 auto|<int> <int> <int>
+    order:0|<enteger>
+
+
+    .el--1{
+        align-self:flex-start;
+    }
+.el--5{
+    order:-1;   //greater the value the more right it gooes
+}
+
+
+when we want to size flex items with some width then we do not use width property instead we use flex basis
+flex-basis:100px;  ===> asigns all element size width to 100px if possible
+
+                        -->by default flex box is allowed to shrink the element so that the contents get fit in it
+                        -->flex-shrink:0;
+                        -->flex-grow:1;  --->alll the elements git filled equally in the container
+
+
+                        .el{
+                            flex-shrink:0;  ==
+                            flex-grow:1;   ===> flex:1;
+
+                        }
+                        
+                        .el--1{
+                            align-self:flex-start;
+                            flex-grow:3;
+
+                        }
+
+
+**flex box doesn't apply on the inine block elements only on the bloock elements
+
+
+
+
+=============================css grid===============
+
+
+display:none;==========>completely removed from the page;
+
+=================grid container=============
+display:grid;
+grid-template-columns:250px 150px;
+grid-template-rows:px px;
+
+justify-items: stretch|start|center|end
+align-items:stretch|start|center|end   //stretch by default
+
+
+justify-content
+align-content;
+
+gap:30px;
+column-gap:30p
+row-gap:40p
+=============================================
+
+
+============grid items============
+
+        grid-column
+        grid-row
+        justify-self
+        align-self
+        ================================
+
+
+
+1fr  --->particular clumn(or row) gets expanded to fill the rest of the empty space
+
+
+grid-template-columns:repeat(4,1fr);
+grid-template-rows:1fr auto;  //auto takes only space that is needed to store the text
+
+
+
+
+
+.el--8{
+    gird-column:2/3; we can ommit the second itemm if the second is just 1 more than the first ie grid-col:2.  
+    grid-column:1/span 3;   || grid-column:1/-1; //spans all the way to the end
+
+
+}
+
+
+grid-lines
+grid-cells--might be filled by a grid items or not
+grid-track/row
+grid-track/columnk
+
+
+
+
+
+
+===============================designing rules========
+websites==========>opecolors.github.io
+
+
+        ---good types facws
+           --sanserif tyype faces 
+            -inter
+            -open sans
+            -roboto
+            -montserrat
+            -work sans
+            -lato
+
+        
+        ---serif typefaces
+            -merriweather
+            -aleo
+            -playfair display
+            -cormorant
+            -cardo
+            -lora
+
+
+
+------------font size
+    
+    use 16px to 32px for normal text --for nav author name
+    for longer text use 20px or even bigger --for matter and definations
+
+
+    for headlines go 50px + and bold 600+
+
+
+    <75 chars per line
+
+    for normal text -->lineheight 1.5 or 2
+
+        for big text, go below 1.5
+
+
+    decrese letter spacing in headlines if it looks unnatural
+
+
+
+
+                ==========coloring================
+
+                use open color website
+
+                main accent and grey
+
+
+                text should not be completely black
+
+                on darkk colored backgrounds try too use a tint for the text
+
+                
+===========================================================================
+                toolbox for pictures
+                    
+                    unsplash
+                    pexels
+                    drawkit
+                    undraw
+
+
+                crop images to fit our message
+
+                darken or brighten the image using gradient
+
+                position the text into a neutral image area
+
+
+                put text in a box
+
+
+                to account for higher resolution screens make image dimensions 2x as big as their displayed size
+
+
+                
+                compress the image for lower file ssize and better performance
+
+                use tools like squosh
+
+
+                when you use multiple images side by side make sure are of same size
+
+==========================================================================
+
+
+
+
+use  good icon packs
+
+tool box            phophor icons
+                    ionicons
+                    icons8
+                    heroicons
+
+                    use svgs or icon fonts
+
+
+                    product feature blocks
+                    as bullet points
+
+                    set the icons color to the text they have
+
+                    don't make icons larger than what they are designed fork
+
+
+span element is duplicate inline element
+
+
+
+
+
+
+=========================shadows
+
+    go light on shadows don't make them too dark
+    use small shadows for smaller elements that should stand out (to draw attention)
+
+    use medium-sized shadows for larger areas that should stand out a bit more
+
+    use large shadows for elements that should really float above the interface
+
+    experiment with changing shadoows on mouse interactionk
+
+    experiment with glow
+
+
+    use border-radius to increase the playfullness and fun of the design ,to make it less serious
+
+
+        .chair-box{
+            box-shdow:<length which will be the horizntl offset between box nd shadow> <for the vertical> <blur> <scle the shadow up> <color>
+            box-shdow:20px 20px 20px
+    }
+
+
+    =====================streal like an artist
+
+            landbook.com
+            onepagelove
+            awwwards.com
+            screenlaying.com

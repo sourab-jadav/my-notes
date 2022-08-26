@@ -1,0 +1,46 @@
+ctrl+b is the default prefix key
+toogle between the panes prefix+;
+toogle between the windows prefix+l
+
+=======icons not working inn tmux
+start tmux  with tmux -u
+alias tmux tmux -u
+
+
+
+
+prefix + q to shoow the pane number
+ctrl+b o toogle between the current and previoius pane
+
+
+
+prefix+ : -->to go into the command mode
+
+
+
+
+set-window-option mode-keys vi ==>copy mode inn tmux
+
+to start a new session :new
+                        tmux new
+                        tmux new-session
+
+                        tmux new -s myssession
+
+rename the session    ctrl+b $
+rename the current window ctrl+b ,
+detach from the session ctrl+b d
+attach from the last session  
+
+
+previous session  ctrl+b (
+
+
+next session  ctrl+b )
+
+
+
+
+
+
+

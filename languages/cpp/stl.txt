@@ -1,0 +1,632 @@
+
+
+
+1   what is stl
+
+2 generaic programming
+  
+  metat programming 
+  preproecessor  macros
+  functino macros
+  class macros
+
+
+3 stl containers   --->colletion of objects or primity types[arrays,vector,deque,stack,map,etc]
+
+4 stl iterators   --> generate sequence of elements from the container
+
+5 stl algoritms   --> function for processig sequencing of elements from the container
+
+6 array  
+
+7 vector
+
+8 deque
+
+9 list and forward list
+
+10 set and multi set
+
+11 map and mutli map
+
+12 stack and queue
+
+13 priority queue
+
+14 algoritms
+
+
+
+
+
+========================================elements of the stl
+
+
+            std::vector<int> v{1,5,3};
+
+            std::sort(v.begin(),v.end());
+
+            for(auto elem:v)
+            {
+                std::cout<<elem<<std::endl; 
+              }
+
+              std::reverse(v.begin(),v.end());  for(auto elem:v)std::cout<<elem<<std;:endl;
+
+
+              =============accumulate function============
+                int sum{};
+
+                sum=std::acumulate(v.begin(),v.end(),0); cout<<sum<<std::endl;
+
+
+
+
+
+3==================containers
+
+    sequence containers   ----->array,vector,list,forwardlist,dequeue
+    associative conatiners ---->set,multiset,map,multimap
+    container adapters  ---->stack,queue,priority queue
+
+4===========iterators
+  
+  1-input iterators  --> from the cotainer to the program
+  2-output iterators  --> from the program to the container
+  3-forward iterators -->navigate one item at a time in one direction
+  4-bidrectional iterators -->
+  5-random access iterators
+
+  
+
+
+
+
+  ================generic programming===
+
+
+  ----macros
+    
+#define max_size 100
+#defie pi 3.14159
+
+    int max(int a,int b){return (a>b)?a:b;}
+
+#define max(a,b) ((a>b)?a:b)
+
+std::cout<<max(10,20)<<std::endl; //20
+std::cout<<max(2.4,3.5)<<std::end;//3.5
+std::cout<<max('a','c')<<std::end;//c
+
+
+
+#define square(a) ((a)*(a))
+
+result=square(5);
+result=100/suare(5);
+
+
+
+--------generic function using function templates
+  
+
+  template<typename T>
+  T max(T a,T b){
+      return (a>b)?a:b;
+    }
+
+    max<int>(a,b);
+    max<double>(c,d);
+
+
+struct Person {
+    std::string name;
+    int age;
+    bool operator<(const Person &rhs) const {
+        return this->age < rhs.age;
+    }
+};
+
+std::ostream &operator<<(std::ostream &os, const Person &p) {
+    os << p.name;
+    return os;
+}
+
+template<typename T>
+class Item{
+    String name;
+    T values
+    public:
+    item(std::string name,T values):name {name},value{value}
+    {
+
+      }
+      std::string get_name()const(return name;)
+      T get_value() const {return value;}
+  };
+
+  Item<int>item1{"larry",1};
+  item<double>item2{"moe",1000.0};
+  item<std::string> item{"frank","boss"};
+
+  std::vector<Item<int>>vec; 
+
+
+  template<typename T1,typename T2>
+  struct myPair{
+      T1 first;
+      T2 second;
+    } ; 
+
+    myPair<std::string,int> pl{"frank",100};
+
+
+
+    ========#include<utility>
+    std::pair<std::string,int> p1{"frank",100};
+    std::cout<<p1.first;
+    std::cout<<p1.second;
+
+
+            =============creating an array template class
+
+            class array we want to be of any size and any type cpp already have it for using
+            
+            include<iostream>
+            include<string>
+            template<typename 
+
+            class array{
+                int size[N];
+                int value[N];
+              }
+
+              
+
+------------iterators
+
+
+std::vector<int> vec{1,23,3};
+
+std::vector<int>::iterator it=vec.begin();
+
+auto it=vec.begin();  compiler does the work
+
+while(it!=vec.end())
+{
+    std::cout<<*it<<endl;
+    ++it;
+  }
+
+
+  vector<int>::reverse_iterator it=vec.begin();
+
+  --const iterators
+
+      begin() end();  iterator
+
+      cbegin() cend(); const_iterator
+      rbegin() rend(); reverse_iterator
+
+      crbegin() crend(); const_reverse_iterator
+
+
+
+writing the display functin to iterate over the elements
+
+void display(const std::vector<int> &arr)
+{
+    std::cout<<"[ "; 
+    for(auto const &item:arr)
+    {
+        std::cout<<item<<" ";
+      }
+      std::cout<<"] "std::endl;
+  }
+
+
+  5============algorithms
+
+
+#include<algorithm>
+
+-------------find-------------------- 
+std::vector<int> vec{2,3,4};
+auto loc=std::find(vec.begin(),vec.end(),3);
+
+if(loc!=vec.end())
+
+  {
+      std::cout<<*loc<<std::endl; --returns the index;
+    }
+
+    std::vector<Player> team{//asume initialzed}
+    Player p{'hellor',100,12};
+
+    auto loc=std::find(team.begin(),team.end(),p);
+
+    if(loc!=vec.end())
+    {
+        std::cout<<*loc<<std::endl;
+      }
+
+
+------------------------------for each
+
+struct square_functor{
+    void opeartor()(int x){  ---overload () opeartor
+        std::cout<<x*x<<" ";
+      }
+  };
+
+  square_functor square;
+
+  std::vector<int> vec{1,2,3,4};
+
+  std::for_each(vec.begin(),vec.end(),square);  --returns 1 4 9 16
+
+
+  void square(int x){
+      std::cout<<x*x<<" ";
+    }
+
+    std::vector<int> {1,2,3,4};
+
+    std:;for_each(vec.begin(),vec.end(),square);  ---passing the function address as the parameter
+
+
+    for_each -using lamda expression
+
+
+    std::vector<int> vec{1,2,3,4};
+
+    std::for_each(vec.begin(),vec.end(),[](int x){std::cout<<x*x<<" ";})
+    -------------------------------------------------------------------
+
+    #include<cctype> is used to convert a character from lower case to upper case 
+
+      -->algoritms
+    find test  --returns the iterator  std::find(vec.begin(),vec.end(),1);
+    count test  --returns the number   std::count(vec.begin(),vec.end(),5);
+    count_if test  --returns the nubmer std::count_if(vec.begin(),vec.end(),[](int x){return x%2==0;});
+    replace test  --returns the number std::replace(vec.begin(),vec.end(),1,100); 
+    all_of test   --returns true or false if(std::all_of(vec.begin(),vec.end(),[](int x){return x%2>0};))std::cout<<"the numbers are greather than zero"
+    transform test  --nothing {
+
+        std::string str1("this is a test");
+        std::cout<<"before the transforming"<<endl;
+        std::transform(str1.begin(),str1.end(),str1.begin(),::toupper);
+      }
+    
+
+      ==================================ARRAY==========================
+                  object type effiecient
+                  std::array<int,5> arr1{{1,2,3,4,5}};
+                    =====methods===
+                    arr1.size();
+                    arr.at(0);
+                    arr[1];
+                    arr.front();
+                    arr.back();
+                    arr.empty();
+                    arr.max_size();
+                    arr.fill(10);
+                    arr.swap(arr1);
+                    int *data=arr.data(); //get the raw array address
+                    =====================================================
+
+                    std::array<std::String,3> stooges{
+                        std::string("larry"),
+                        "moe",
+                        std::string("curly")
+                      };
+
+
+                      void display(const std::array<int,5> &arr)
+                      {
+                          for(const auto &item:arr)
+                          {
+                              std::cout<<item<<" ";
+                            }
+                        }
+
+
+
+                        =============algorithms
+
+                        std::sort(arr.begin(),arr.end());
+                        std::min_element(arr.begin(),arr.end();)
+                        std::max_element(arr.begin(),arr.end();)
+                        std::adjacent_find(arr.begin(),arr.end();) -->returns the first index of the two same elements beside each other
+                        std::accumulate(arr.begin(),arr.end(),0);
+                        std::count(arr.begin(),arr.end(),3);
+                        std::count_if(arr.begin(),arr.end(),[](int x){return x>10 and x<200});
+
+
+==================vector===================
+
+
+
+
+the running time icnreases linearly as the size of the vector increases
+std::vector<int> vec{1,2,3};
+
+vec.push_back(4);
+std::vector<int> vec1 (10,100); //ten 100s
+
+--methods
+
+vec.size();
+vec.capacity();
+vec.clear();
+vec.max_size();
+vec.empty(); swap,sort
+vec.erase(v.begin(),v.end());
+vec.erase(it);
+vect.at(0); does the bounce checking
+vec[1];
+vec.front();
+vec.back();
+person p1 {"larry",10};
+std::vector<person> vec;
+vec.push_back(p1);
+vec.pop_back();
+vec.push_back(person("larry",10));
+vec.emplace_back("larry",18);
+
+
+auto it=std::find(vec1.begin(),vec1.end(),3);
+vec1.insert(it,10);
+
+
+can insert into the before the range of the elements
+
+it=std::find(vec1.begin(),vec1.end(),4);
+
+std::insert(it,vec2.begin(),vec2.end());
+
+// Use for_each and a lambda expression to display vector elements
+void display2(const std::vector<int> &vec) {
+    std::cout << "[ ";
+    std::for_each(vec.begin(), vec.end(),
+        [](int x) { std::cout << x << " ";});
+    std::cout << "]" << std::endl;
+}
+
+std::vector<int> vec1 {1,2,3,4,5};   
+    std::vector<int> vec2 {10,20};
+    
+    display(vec1); 
+    display(vec2);
+    std::cout << std::endl;
+
+    std::copy(vec1.begin(), vec1.end(), std::back_inserter(vec2));  ---10,20,1,2,3,4,5
+
+   display(vec1);
+    display(vec2);
+    std::cout << std::endl;
+    
+    std::copy_if(vec1.begin(), vec1.end(), std::back_inserter(vec2),
+            [](int x) { return x%2 == 0; });
+
+
+// transform over 2 ranges
+    std::vector<int> vec1 {1,2,3,4,5};   
+    std::vector<int> vec2 {10,20,30,40,50};
+    std::vector<int> vec3;
+    // 1*10, 2*20, 3*30, 4*40, 5*50 and store the results in vec3
+    std::transform(vec1.begin(), vec1.end(), vec2.begin(),
+        std::back_inserter(vec3),
+        [](int x, int y) { return x * y;});
+   
+
+
+                   =====================dequeue
+#include <dequeu>
+                   vector allows effiecient insetion and deleltion only at the back
+                   dequeu allows effieciet insertion and deletion at the both front and back other part is not efficient
+
+                   methods
+
+                   .push_back
+                   push_front
+                   deque stores the elements in the block if the block is filled it will create a new block to fit another element
+                   push_front,size,max_size,.at,[],.front(),.back();
+                   pop_back,pop_front,emplace_back
+                   
+
+                   std::deque<int> d;
+                   std::copy(vec.begin(),vec.end(),std::front_inserter(d));
+                   
+
+                   std::isalpha() to check the number is alphbet or not
+                   std::toupper() to covert into the uppercase
+
+
+
+==============list
+
+
+
+std::list
+#include<list>
+std::list<int> l{1,2,3};
+
+methods--
+.size();
+--.at() [] is not present in the list
+
+.max_size
+.front
+.back
+push_back
+push_front
+emplace_back
+emplace_front
+resize(2);
+erase(it);
+std::find(l.begin,l.end,3);
+      
+      forwardlist
+      std::forward_list<int> l{nubmers}
+      .max_size has
+      .front
+      insert_after(it,10);
+      emplace_after(it);
+      erase_after
+      l.resize
+
+      no .back
+      .size not available
+
+
+      ========================associative container========
+
+                                  ==============setconatainers============
+
+                                  std::set
+                                  set::unordered_set
+                                  std::multiset
+                                  std::unordered_multiset
+
+
+                                  set supports assignment via the initialzation list
+                                  overloads < operator to compare the elements
+
+                                  .size
+                                  .max_size
+                                  the elements in the set are sorted
+
+                                  .insert
+                                  insert returns a std::pair<iterator,bool> --iterator to the inserted element element or dupblicated element
+
+
+                                  auto result=stooges.insert(p2);
+
+                                  .erase(3);
+                                  auto it=s.find(5);
+                                  if(it!=s.end())s.erase(it);
+
+
+                                  ---sets find is different from the find function from the stl algoritms library
+
+                                  s.count(1); returns 0(if not present) 1 (if present)
+                                  s.clear(); remove all elements
+                                  s.empty(); true or false;
+
+
+                                  std::multi_set defined in the set header file allowes dupblicates sorted by the key  all iterators are available
+
+                                  std::unordered_set is in the unordered_set header file elements are unordered
+
+                                          no duplicate elements are allowed
+                                          elements cannot be modidifed
+                                          no reverse iterators are allowed
+                                  
+
+                                  std::unordered_multiset in the unordered_set header file
+                                    elements are unordered
+                                    allowd dublicate elements
+                                    no reverse iterators are allowed
+
+
+==============maps==========
+
+#include<map>
+std::map
+ordered by key
+
+std::map<std::string,int> m1{ {"larry",1},{"moe",2}};
+
+m.size();
+m.max_size;
+maps consists of the std::pair<,> p (objects) where 1st value is key and the second value is value
+
+or can use m.insert(std::make_pair("roger","ranger"));
+
+or can use m["frank"]="instructor"; and update in the same way
+or m.at("frank")="professor";  and update in the same way
+
+m.erase("anne");
+
+if(m.find("bob")!=m.end())
+{
+    cout<<"found bob";
+  }
+
+  auto it=m.find("george");
+  if(it!=m.end())
+  {
+      m.erase(it);
+    }
+
+    int num=m.count("bob"); returns 0 or 1
+    m.clear();
+
+    m.empty();
+
+    std::mutli_map allows the dupcliate elements
+
+    ordered by the key
+
+    std::unordered_map in the unordered_map header file
+    no dupcliates are the alowd
+
+    unordered_multimap elements are unordered and allows the duplcates
+
+        auto it = m.find("Larry");
+    if (it != m.end())
+        std::cout << "Found: " << it->first << " : " << it->second << std::endl;    
+        
+        checkout code challange
+
+
+
+      std::stack<int> s;
+      s.push(10);
+      s.push(20);
+      s.push (30);
+
+      s.top();
+      s.pop();
+      s.size();
+      s.empty();
+
+
+      queue container adapter
+      #include<queue>
+
+      push pop front back empty size
+
+      std::queue<int> q;
+      std::queue<int,std::list<int>> q2;
+      std::queue<int,std::deque<int>> q3; --isnertion from the back end and deletion from the front end
+      right is front left is back
+      q.push(10);
+      q.front();
+      q.back();
+      q.pop(); delete from the front
+      q.empty();
+
+      cctype --for the toupper
+      stack
+      queeu
+      iostream
+      string
+      iomanip
+
+
+      ==================priority queue=======
+
+      elements are inserted in the priority order(largest value is always be at the front)
+      not iterators are supported
+      must include queue header file
+
+
+
+
+
+        
+
+
+

@@ -1,0 +1,49 @@
+====================building the accoridan
+
+
+<h1>02</h1>
+<h1>Dolor lorem nesciunt eaque officiis ex odio nam Dicta minus.</h1>
+<svg></svg>
+<div>
+    <p>Amet nam suscipit voluptatibus eveniet nam Debitis ducimus ad sint ipsam qui accusamus! Non corrupti aperiam exercitationem voluptatem explicabo Explicabo.</p>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+display:flex;
+flex-direction:column
+gap:12px
+
+
+box-shadow:0 0 32px rgba(0,0,0,0.1);
+
+
+
+==========================building the carosal=========
+
+
+<div>
+
+<img src="" alt="">
+<p></p>
+<authorname></authorname>
+<authorpos></authorpos>
+
+</div>
+
+
+transform:scale(1.5);
+
+box-shadow:0 12px 24px rgba(0,0,0,0.1);
+
+transform:translate(-50%,-50%);
+
+
+===================building a table======================
+
+
+        

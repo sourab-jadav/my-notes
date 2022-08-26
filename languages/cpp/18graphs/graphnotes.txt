@@ -1,0 +1,16 @@
+Queue<Integer> s= new LinkedList<>(); 
+
+
+s.add();  //s.push() in cpp
+s.poll(); //s.front() in cpp
+
+
+ArrayList<ArrayList<Integer>> adj= new ArrayList<ArrayList<Integer>>(v);
+
+
+adj.add();
+adj.get(u).add(v);
+
+
+q.empty() //cpp
+q.isEmpty() //java

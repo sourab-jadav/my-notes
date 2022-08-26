@@ -1,0 +1,46 @@
+shift+h shift+l  for switching between buffers
+gr to see the references
+gd  go to defination
+
+space+f  fuzzy search
+
+space+F
+
+ctrl+\ for the terminal
+
+:help options
+
+vim.cmd "<vimscript"  ==>runs the vim script
+
+vsplit
+split --horizontaally
+
+
+we are using packer.nvim as our plugin manager
+o
+ctrl+k
+ctrl+j
+ctrl+e remove the popoup
+ce remove the word
+ctrl+space
+
+
+v% to select the text in the brackets in visual mode
+
+cf<character>  
+
+gr   produces the quick fix list showwig the references
+gd   goes to the difination
+
+
+> in the fileexplorer to jump over the folders
+
+ctrl+o,i to move to prvious curson position
+
+
+substitute command
+use gc flag to do interactive replacement
+
+
+=============to navigate in a large text===========
+gk,gj,g^,g$,gm-middle
