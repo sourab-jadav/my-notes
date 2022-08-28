@@ -3,14 +3,12 @@ gr to see the references
 gd  go to defination
 
 space+f  fuzzy search
-
 space+F
 
 ctrl+\ for the terminal
+ctrl+o o for the enter
 
-:help options
-
-vim.cmd "<vimscript"  ==>runs the vim script
+vim.cmd "<vimscript>"  ==>runs the vim script
 
 vsplit
 split --horizontaally
@@ -44,3 +42,89 @@ use gc flag to do interactive replacement
 
 =============to navigate in a large text===========
 gk,gj,g^,g$,gm-middle
+
+
+
+
+
+=======================default buffers command===========
+:ls                             --list buffers
+:b2                             --open buffer2
+:b <buffername>
+:b <ctrl+d>                     --list options
+:bn                             --nex buffer 
+:bp                             --previous buffer 
+:<ctrl+p>                       --show previous command
+:bf                             --first buffer 
+:bl                             --last buffer
+<ctrl+^>                        --toogle better current and previosu
+
+states
+
+active                          --loaded into the memory and displyed on window
+hidden                          --loaded into the memory and not displayed on window
+inactive                        --not loaded inoto meory
+h +                             --+ indicates we have usaved changes and h represents it is hidden buffer
++                               --changes not saved
+
+
+set hidden                      --allows to switch between buffers witout saving them
+:badd <filename>(or):e <filename>--add file the current vim sessions
+:bd3                            --delete the buffer3
+:1,3bd<cr>                      --delete range of buffers
+:2,$bd<cr>                      --delete all buffers from number 2
+:%bd<cr>                        --delete all buffers  
+:bufdo                          --execute command in every buffer(eg:-:bufdo set nu)
+:bufdo set nu
+:bufdo %s/#/@/g<cr>             --you will get an error as bufdo executed the command in the current window 
+                                    and got an error when it tried to switch to the next buffer so it stoped
+                                    error problem as set hidden option was not set
+
+                                    --vim raises error when it tries to switch to the another buffer without saving the current buffer
+                                    --set hidden allows to switch without saving and on closing the vim session if the chanes are not saved it raises an error
+
+:bufdo %s/#/@/g | w             --this will perform substitution and write to the buffer and then switch to the next
+
+or
+
+:set hidden
+:bufdo %s/#/@/g                 --no error
+:wall                           --writes all buffers
+:qall!                          --abanden the changes and quit
+:E<cr>                          --open explorer
+
+
+=============================window==================== 
+:sp  or  <ctrl w s>             --horizontal split
+:sp <filename>                  
+
+:vs  or <ctrl w v>              --vertical split
+:on=:only                       --close all windows except the current one
+
+
+--------------open all the files in the seperate window
+qr                      --recording macro in the r register
+:sp
+:bn
+q<cr>--stop recording
+3@r     --play  macro present in the r register
+
+-----------------------------------------------------
+ctrl w + --increase the height of the window
+ctrl w - --decarease the height of the window
+ctrl w > --increase the width of the window
+ctrl w < --decrease the width of the window
+ctrl w _ --maximize the height of the window
+ctrl w | --maximuize the width of the window
+ctrl w = --to make all the window equal size 
+----------------------------------------------------
+ctrl w r --rotate the windows
+ctrl w R --rotate in the opp direction
+
+ctrl w H -- moves the current window to the far left
+ctrl w L -- moves the current window to the far righr
+ctrl w J -- moves the current window to the far bottom
+ctrl w K -- moves the current window to the far top
+
+ba                          -----to open all the buffers as widow
+:windo %s/#/@/g | w

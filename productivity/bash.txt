@@ -317,4 +317,9 @@ DP-1 disconnected (normal left inverted right x axis y axis)
 HDMI-2 disconnected (normal left inverted right x axis y axis)
 ❯ xrandr --output eDP-1 --brightness 0.5
 
-
+====================ctrl commands
+ctrl+a                  ----to go to the starting position
+ctrl+f                  ----to move towards right
+ctrl+b                  ----to move towards left
+ctrl+c                  ----to interrupt
+ctrl+d (delete)         ----to delete character after cursor
