@@ -335,6 +335,11 @@ for(let i=0;i<btnsOpenModal.length;i++)
 ---css-style=>.style.<property>
 
 
+classList.add('<class>')
+classList.remove('<class>')
+classList.toggle('<class>')
+
+
 
 =============================modal window
 tips
@@ -353,3 +358,91 @@ docuement.addEventListener('keydown',(e)=>{
 
     }
         })
+
+
+*for making flow charts website is diagrams.net
+
+
+
+=================================================================high level overview of javascript======================================== 
+javascript is a high-level
+object-oriented,multi-paradigm programming language
+
+
+high-level-->                                                     --every program that runs on your computer needs hardware resources such as memory and the cpu to do its work
+                                                                    there are low level languages such as c where you have to manually manage the resources
+
+                                                                    on the other side there are high level languages such as js or python where we do not have to manage the resources
+                                                                    because these languages have so called abstractions to manage the resources this makes languages easier to learn and use 
+                                                                    but the down side is programs are not so optimized as c programs
+                                                                        
+                                                                        one powerfull too that takes memory management away from us is garbage-collecter
+
+
+interpreted or just-in-time-compiled
+
+
+
+paradigm-->                 an approach and mindset of structuring code, which will direct your coding style and techinque.
+                            procedural
+                            object-oriented             -->prototype-based object-oriented
+                            functional-programming 
+
+first-class functions       functions are simply treated as variables
+                            eg:
+                            overlay.addEventListener("click",closeModal);
+
+dynamic                     dynamically typed language
+                            we don't specifiy datatype to our variables
+                            instead they only became known when our javascript executes our code
+                            also the type of variables can be changed if we resign variables                            
+
+                            let x =23;
+                            let y=19;
+                            x="jonas";
+
+                            javascript with types is typescript
+
+
+single-threaded             concurreny modal:how the javascript engine handles mutliple tasks happening at the same time
+                            (why do we need it)  js runs on single thread so it can only do one thing at a time
+                            (so what about a long running task) sounds like it would block a single thread however we want non blocking behaviour
+                            (how do we achieve that ) by using an event loop
+                                                                    
+                                                                    takes long running takses, exectues them in the "backgrouond", and puts them in the 
+                                                                    main thread once they are finished
+================================================================================================================================================================ 
+
+java script engine          is simply a computer program that executes javascript code
+                            every browser has its own javascript engine 
+                            most popular is google's(google chrome) v8 engine                  -->it powers google chrome and node js(javascript runtime)(used to build server side applications with javascript)
+
+                            any javascript engine always contains a call stack and heap
+                                    --call stack is where our code is actually executed
+                                    --heap is an unstructured memory pool where your objects are stored
+
+                            (how the code is compiled)
+                                        compilation     --two steps compiling--execting
+                                        interpretation  --oen step  execution line by line
+                                        (modern javascript uses mix between compilation and exection classed just in time compilation)
+                                        compiles the program at once and exectues it write away automatically
+                                        source code     ------>         machine code  ----->  program running
+                                                        compilation
+                                                        -----------modern just in time compilation of javascript-------
+                                                        js code--enters the engine--parsing(read) takesplace(it is parsed into a ds called abstract syntax tree(code is broken into pieces and stored in tree))
+                                                        2>  compilation         -->takes the ast and compiles
+                                                            execution(right away) ->it happens in js call stack
+                                                            during execution optimization is being done and replace it with unoptimized code
+                                                            all these process happen in some special thread inside the engine that we cannot acess
+                        
+
+js runtime -->container that includes  all the things that we need to use javascript (in this case in the browser)
+it contains js engine and web api's(that's everything related to the dom or timers or even console.log())
+a typical js runtime also includes call back queue(it is a ds that contains all the call back functions that are ready to be exected eg:event handler functions)
+when the event happens the call back function will be called
+                                                        the callback func is put inside the call back queue when the call stack is empty
+                                                        the callback is passed to the stack so that it can be executed
+                                                                   it happens by something called event loop
+                                                                           event loop takes the call back func from callback queue and puts them on to the call stack so they can be executed
+
+javascript also exists outside the browers its simpiler  but as we don't have the browser we simply can't have the web api's instead we have multiple cpp bindinngs

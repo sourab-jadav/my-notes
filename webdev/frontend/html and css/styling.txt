@@ -149,6 +149,7 @@ if the height of the 1 child one number then all other childs gets adjusted to t
 
     .el--1{
         align-self:flex-start;
+**      margin-bottom:auto  --takes rest of the space in the flex container
     }
 .el--5{
     order:-1;   //greater the value the more right it gooes
@@ -388,3 +389,30 @@ span element is duplicate inline element
             onepagelove
             awwwards.com
             screenlaying.com
+
+**for blur=========================backdrop filter----
+        
+
+
+body{
+    min-height:100vh;
+background-image:url('./image.jpg')
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+div{
+    width:48rem;
+    height:48rem;
+    background:rgba(0,0,0,0.1); //255,255,255
+    backdrop-filter:blur(10px)
+    color:white;
+    font-size:4.8rem;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0px 0px 16px 0px rbga(0,0,0,0.5);
+}
