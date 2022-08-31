@@ -3,8 +3,11 @@ gr to see the references
 gd  go to defination
 
 space+f  fuzzy search
-space+F
+-------searching
+after the search to go back to the previous cursor position use ctrl+o(backword) ctrl+i(forward)
+[count]/search
 
+space+F
 ctrl+\ for the terminal
 ctrl+o o for the enter
 
@@ -23,7 +26,48 @@ ce remove the word
 ctrl+space
 
 
-v% to select the text in the brackets in visual mode
+v% to select the text in the brackets in visual mode                                                     
+o                           --moves the cursor to the opposite end of hightlight                         
+gv                          --select the last visual selected area                                       
+ctrl+v $+A(type anything and press esc) --to shift all the way to the end of the line (as multi cursors) 
+ctrl+v i                    --as multi cursors                                                           
+ctrl+v(select the text) +c +esc --as multi cursors                                                       
+**visual mode can also be applied on text objects                                                        
+>i}                             --indents the block of the code                                          
+---when you perform > it performs indentation depending on the value of the shift width setting          
+set shiftwidth?<cr>
+set tabstop?<cr>(wdith of the tab)
+set expandtab<cr>(inserts the appropriate number of spaces instead of tab characters)
+set list(for tabs to visible)
+
+
+**--------------------------------------indenting the lines go to the biggest line possible
+type $,o A type |
+:'<,'>center    --commands uses default of 80 columns to center with
+:'<,'>center[ce] 40  --centers within the column of 40
+:'<,'>le[5]
+:'<,'>right[ri] 60
+0 ctrl v j r #
+
+**-----substitution in visual mode
+:'<,'>s/usa/USA/<cr>
+
+
+~ - Switch case
+c - Change
+d - Delete
+y - Yank
+r - Replace
+x - Delete
+I - Insert
+A - Append
+J - Join
+u - Make lowercase
+U - Make uppercase
+> - Shift right
+< - Shift left
+
+
 
 cf<character>  
 
@@ -107,24 +151,36 @@ qr                      --recording macro in the r register
 :sp
 :bn
 q<cr>--stop recording
-3@r     --play  macro present in the r register
+3@r                                             --play  macro present in the r register three time
+@@                                              --play the last macro
+27,35normal @d                                  --supplying a range to a macro
+.,$normal @d                                    --current line to the end of the file
+^M                                              --refers to the escape key
+"ap                                             --paste the contents of the macro                                                                                        
+"ay$                                            --modify the macro and paste it back to the register
+let @d ='macro'                                 --saving the macro in your .vimrc
+let @t ='ITODO: (TYPE CTRL+V AND TYPE THE CHARACTER) j'
 
 -----------------------------------------------------
-ctrl w + --increase the height of the window
-ctrl w - --decarease the height of the window
-ctrl w > --increase the width of the window
-ctrl w < --decrease the width of the window
-ctrl w _ --maximize the height of the window
-ctrl w | --maximuize the width of the window
-ctrl w = --to make all the window equal size 
+ctrl w - --decarease the height of the window       |
+ctrl w + --increase the height of the window        |
+ctrl w > --increase the width of the window         |
+ctrl w < --decrease the width of the window         |
+ctrl w _ --maximize the height of the window        |
+ctrl w | --maximuize the width of the window        |
+ctrl w = --to make all the window equal size        |
 ----------------------------------------------------
 ctrl w r --rotate the windows
 ctrl w R --rotate in the opp direction
 
 ctrl w H -- moves the current window to the far left
 ctrl w L -- moves the current window to the far righr
+
+
 ctrl w J -- moves the current window to the far bottom
 ctrl w K -- moves the current window to the far top
 
 ba                          -----to open all the buffers as widow
 :windo %s/#/@/g | w
+
+                                                                     

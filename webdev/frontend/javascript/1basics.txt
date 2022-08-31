@@ -446,3 +446,230 @@ when the event happens the call back function will be called
                                                                            event loop takes the call back func from callback queue and puts them on to the call stack so they can be executed
 
 javascript also exists outside the browers its simpiler  but as we don't have the browser we simply can't have the web api's instead we have multiple cpp bindinngs
+
+
+
+ |----------------------------------------|---------------------------------------- |
+ |exectution context                      |         inside execution context        |
+ |----------------------------------------|---------------------------------------- |
+ |-->after the compilation the code is re | has variable environment                |
+ |    ady to be executed then global exec | scope chain                             |
+ |    ution context is created then       | this keyword                            |
+ |    (for top l                          | var env has let const var declarations  |
+ |    level code)(code that is not inside | --functions                             |
+ |    any function)                       | --objects                               |
+ |    is executed                         |                                         |
+ |                                        |                                         |
+ |    it is like a box which contains a   |                                         |
+ |    that contains all the nacessary     | exectuion context belonging to the arrow| 
+ |    information for the code to be      | function do not get their arguement obj |
+ |    executed such as local variable     | this keyword kdfsdf                     |
+ |    arguments passed into a function    |                                         |
+ |                                        |                                         |
+ |    3.errespective of project size      |                                         |
+ |    only one global execution context   |                                         |
+ |    is created                          |                                         |
+ |                                        |                                         |
+ |    4.exection of functions and         |                                         |
+ |    waiting for callbacks               |                                         |
+ |----------------------------------------|---------------------------------------- |
+ 
+     
+
+
+----------------------------------------------------------------------------|---------------------------------------------------------------------------
+                                     scope                                  |                                    hoisting
+----------------------------------------------------------------------------|---------------------------------------------------------------------------
+global scope                                                                |console.log(me)
+outside  of any function block                                              |console.log(job)
+accessible every hwere                                                      |console.log(year)
+                                                                            |
+local scope                                                                 |var me='jonas'
+only inside the function                                                    |let job='teacher'
+                                                                            |const year=1991
+                                                                            |
+block scope                                                                 |
+    if(year>=1981 & year<=1986){                                            |just don't use var to delcare variables
+        const var1=lksd                                                     |use const most of the time and 'let' if you need ot change the variab
+        const var2=ksdjf;                                                   |les
+    }                                                                       |declare the variables at the top of the each scope
+    these var1 and var2 are accessed only inside the block                  |initilize all your functions first and use them only after 
+    only let and  const are block scoped                                    |
+    variables with var are accessable outside the block are function scoped |var x=1;
+                                                                            |let y=2;
+                                                                            |const z =3;
+    if in the current scope the variable is not there it looks up in the nex|                                                                           t
+        parent scoep                                                        |**window is the global object in the js type window in console
+                                                                            |console.log(x==window.x)//true;
+ **the order of function calls doesn't effect the scope chain               |console.log(y==window.y)//false;
+                                                                            |console.log(z==window.z)//false;!!variables declared with var will create
+                                                                            |a property on a global window object that can have some implications
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+|hoisting in variables
+|let,const variables throws uncaught reference error as they are in a
+|temporal ded zone
+|
+|var variable are hoisted but hoisted as undefined prints value as undefined
+|
+|hoisting in functions
+|functions can be accessed from the above doing initialization below
+|function expressions with var type throws error typeerror
+
+
+this keyword
+console.log(this.any)                   //undefined
+console.log(this);                      | prints windows object
+const calcage = function (birthYear) {  |
+  console.log(2037 - birthYear);        |
+  console.log(this);                    | undefined
+};                                      |
+calcage(1991);
+
+const calcAgeArrow = birthYear => {   |
+  console.log(2037 - birthYear);      |
+  console.log(this);                  |prints window as arrow function doesn't get it own this keword it uses this keword of its parent function
+};                                    |
+calcAgeArrow(1980);                   |
+
+const jonas = {                       |
+  year: 1991,                         |
+  calcage: function () {              |
+    console.log(this);                |prints jonas object  --as jonas is the object calling this method
+    console.log(2037 - this.year);    |
+  },                                  |
+};                                    |
+jonas.calcage();                      |
+
+const matilda = {                     
+  year: 2017,
+};
+
+matilda.calcAge = jonas.calcAge;    | we simply copied calcage function from jonas to matilda
+matilda.calcAge();                  | now you can you this function inside matilda 
+
+const f = jonas.calcAge;            |
+f();                                | now this year becomes undefined as their is not ojbect calling the function from 525 it is undefined
+
+
+
+regular functions vs arrow functions
+
+
+const jonas = {                          |
+  year: 1991,                            |
+  calcage: function () {                 |
+    console.log(this);                   |prints jonas object  --as jonas is the object calling this method
+    console.log(2037 - this.year);       |
+  },                                     |/*not that jonas object is inside {} is not a code block(just an object literal)
+  greet: () => {                         |
+    console.log(this);                   |/* all of this inside jonas object are in global scope still*/
+    console.log(`Hey ${this.firstName}`);|
+};                                    
+jonas.great                              |//prints "hey undefined" arrow function use this keyword from its parent scope(here it is global scope)
+
+
+// var firstName = 'Matilda';            |//prints "hey matilda" on calling jonas.great as variables declared with var will create a property on 
+                                            global window object and the arrow function inside the jonas object will use this window object
+
+**never ever use arrow function inside a method
+
+
+const jonas = {
+  firstName: 'Jonas',
+  year: 1991,
+  calcAge: function () {
+    // console.log(this);                                        |prints jonas(current object window)
+    console.log(2037 - this.year);                               |works fine it gets its own this keyword
+                                                                 |
+    // Solution 1                                                |
+    // const self = this; // self or that                        |outside we have access to this keyword so we assign it to a variable
+    // const isMillenial = function () {                         |
+    //   console.log(self);                                      |
+    //   console.log(self.year >= 1981 && self.year <= 1996);    |
+    // };                                                        |
+                                                                 |
+    // Solution 2                                                |
+    const isMillenial = () => {                                  |using this inside an arrow func is going to work because arrow function does
+      console.log(this);                                         |not have its own this keyword it uses its parent this keyword here jonas
+      console.log(this.year >= 1981 && this.year <= 1996);       |
+    };                                                           |
+    isMillenial();                                               |
+  },                                                             |here calling via regular function makes this keyword undefined and we cannot access its values
+                                                                 |above two sol1 and sol2 are the solutions for the problem
+  greet: () => {                                                 |
+    console.log(this);                                           |
+    console.log(`Hey ${this.firstName}`);                        |
+  },
+};
+jonas.greet();                                                   |prints parents window here deafult global window
+jonas.calcAge();
+
+
+
+argument keyword only exists in function expressions and function declaratoins but not on arrow fucntions
+
+
+** in javascript value at certain address is immutable i.e it cannot be changed
+
+in case of me object the reference value me does not point directly to the newly created memory in the heap
+        it points to the memory created in the stack and this new piece of memory present in the stack will point to the object in heap
+
+
+let age = 30;
+let oldAge = age;
+age = 31;
+console.log(age);
+console.log(oldAge);
+
+const me = {
+  name: 'Jonas',
+  age: 30,
+};
+const friend = me;                      //even though we defined friend variable as constant we can still manupulate the object as we are not changing the value of friend in memory
+                                            we are changing in the location where its value is actually referring to 
+friend.age = 27;
+console.log('Friend:', friend);
+console.log('Me', me);
+
+**its a misconception that all the variables are declared as const are immutable its only true for primitive values not for reference values
+which are referring to another location in the heap
+
+
+                                                                         future topics
+protypal inheritince        --oops with js
+event loop                  --asynchronous js
+how the dom actually works  --advanced dom and events
+
+
+
+// Reference types
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+};
+const marriedJessica = jessica;
+marriedJessica.lastName = 'Davis';
+console.log('Before marriage:', jessica);
+console.log('After marriage: ', marriedJessica);
+// marriedJessica = {};                              |assignging hole new object will not work as this new object will store in a diff loc in memory
+                                                     |therefore the ref to that position in the memory will have to change
+// Copying objects                                   |
+const jessica2 = {                                   |
+  firstName: 'Jessica',                              |
+  lastName: 'Williams',                              |
+  age: 27,                                           |
+  family: ['Alice', 'Bob'],                          |
+};                                                   |
+                                                     |
+const jessicaCopy = Object.assign({}, jessica2);     |**Object.assign() **/used in copy of objects will only creates a shallow copy 
+jessicaCopy.lastName = 'Davis';                      |but not a deep clone that means if have an object inside an object then this inner object will still remains the same
+                                                     |
+jessicaCopy.family.push('Mary');                     |**here family array is acting as an inner object  any change in jessicaCopy will also get reflected in jessica2
+                                                     |because shallow copy is being made from jessica2 to jessicaCopy of inner object family
+jessicaCopy.family.push('John');                     |new object of family is not created in jessicaCopy
+                                                     |
+console.log('Before marriage:', jessica2);           | we use deep clone using an external liberary called lowdash
+console.log('After marriage: ', jessicaCopy);        |
+*/

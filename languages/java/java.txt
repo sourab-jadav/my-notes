@@ -1,0 +1,15 @@
+you run the java programs with jvm
+java itself is a generic term and jdk is what you need to write a java program
+
+installing jdk for linux
+
+click on the java se
+java se 11 lts
+download and install the tar.gz file for ubuntu
+cd ~/downloads
+unzip the file      tar -xvf jdk<tab><cr>
+create a directory to store our jdk
+put the jdk in /usr/lib/jvm         //when we install intelliji it looks their for the jdk and it will find it for us automatically
+sudo mkdir -p /usr/lib/jvm/jdk-11/
+sudo mv jdk<tab>/* /ur/lib/jvm/jdk-11
+ls /usr/lib/jvm/jdk-11
