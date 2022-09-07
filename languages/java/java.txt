@@ -13,3 +13,59 @@ put the jdk in /usr/lib/jvm         //when we install intelliji it looks their f
 sudo mkdir -p /usr/lib/jvm/jdk-11/
 sudo mv jdk<tab>/* /ur/lib/jvm/jdk-11
 ls /usr/lib/jvm/jdk-11
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                           data types
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+int myvalue=10000                                                              |float myfloatvalue=5f;  --works (recommended)                                  |
+int minvalue=-2147483648 --literal                                             |float myfloatvalue=5.25;--shows error java assumes it as double                |
+int maxavlue=2147483647;                                                       |float myfloatvalue=(float)5.25;--also works                                    |
+int value=a*b;          --expression                                           |                                                                               |
+int myvalue=-2_187_483_648;                                                    |double mydoublevalue=5.25;--works as java assumes it as double                 |
+int is 32 bit                                                                  |double mydoublevalue=5d; --works(recommended)                                  |
+for whole numbers choose int                                                   |hint from java that recommands to use doubles faster on modern computers       |
+                                                                               |                                                                               |
+                                                                               |                                                                               |
+byte myByteValue=10;                                                           |width of 16-bits                                                               |
+byte smallest=-128;                                                            |char mychar='<char>';                                                          |
+byte largest=127;                                                              |char mychar='\u00a9'                                                           |
+byte has width of 8bits                                                        |                                                                               |
+byte my_new_number=(byte)(mybytevalue/2)  --here java is converting expression |boolean myboolean=false;                                                       |
+                                            into an int whose size is more than|                                                                               |
+                                            byte so it wont fit in so you need |these 8 data types are called primitive types in java                          |
+                                            to explicitly typecast it into byte|string mystring='thisis a string';//string literal                             |
+                                                                               |
+short-16bit                                                                    |sysout("lorem"+mystring)
+short myShortValue=-32768                                                      |mystring=mystring+', and this is more';
+short myMaxValue=32767                                                         |mystring=mystring+'\u00A9'
+short myNewShortNumber=(short)/(myShortValue/2);--here is the same case        |sysout(mystring)
+short is allocated about 2twice the amount of size byte is and half the amount |
+that an integer is                                                             |
+                                                                               |String mystring="this is a string"
+long-64bits                                                                    |int myint=50;
+long myLongValue=100l(or)L;                                                    |laststring=laststring+myint;
+long myLongValue=-9_223_372_036__845_775_888L; --min-value                     |sysout("last string is"+laststring);
+long myLongValue=9_223_372_036__845_775_887L;   --max-value                    |sysout("10"+50);//1050
+
+=,+,-,/,*,%,++,--,+=,-=,/=,&&,>,<,>=,<=,||
+
+boolean wasChar=isChar ? true: false;
+nutsandbolts opsummary oracle
+checkout javaoperators precedence table
+arithmatic operators left to right
+brackets             left to right
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+keywords in java
+java has around 53 keywords
+
+anything in blue in the intelliji speicifies it is a reserved word
+expressoins are built with values variables and operators and also with method calls
+
+expression--
+**int (score=100)expression;
+**8double (kilometers=(100*1.699344))expression;
+**the compnonent within the brackets is also an expression
+sysout("this is an expression");

@@ -6,6 +6,7 @@ git commit -am "the first message"
 =============to make changes to the previous commit=======
 git add file.txt 
 git commit --amend
+git commit --amend --noedit for making some change that needs to be added to the previous comit
 git config --user.email
 git config --user.name
 git config --global init.defaultBranch main

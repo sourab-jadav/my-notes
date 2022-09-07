@@ -160,6 +160,7 @@ q<cr>--stop recording
 "ay$                                            --modify the macro and paste it back to the register
 let @d ='macro'                                 --saving the macro in your .vimrc
 let @t ='ITODO: (TYPE CTRL+V AND TYPE THE CHARACTER) j'
+let @b ='G$o$ooA|€ýa'                 --for indenting the lines
 
 -----------------------------------------------------
 ctrl w - --decarease the height of the window       |
@@ -184,3 +185,22 @@ ba                          -----to open all the buffers as widow
 :windo %s/#/@/g | w
 
                                                                      
+
+
+increement with ctrl+a on the number line |to get the above result vertical highlight go down and g ctrl a
+21                                        |1
+21                                        |2
+21                                        |3
+21                                        |4
+21                                        |5
+21                                        |6
+21                                        |7
+21                                        |8
+21                                        |9
+                                           10
+                                           11
+
+
+---deleting a block of text
+ctrl v shift g shift d
+

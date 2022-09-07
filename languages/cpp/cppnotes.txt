@@ -1,0 +1,841 @@
+==============sectoin 4=========
+extern x;
+this x is not in the current file it is defined somehwere else
+
+
+runtime erros
+divide by zero
+file not found error
+out of memory error
+exception handling can help deal with rntime error
+
+cpp 90 keywords 
+java   53
+c      32
+python 33
+
+distinction between identifier and kewords
+identifier are something that are created by programmers that represents something meaningful to them
+main #include cout cin endl are not keywords but identifiers
+
+
+cpp preprocessor
+**it is the program that process your source code before your compiler sees it
+**it first strips all the comments from the source file and replaces each comment with the space
+**then it looks for the preprocessor directives(lines that begin with #) and executes them
+are commonly used for conditionally compiled code
+**cpp preprocessor does not understand cpp it simply follows the preprocessor
+directives and get the source code ready for the compileris the program 
+that does undestand cpp
+
+
+
+return 0 indicates successful proram execution
+
+
+int main()       |int main(int argc,char* argv[])
+{                |{
+    //code       |    //code
+    return 0;    |    return 0;
+}                |}
+
+
+
+
+
+****************************************namespaces**************************************** 
+cpp allows programmers to create namespaces as conainers
+
+you could create a namespace called frnak and could define cout within that
+namespace
+
+they are used to reduce the possiblity of naming conflicts
+
+::-->is scope resolution operator
+
+two alternatives to typig :: 
+    1--using namespace std;-->this might create nameing conflict
+    2--using std::cout;-->in this case we have a qualified namespace varient
+        usig std::cin;
+        using std::endl;
+********************************************************************************
+
+basic io
+cerr and clog are the output streams that defaults to the std error and std log
+cin is an input stream that default to the keyboard
+
+<< insertion operator used with output streams
+>> extraction operator used with input straems
+
+cout << does not automatically add line break
+        
+        cout<<"  lorem"<<endl;
+        **if you use the endl you need to flush the stream since the stream
+        is buffered it may not get written to the console
+        cout<<"lorem"<<"\n";
+
+
+
+   cout << "Enter an integer: "; |if the input is 10.5
+   cin >> num1;                  |    then 10 goes to num1
+                                 |    and .5 goes to num3
+   cout << "Enter a double: ";   |
+   cin >> num3;                  |
+
+
+***************************************variable*****************************************
+
+a variable is an abstraction for memory location
+int age;         | can contain letters nubmers and underscores
+double rate;     |
+string name;     |
+
+
+********************initlization********************   |character type
+int age;         |                                     |integer type
+int age=21;      |                                     |    singed unsighed
+int age{21};     |c++11 list initialization            |floating type
+int age(21);     |consttructor initialization          |boolean type
+                                                       |size and precision is often compiler-dependent;
+******************* size *********************
+char 8bits
+char_16r 16bits
+
+integer--
+signed short int 16bits      |unisgned short [int] 16bits      |float--           
+signed int       16bits      |unsigned int       16bits;     |/7decimal digits  
+signed long int  32bits      |usigned long int   32bits      |double--          
+signed long log int 64bits;  |unisgned long logn int 64bits; |/15 decimal digits
+                                                             |long double       
+                                                              /19 decimal digits
+                                           
+long long distance_to_alpha_centauri {9'461'000'000'000};                                            |allows only in c++ 14
+cout << "The distance to alpha centauri is " << distance_to_alpha_centauri << " kilometers" << endl; |
+
+**using c style initialization may rise to over flow
+    better to use list initialization
+
+
+******************* sizeof() *********************
+sizeof(int)              |<climits> and <cfloat> size and precision information
+sizeof(double)           |INT_MAX
+sizeof(some_variable)    |INT_MIN
+**sizeof some_variable   |LONG_MIN
+                         |FLT_MIN
+                         |FLT_MAX
+
+******************* constant *********************
+types--
+literal constants--x=12;y=1.56;name="frank"middle_initial='j';
+                    here 12,1.56,"frank",'j' all are literal constants
+                    
+        types--
+        integer literal constants                            |character literal constants  |declared constants                                                |
+        12 - an integer                                      |\n - new line                |declared using const keyword                                      |
+        12U - an unsigned integer(u can be lower or upper)   |\r - return                  |const double pi {3.1415926};                                      |
+        12L - a long integer                                 |\t -backspace                |**do not use defined constants in modern cpp #define pi 3.1415926 |
+        12LL- a long long integer                            |\' -single quote             |
+                                                             |\" -double quote             |
+                                                              \\ -backslash                
+                                                                                           
+***************************************array*****************************************
+int test_scores[5];                  |int temp[5]{100,95,99,97,88};
+int hig_scores_per_level[10];        |**int high_score_per_leve[10]{3,5}; //init to 3,5 and remaining to 0
+const double days_in_year[365];      |const double days_in_year{365};
+double hi_temperature[days_in_year]; |**double hi_temperatures[days_in_years] {0}; //init all to zero
+                                     |**int another_array[]{1,2,3,4,5}; //size automatically calculated 
+
+int test_scores[5]{}; //initialized all to the zero
+**int test_scores[5]{100};[100,0,0,0,0]
+    int test_scores[5]{100,90};[100,90,0,0,0]
+
+                                        ******************************************************************************** multi dimensional arrays
+                                        const int rows {3};
+                                        const int cols{4};
+                                        int movie_rating[rows][cols];
+
+                                        int movie_rating[3][4]
+                                        {
+                                            {0,4,3,5},
+                                            {2,3,3,5},
+                                            {1,4,4,5}
+                                        };                                        
+********vectors******************************************************************
+*container in c++stl                                             |characteristics
+an array that can grow and srhink in size at execution time      |*dynamic in size
+very effieciet                                                   |*stored contiguously in memory
+can provide bound chekcing                                       |*individual element can accessed by their postion or index
+has methods like sort, reverse,find, and more                    |
+                                                                 |*[]-no checking to see if youa re out of bound
+                                                                 |*provides many useful funcitons that do bound check
+                                                                 |
+                                                                 |*elements initialized to zero
+                                                                 |*Iteration is often use to process
+declaring--
+#include<vector>         |initializing--                                                     |
+using namespace std;     |vector<char>vowels{'a','e','i','o','u'};                           |
+vector<char> vowels;     |vector<int> test_scores{100,98,89,85,93};                          |
+vector<int> test_scores; |vector<int> hi_temp {365,80.0}; //initializing 365 double to 80.0  |
+
+
+accessing vector                         |methods                                                |vector <vector<int>> movie_ratings 
+vector<int> test_scores{100,95,99,7,88}; |vector_name.push_back(element);                        |{   
+test_scores[0]; | test_scores.at(0)      |vector_name.size() --returns the size of the vector    |    {1, 2, 3, 4},
+test_scores[1]; | test_scores.at(1)      |                                                       |    {1, 2, 4, 4},
+test_scores[2]; | test_scores.at(2)      |                                                       |    {1, 3, 4, 5}
+**always remember using [] for accessing vector will not do bounce checking                      |};
+
+**************************************expressions,statements,operators******************************************
+
+expression--
+sequence of difference operators and operands that specifies a computation |statement--
+eg:34 //literal(expression)                                                |a complete line of code that performs some action
+favourite_number //variable                                                |usually terminated with semi-colon;
+1.5+2.8         //addition                                                 |usually contains expression;
+a>b             //relation                                                 |eg:
+a=b             //asignment                                                |int x;//declaration
+                                                                           |favorite_number=12;//assgnment
+                                                                           | 1.5+2.8;//expression
+                                                                           | x=2*5;//assignment
+                                                                           | if(a>b)cout<<"a is greater than b";//if statement
+                                                                           | 
+****************************************
+opearators--
+assignment-(**precedence is right to left)                                
+num1=num2=1000;
+
+pemdas(perenthisis,exponent,multiplication,division,addition,subtraction)
+
+*****conversion                                                             |explicit type casting-static_cat<type>
+the idea is the we can convert a lower type value into a higher             |    int total_amount{100};
+type value as it fits into the higher type vale but the opposite            |    int total_nubmer{8};
+may not be true;                                                            |    double average{0.0};
+**short and character type are always coverted to integers                  |    average =total_amount/total_nubmer;
+                                                                            |    cout<<average<<endl;//displays 12
+                                                                            |     average=static_cast<double>(total_amount)/total_number;//displays 12.
+                                                                            | 
+                                                                            |     **average=(double)total/count;//do not use this c style cast 
+                                                                            |                                     static_cast is little more restrictive
+                                                                            |                                     than this here it just converts blindly
+                                                                            |     cout<<average<<endl;
+                                                                             **cout<<boolalpha;//will dispaly true or false instead of 0 or 1
+
+compound assignement
++=,-=,*=,%=,>>=,<<=,&=,^=,|=  |range-based forloop                                        |desicion making                                                                          |
+a*=b+c      a=a*(b+c);        |int scores[] {10, 20, 30};                                 |if,if-else,nested if,switch ,conditional ?:                                              |
+                              |for (auto  score: scores)                                  |                                                                                         |
+presedence--                  |    cout << score << endl;                                 |**create user defined data type with enum                                                |
+[] -> . ()      left to right |                                                           |enum Direction {                                                                         |
+++ -- not -     right to left |                                                           |    left, right, up, down                                                                |
+* / %           left to right |#include<iomanip>                                          |};                                                                                       |
++ -             left to right |if (temperatures.size() != 0)                              |Direction heading {left};                                                                |
+                                   average_temp = total / temperatures.size();            |switch (heading) {                                                                       |
+                                                                                          |    case left:                                                                           |
+                               cout << fixed << setprecision(1);                          |        cout << "Going left" << endl;                                                    |
+                               cout << "Average temperature is " << average_temp << endl; |        break;                                                                           |
+                                                                                               case right:                                                                          |
+                                                                                                   cout << "Going right" << endl; // I used going left in the video by mistake      |
+                                                                                                   break;                                                                           |
+                                                                                               default:                                                                             |
+                                                                                                   cout << "OK" << endl;                                                            |
+                                                                                           }                                                                                        |
+
+
+========================================Strings======================================== 
+c-style strings                                  |
+-contigous in memory                             |#include<cctype>
+-implemented as an array of characters           |character functions----
+-terminated bya null character                   |
+ -null-character with a value zero               |isalpha(c)       |true is c is letter
+-referred to as a zero or null terminated string |isalnum(c)       |true if c is a letter or digit
+                                                 |isdigit(c)       |true if c is a digit
+                                                 |islower(c)       |true is c is a lower
+String literal                                   |isprint(c)       |true if c is  printable
+sequence of characters terminated with ""        |ispunch(c)       |true if c is an punctuation character
+terminated with null character                   |isupper(c)       |true if c is an upper case
+                                                 |isspace(c)       |true if c is a whitespace
+                                                 |
+                                                 |tolower(c)       |returns lower case
+                                                 |toupper(c)       |returns uppercase of c
+                                                 |
+                                                 |
+
+char my_name[8] {"frank"};           |functions that work with the c-style string|#include<cstdlib> includes functions to convert c-style string to
+frank\0\0\0                          |#include<cstring>                          |    integer
+my_name[5]='y';//it works            |char str[80];                              |    float
+                                     |strcpy(str,"hello");//copy                 |    long
+                                     |strcat(str,"there");//concatenate          |    etc
+char my_name[8];\o\o\o\o\o\o\o\o     |cout<<strlen(str);//10                     |
+my_name="frank";//error              |strcmp(str,"another");//-1                 |
+strcpy(my_name,"frank");//ok         |                                           |
+                                     |                                           |
+                                     |                                           |
+
+**to read the entire line using the spaces use cin.getline(fullname,50);
+strcpy(temp,full_name);
+if(strcmp(temp,full_name)==0)they are the same
+else
+    they arediffernt
+
+
+cpp strings==============================================================
+
+std::string is a class in stl                        |**like vectors cpp strings are safer as they provide methods that has ability to 
+#include<string>                                     |bounce check
+std namespace                                        |
+contigous memory                                     |declaring and initializing
+dynamic size                                         |#include <string>
+our familiar operators can be used                   |using namespace std;
+can be easily converted to c style strings if needed |string s1;              //emtpty
+safer                                                |string s2 {"frink"};
+                                                     |string s3 {s2};
+                                                     |string s4 {"frank",3}; //fra
+                                                      string s5 {s3,0,2}//fr
+                                                      string s6 (3,'x'); //xxx
+
+
+string s1;           |string part1 {"c++"};
+s1="c++ rocks";      |string part2 {"is powerfull"};
+string s2 {"hello"}; |string sentence;
+s2=s1;               |sentence=part1+" "+part2+" language";
+                     |//c++ is a powerful language
+                     |
+                     |sentence="c++"+" is poweroful";//illegal //you cannot concatinate c style literals it only works for c style strings
+                     |combination of c++ string and c style string is okay though
+ 
+
+string s1;                                   |s2[0]='f';     //frank; |string s1 {"frank"};
+string s2 {"frank"};                         |s2.at(0)='p'; //prank;  |for(char c:s1)
+cout<<s2[0]<<endl;--no bounce checking       |                        |    cout<<c<<endl;
+cout<<s2.at(0)<<endl;--allow bounce checking |                        |for(int c:s1)
+                                                                           cout<<c<<endl;
+                                                                           (prints ascii)
+                                                                       **in ascii 'A' comes before 'a'  
+**string s1 {"this is a test"}; |**s1.find("this"); //0                      |
+s1.substr(0,4); //this          |s1.find("is"); //2                          |
+s1.substr(5,2); //is            |s1.find("test");//10                        |**s1.erase(0,5); //is a test;
+s1.substr(10,4)://test          |s1.find('e');//11                           |s1.erase(5,4); //is a
+                                |s1.find("is",4);//start search from index 4 |s1.clear() //empty string
+                                 s1.find("xx");//std::npos                   |
+
+
+**string s1 {"frank"}; |string s1;       |getline(cin,s1); //read the entire line until "\n"
+s1.length()//5;        |cin>>s1;         |cout<<s1<<endl;  //hello there
+s1 += " james ";       |cout<<s1<<endl;  |getline(cin,s1,'x');//this isx
+                                          cout<<s1<<endl;//this is
+
+********************************************************************************functions****************************************  
+
+#include <cmath>                 |#include<cstdlib>//required for rand()
+cout<<sqrt(400.0)<<endl; //20.0  |#include<ctime>//required for time()
+double result;                   |cout << "RAND_MAX on my system is: " << RAND_MAX << endl;
+result=pow(2.0,3.0); //2.0^3.0   |srand(time(nullptr));  
+ceil(12.4)//13                   |
+floor(12.4)//12                  |for (size_t i{1}; i<=count; ++i)  {
+round()                          |    random_number = rand() % max + min;     // generate a random number [min, max]
+                                 |    cout << random_number << endl;
+                                  }
+
+functions parameter and return type      |default arguments in functions
+                                         |and functions overloading
+void say_hello(std::string name){        |void print(int);
+    cout<<"hello"<<name<<endl;           |void print(double);
+}                                        |void print(string);
+                                         |void print(string, string);
+say_hello("frank");note that the func    |void print(vector<string>);
+accepts cpp string  but we are passing   |**return type is not considered when 
+c style string compiler will convert     |trying to call a function
+c style into cpp string automatically    |
+                                         |
+**std::string my_dog{"buster"};          |
+say_hello(my_dog);                       |
+
+
+**static int num {5000};      // local to static_local_example static - retains it value between calls
+scope is local but will not die will always retain its valuec
+
+******************************************************************************** 
+pointers and refernces                                   |int * int_ptr;//now it contains garbage data             |
+                                                         |double * double_ptr {nullptr};//must be initialized      |
+                                                         |all pointers in the program has the same size            |
+a pointer is a variable                                  |typed pointers--                                         |
+                                                         |the compilers make sures that the address stored in the  |
+    whose value is an address                            |pointer is of correct type                               |
+                                                         |                                                         |
+pointers can used to operate on arrays very effenciently |vector<String> stooges{"llary","mooe","curly"};
+we can allocate dynamically on heap or free store.       |vector<String>*vector_ptr{nullptr};
+     this memory doesn't have a variable name            |vector_ptr=&stooges
+     the only way to get to it is via pointer            |cout<<"first stooge"<<(*vector_ptr.at(0))<<endl;
+                                                         |for(auto stooge:*vector_ptr)
+can access specific addresses in memory                  |{
+     useful in embedded and systems applications         |    cout<<stooge<<" ";
+                                                              cout<<endl;
+                                                              cout<<endl;
+                                                              return 0;
+                                                          }
+
+
+*dynamic memory allocation------                                             |
+we often don't know how much storage we need until we need it                |
+we can allocate storage for a variable at runtime                            |
+*in arrays we had to explicity provide the size and it was fixed             |
+*but vectors grow and shrink dynamically                                     |
+we can use pointers to access newly allocated storage                        |
+    size_t size{0};                                                          |
+    double *temp_ptr {nullptr};                                              |
+    cout << "How many temps? ";                                              |
+    cin >> size;                                                             |
+    temp_ptr = new double[size];    // allocate the storage on the heap      |
+    cout << temp_ptr << endl;       // use it                                |
+    temp_ptr=nullptr;//now we lost our only way to get to that storage and   |
+                        that's called the memory leak                        |
+    delete [] temp_ptr;                     // release it                    |
+
+
+
+**determine the number of elements between the two pointers   |**const and pointers
+int n=int_ptr2-int_ptr1;                                      |    
+string *s1 {"frank"};                                         |    there are several ways qualify pointers using const
+string *s2 {"frank"};                                         |        pointers to constants          |data pointed by ptr is constant and cannot be changed
+string *p1 {&s1};                                             |            int high_score {100};
+string *p2 {&s2};                                             |            int low_score {65};
+string *p3 {&s1};                                             |            const int* score_ptr(&high_score);
+cout<< (p1==p2) <<endl;//false; |cout<<(*p1==*p2)<<endl;//true|            *score_ptr=86;//error
+cout<<(p1==p3)<<endl;//true;    |cout<<(*p1==*p3)<<endl;//true|            score_ptr=&low_score//ok
+                                                              |    
+                                                              |            constat pointers               |pointer itself cannot be changed and point somehwere else
+                                                              |                int *const score_ptr{&high_score};
+                                                              |                *score_ptr=86;//ok
+                                                              |                score_ptr=&low_score;//error
+                                                              |    
+                                                              |            constant pointers to constants |address and value both are constant
+                                                              |                const int* const score_ptr{&high_score};
+                                                                              *score_ptr=98;//error
+                                                                              score_ptr=&low_score;//error
+
+
+****************************************passing pointers to functions        |returning pinter from a function type*function();
+use size_t for size variable
+                                                                             |
+void swap(int *a, int *b) { |void display( const vector<string> *const  v) { |int *create_array(size_t size, int init_value = 0) {
+    int temp = *a;          |//(*v).at(0) = "Funny";                         |   int *new_storage {nullptr};
+    *a = *b;                |    for (auto str: *v)                          |   new_storage = new int[size];   
+    *b = temp;              |        cout << str << " ";                     |   for (size_t i{0}; i < size; ++i)
+}                           |    cout << endl;                               |      *(new_storage + i) = init_value;
+    swap(&x, &y);           |                                                |   return new_storage;
+                              //   v = nullptr;                              |}
+                             }                                               |
+****************************************                                     |int *my_array;my_array=create_array(100,20); delete[] my_array;
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+never do this                                                       |potential pointer pitfalls
+int *this(){                                                        |
+    int size();                                                     |uninitialized pointers //can point anywhere
+    int *int_ptr {&size};                                           |dangling pointers//these are pointers that are pointing to the memory 
+                                                                    |                    that are no longer valid
+    return int_ptr;//address being returned is a stack variable or  |                    eg:returning addresses of the function local
+                    local variable very bad idea                    |                    variable in the stack that are no longer valid
+}                                                                   |                    eg2:pointers that is pointing to the released memory
+                                                                    |Not checking if falied to allocate the memory
+                                                                    |        if new fails an exception is thrown we can use exception handling
+                                                                    |            to catch exceptions
+                                                                    |        deferencing a pointer that is pointing to the null your program
+                                                                    |            will crash
+                                                                    |leaking memory
+                                                                    |forgetting to release allocated memory with delete
+                                                                    |if you lose your pointer to the storage allcated on the heap you have not way to get
+                                                                    |    that storage again
+                                                                    |the memory is orphaned or leaked
+                                                                    |
+                                                                    |cpp have smart pointers that take care of these problems and are still very efficient
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+what are references?                                                     |int num{100};
+an alias for a variable                                                  |int &ref{num};--ref alias to num
+must be initlialized to a variable when declared                         |num=200
+once initialized cannot be made refer to different variable              |cout<<num<<endl;//200
+very useful as function parameters                                       |cout<<ref<<endl;//200
+might be helpful to think of a refernces as a constant pointers that is  |
+automatically deferenced                                                 |
+
+vector<string> stooges{"larry","moe","curly"};                   |vector<string> stooges{"larry","moe","curly"}; |const in refernces--
+for(auto str:stooges) {                                          |for(auto &str:stooges) {                       |vector<string> stooges{"larry","moe","curli"};
+    str="funny";        //changes made to the copy of stooges    |    str="funny";                               |for(auto const &str: stooges)
+}                                                                |}                                              |{
+for(auto str:stooges){                                           |for(auto str:stooges){                         |    str="funny";//compiler error
+    cout<<str<<endl;//vector remains same                        |    cout<<str<<endl;//all changed to funny     |}
+}                                                                |}                                              |
+**unless you have a specific reason to copy elements in range based for loops you should use reference variables to make yourcode more effiecient
+**if you aren't gonna modify your refernece elements make the reference const
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+l-values
+    values that have names and are addressable |r-values
+    modifiable if they are not constants       |    a value that not an l-value
+                                               |    a temperaroy which is intended to be non-modifiable
+int x{100};  //x is an l-value       |         |**r -values can be assigned to l-value explicitly
+x=1000;                              |         |100=x; //100 is not an l-value but an r-value
+x=1000+20;                           |         |y=100;//r-value 100 assigned to l-value y
+string name; //name is an l-value    |         |x=x+y;//r-value (x+y) assigned to l-value x
+name="frank";                        |         |
+                                               |
+l-values references
+int square(int &n)
+{
+    return n*n;
+}
+int num{10};
+square(num);//ok as square takes reference to l-value and num is an l value
+square(5);//error-can't be reference to r-value 5
+
+if you need null values go with the pointers refernces cannot be null;
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                      OBJECT ORIENTED PROGRAMMING
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+object oriented programming is about modeling your software interms of classes and objects there is new jargon that you have learn along the way
+
+its all about abstraction as our program grow more and more complex we need ways to deal with the complexity classes and objects are one way to 
+    do just that
+
+class is a blue print from which objects can be created
+    can hide data and methods which can only be use by the class using access modifiers
+object is an instance of a class
+
+encapsulation---
+    that fact that objects contain data and operation that work on that data
+    extension of adt(abstract data type in computer science)
+
+
+*information-hiding
+    implementation-specific logic in a class so that it's available only within the class
+        this is a super powerful concept since it allows us to provide a public interface to the clss and hide now the user cannot mess with the
+        implementation specific code since they don't know abou it in the first place.
+    users of the class code to the interface since they don't need to know the implementation
+    more abstraction
+    esier to test debug maintain and extend
+
+*reusablity
+    *easier to reuse classes in other applications
+    *faster development
+    *higher quality
+
+*inheritance
+    to create new classes in term of existing classes
+    reusablity
+    polymorphic classes
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+class player {                           |std::vector<Account> account1 {frank_account}; |----accessing the class memebers
+    //attribute                          |account1.push_back(jim_account);               |1>deferencing the pointer then use the dot operator
+    std::string name;                    |Player *enemy{nullptr};                        |    Account *frank_account= new Account();
+    int health;                          |enemy= new Player;                             |    (*frank_account).balance;
+    int xp;                              |delete enemy;                                  |    (*frank_account).deposit(1000.0);
+                                         |                                               |    Account *frank_account= new Account();
+    //methods                            |                                               |    frank_account->balance;
+    void talk(std::string text_to_say);  |                                               |    frnak_account->deposit(1000.0);
+    bool is_dead();                      |                                               |
+};                                       |                                               |
+                                                                                         |
+
+class Account{                         |creating objects---
+    //attribute                        |
+    std::string name;                  |Account frnak_account;
+    double balance;                    |Account jim_account;
+    //methods                          |
+    bool withdraw(double amount);      |Account *mary_account= new Account(); //allocated dynamically on the heap and freed up when we are done with it
+    bool deposit(double amount);       |delete mary_account;
+}                                      |Account accounts[]{frank_account,jim_account};
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+access modifiers---
+
+private     
+    --this means they are only accessable within the member of the class and frineds of the class
+Player frank;
+    frank.name="frank";//compiler error |Player * enemey= new Player();
+    frank.health=1000;//compielr error  |enemy->xp=100;//compier error
+    frank.talk("ready to battle");      |enemey->talk("i will hunt you down"); delete enemy;
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                      CONSTRUCTORS AND DESTRUCTORS IN CPP
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//overloaded constructors                    |//destructors
+Player();                                    |special member methods
+Player(std::string name);                    |same name as class precided with tilde
+Player(std::string name,int health,int xp);  |invoked automatically when the object is destroyed
+                                             |no return type and no parameter
+                                             |useful to release memory and other resources
+Player *enemy= new Player("enemy",1000,0);
+delete enemy; //destructor called
+
+**if you created constructor for only three args
+and if you try create an object by passing no args then you'll have compiler error you have to explicty create constructor for no args
+
+-----constructor initializatoin list
+    so far we have return our code so that we initialize our data member values in the constructor body by assiging values to them
+    while this works it techinqually isn't initialization by the time constructor body is exectued these member attributes already bean created
+        we are just assigning values to already created attributes
+
+what we really want to do ishave the member data values initialized to our values before the constructor body executes
+        to achieve this cpp use constructor initialization lists
+
+constructor initializationlist----
+ player::player():name{"none"},health{0},xp{0}{
+
+ }
+ Player::Player(std::string name_val,int health_val,int xp_val):name{name_val},health{health_val},xp{xp_val}{
+
+ }
+
+    ---delegating constructors
+        code for one constructor can call another in the initialization list
+        avoids duplicating code
+        Player::Player():Player("None",0,0){ |Player::Player(std::string name_val):Player(name_val,0,0){ |Player::Player(std::string name_val,int health_val):Player(name_val,health_val,0){
+                                             |                                       |
+        }                                    |}                                      |}
+        **after three args constructor body gets exectud their respective called constructor body gets executed
+
+
+--default constructors parameters
+during the class creation below the public implement as follows:
+Player(std::string name_val="none",int health_val=0,int xp_val=0);
+in .cpp
+Player::Player(std::string name_val,int health_val,int xp_val):name{name_val},health{health_val},xp{xp_val}{
+
+}
+
+
+-------------------------------------copy constructors
+if you have pointers in your close when using copy cnostructors only the pointer is being copied not the data that it is pointing to 
+
+
+
+**always provide a user defined copy constructor if your using raw pointers
+always implement the copy constructor with a const reference parameter
+use stl classes as they already copy constructros
+avoid using raw pointers data memebers if possible
+
+Type::Type(const Type &source){                      |
+    //code or initializatoin list to copy the object |
+}                                                    |
+
+Player::Player(const Player &source): name{source.name},health{source.health},xp{source.xp} {
+
+
+}
+
+
+classs shallow{                      |shallow::shallow(int d){                   |shallow::shallow(const shallow &source)                                                                                 
+    private:                         |    data = new int;                        |:data(source.data){
+    int *data;                       |    *data=d;                               |    cout<<"copy constructor is called"<<endl;
+    public:                          |}                                          |}
+    shallow(int d);                  |shallow::~shallow(){                       |
+    shallow(const shallow &source);  |    delete data;                           |
+    ~shallow();                      |    cout<<"destructor freeing data"<<endl; |
+};                                   |}                                          |
+
+===implementing the deep copying
+
+Deep::Depp(const Deep &source) |Deep::Deep(const Deep &source) --by delegating the constructor
+{                              |:Deep(source->data)
+    data= new int;             |{
+    *data=source->data;        |
+}                              |}
+
+
+===================move constructors======
+when you can refer to an object by name or you can follow a pointer to get to an object than that object is addressable and its an l value
+and r values are everything else
+
+in the contenxt of move symantics r values refer to the temperary objects created by the compiler an object returns from methods
+
+int total{0};
+total=100+200;  100+200 is evaluated and 300 stored in an unnamed temp value the 300 is then stored in the variable total
+cpp move constructor moves the object rather than copying move const are optional if you don't provide them copy constructors will be invoked
+
+
+we already talked about l value references which are references to l values
+r value references are referneces to r values in the context of move symantics think of r value references as referneces to those temperary objects
+
+
+l -values references are declared using &  |l-value refernce parameters                  |Vector<Move> vec;
+r -values referneces are declared using && |int x{100};                                  |vec.push_back(Move{10});
+                                           |                                             |vec.push_back(Move{20});
+int x {100}                                |void func(int &num);//A                      |
+int &l_ref=x; //l-value refernce           |func(x);                                     |we use move constructor with r value referneces 
+l_ref=10;       //change x to 10           |func(200);//compiler error func expects value|Move::Move(Move &&source)
+                                           |                                             |    :Move(source->data){
+int &&r_ref =200;   //r-value ref          |                                             |        source.data=nullptr;
+r_ref=300;          //change r_ref to 300  |                                             |        cout<<"move constructor -moving resources for value "<<data<<endl;
+                                           |                                             |    }
+int &&x_ref=x;      //compiler error       |                                             |
+                                                                                         |vector<Move>vec;
+                                                                                          vec.push_back(Move(10));
+                                                                                          **checkout move constructors cpp file in
+
+====using const with classes
+
+const Player villian {"villian",100,55};//once villian is created we cannot change any of its attribute
+void display_player_name(const Player &p){
+    cout<<p.get_name()<<endl;//it also throws an error saying that get_name() could potentially change the object
+                                //we need to tell teh compiler that speicific methods will not modify the object by introducing the const
+                                    after method declaration
+
+                                    --now .get_name() works fine and .set_name will obviously riase error if used with the const object
+}
+display_player_name(villian);//error
+
+----------------------------------------------to store the class wide information we use static class memembers========
+--class functoins can be declared as static
+class data members can be declared as static
+
+*independent of any objects
+*can be called usig the class name
+
+class Player{                    |
+    private:                     |
+    static int num_players;      |
+    public:                      |
+    static int get_num_player(); |
+};                               |
+                                 |
+                                 |
+
+                                 Player::Player(std::string name_val,int health_val,int xp_val):name{name_val},health{health_val},xp{xp_val}{
+                                     ++num_players;
+                                 }
+                                Player::~Player(){
+                                    --num_Players;
+                                }
+can access num_palyers in Player.cpp file by providing the namespace to it
+    --int Player::num_players=0;
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+struct in the class we can declare a struct
+    --do not declare methods in struct
+only differnece is members of the structs are public by default members of the class are private by default
+
+struct Person{
+    std::string name;
+    std::string get_name();//why if name is public?
+}
+Person p;
+p.name="frank";
+std::cout<<p.get_name();
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+*friend
+is a function that has access to prvate class members
+declared in the function prototypes with the keword friend
+friendship is not transitive
+stand-alone non member function
+
+*in .h files while using the class to which it is friend .the class must be declared at the top first
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+overloading assignement= operator
+
+Mystring& Mystring::operator=(const Mystring &rhs)
+s2=s1;
+*s2.operator=(s1);
+the object on the left hand side of the assignement statement is referred to as this pointer
+object on the right hand side is passed into the method
+Mystring &Mystring::operator=(const Mystring &rhs){
+    if(this==&rhs)//p1=p1;
+        return *this;                                   //return the current object
+   delete [] str;
+   str= new char[std::strlen(rhs.str)+1] ;
+   std::strcpy(str,rhs.str);
+   return *this;                                    //return the current by reference to allow chain assignment
+}
+
+
+mystring operator- make lowercase        |Mystring Mystring::operator-()const{
+Mystring larry1 {"larry"};               |    char *buff= new char[std::strlen(str)+1];
+Mystring larry2 ;                        |    std::strcpy(buff,str);
+larry1.display();//larry                 |    for(size_t i=0;i<std::strlen(buff);i++)
+larry2=-larry1;     //larry1.operator-() |    {
+larry1.display();//larry                 |        buff[i]=std::tolower(buff[i]);
+larry2.display();//larry                 |    }Mystring temp {buff};
+                                              delete[]buff;
+                                              return temp;
+                                          }
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+overloading biary operators as member methods
+
+Number Number::operator+(const &Number rhs)const; |Number n1{100},n2{200}; |                 |bool Mystring::operator==(const Mystring &rhs)const {
+Number Number::operator-(const &Number rhs)const; |Number n3=n1+n2;        |n1.operator+(n2);|    if(std::strcmp(str,rhs.str)==0){
+bool Number::operator==(const &Number rhs)const;  |n3=n1-n2;               |                 |        return true;
+bool Number::operator<(const &Number rhs)const;   |if(n1==n2)....          |                 |    }else{
+                                                                                                      return false;
+                                                                                                  }
+                                                                                              }
+
+*while concatenation we can also use c-style string on the right hand side this is because we have a  mystring constructor that can 
+construct my string objects from a c-style string.
+*the only limitation is that the object on the left hand side must be the object your using
+
+
+Mystring larry{"larry"};                                             |Mystring Mystring::operator+(const Mystring &rhs)const{
+Mystring moe{"moe"};                                                 |    size_t buff_size=std::strlen(str)+std::strlen(rhs.str)+1;
+Mysring stooges{" is one of the three stooges"};                     |    char *buff= new char[buff_size];
+result=moe+" is also a stooge";//moe.operator+("is also a stooge");  |    std::strcpy(buff,str);
+result="moe"+stooges;//"Moe".operator+(stooges)//error               |    Mystring temp{buff};
+                                                                     |    delete [] buff;
+                                                                          return temp;
+                                                                      }
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+                                                    operator overloading in global functions
+bool operator==(const Mystring &lhs,const Mystring &rhs){                |Mystring operator+(const Mystring &rhs,const Mystring &lhs)
+    if(std::strcmp(lhs.str,rhs.str)==0)                                  |{
+        return true;                                                     |    size_t buff_size=std::strlen(lhs.str)+std::strlen(rhs.str)+1;
+    else                                                                 |    char *buff = new char[buff_size];
+        return false;                                                    |    std::strcpy(buff,lhs.str);
+}                                                                        |    std::strcat(buff,rhs.str);
+*if declared as a friend of Mystring can access private str attribute    |    Mystring temp{buff};
+other wise must use getter methods                                       |    delete [] buff;
+result="Moe"+stooges;//ok with non-member function                       |    return temp;
+
+
+Mystring Mystring::operator-(const Mystring &obj){
+    char *buff = new char[std::strlen(obj)+1];
+    std::strcpy(buff,obj.str);
+    for(size_t i=0;i<std::strlen(buff);i++)
+    {
+        buff[i]=std::tolower(buff[i]);
+    }
+    Mystring temp{buff};
+    delete [] buff;
+    return temp;
+
+
+
+==========================================stream insertion and extraction operator
+doesn't make sense to implement as member methods
+    left operand must be  a user-defined class
+    not the way we normally we use this operator
+
+Mystring larry; |stream insertion operator---                                     |
+larry << cout;  |                                                                 |
+Player hero;    |std::ostream &operator<<(std::ostream &os,const Mystring &obj){  |
+hero>>cin;      |    os<<obj.str;        //if friend function                     |
+                     //os<<obj.get_str();//if not friend function                 |
+                     return os;                                                   |
+                 }                                                                |
+                 *return a referene to the ostream so we can keep inserting       |
+                 *don't return ostream by value;                                  |
+                                                                                  |
+
+std::istream &operator>>(std::istream &is, Mystring &obj){
+    char * buff= new char[1000];
+    is >>buff;
+    obj=Mystring{buff};//if you have copy or move assignment
+    delete [] buff;
+    return is;
+}
