@@ -1,4 +1,4 @@
-==========introduction
+=========introduction
 
 g(n)/f(n)  =0           then f(n) is growing faster than g(n) f(n) is a bad algorithm
 lim n->inf
@@ -34,3 +34,823 @@ g(n)=bigomega(f(n))
 
 
 time complexity analysis of the recursive problem
+
+
+auxilary space is the extra space or temperary space that you create to solve a problem
+if you take array sum as example
+int arrsum(int arr[],int n){ |
+    int sum{};               |
+    for(int i=0;i<n;i++)     |
+    {                        |
+        sum+=arr[i];         |
+    }                        |
+    return sum;              |
+}                            |
+the space complexity is theta n
+but the auxilary space is theta 1
+
+==there are some sorting algorithms that does not use extra array for sorting
+    insertion sort
+    bubble sort
+    selection sort
+    heap sort
+
+==however there are some sorting algo that uses extra array to do the sorting
+    merge sort
+
+    if you look at all the sorting algorithms
+        space complexity is theta n             --because they all need an array to sort
+        hence we cannot compare them interms of their space complexity because they all are theta n
+        
+**        we compare them interms of auxilary space
+
+        insertion  |all are theta one auxilary space |merge sort   | is theta n auxilary space 
+        bubble     |                                 |quick sort   | is theta log n auxilary space
+        selection  |                                 |                                                                                                
+        heap       |                                 |space complexity is less used and auxilary space is more used because it gives more information
+
+        
+        
+
+       if we talk about fibonocii program using recursion it uses theta n auxilary space to do the computation hence aux spae is theta n 
+
+
+====================finding the gcd of a given pair 6,4
+    greatest number that can divide these two numbers into equal parts is c=2 a block of two units can be equally divided into 3 equal parts of 6 units
+                                                                                                                             2 equal parts of 4 units
+    a,b=6,4;
+    a/c=x(3);       --now these 3 units and 2 units cannot be further subdivided  because maximum divisor possible is 2 that we got by gcd
+    b/c=y(2);       --hence 3 and 2 are called co-primes no other common divisor except 1
+
+
+    c=gcd(a,b)
+    a=c*x;
+    b=c*y;
+    where  x and y are co-prime
+
+    lcm(a,b) is divisible by 'a' |a=cx
+    lcm(a,b) is divisible by 'b' |b=cy
+
+    lcm(a,b) =cxy
+    lcm(a,b)*gcd(a,b)=c*x*y*c | =cx*cy=a*b
+
+
+    ==========================prime number ===a number which is not divisible by any other number except itself and 1
+    ==========================co prime ======a pair is said to be co-prime if 1 is the only common factor of the pair
+
+    **divisors always appear in pair  every divisor of x is going to have a pair y such that n/x=y
+    x*y=n
+    x<=y
+    x*x<=n
+    x<=sqrt(n)
+
+    anything which is not divisble by 2 cannot be dvisible by 4 also that is multiples of 2
+    anything which is not divisible by 3 cannot be divisible by mutlitple of 3 i.e 6,9,... 
+    only case left if it is divisble prime numbers  and other numbers which are not divisible by 2,3 ;5,7,11,13,17,19,23,25
+
+    n=121 --not divisible by 2 and 3 but divisible by 11
+
+
+    for(int i=5;i*i<=n;i=i+6){
+        if(n%i==0|| n%(i+2)==0)return false;
+    }
+    return true;
+
+
+    printing all divisors of number;
+
+    sieve of eratosthenes
+    takes a number n as input and prints all the prime number smaller than = n
+    the logic is marking all the divisors as false
+
+    for(int i=2;i*i<=n;i++){             |finding all the divisor pairs |void stieve(int n){
+        if(visite[i]){                   |only the first range of first |    vector<bool> visited(n+1,true);
+            for(int j=2*i;j<=n;j+=i) {   |part of the pair              |    for(int i=2;i<=n;i++){
+                i sprime[i]=false;        |                              |        if(visited[i]){
+            }                            |                              |            cout<<I<<" ";
+        }                                |                              |            for(int j=i*i;j<=n;j+=i) |when i becomes greater than sqrt of n 
+    }                                    |                              |            {                        |the inner loop will not run
+    for(int i=2;i<=n;i++) {              |                              |                visite[i]=false;     |
+        if(isprime[i]){                  |                              |            }                        |
+            cout<<i<<" ";                |                              |        }                            |
+        }                                |                              |    }                                |
+    }                                    |                              |                                     |
+                                         |                              |}                                    |
+                                         |                              |                                     |
+                                         |                              |                                     |
+
+
+======computing power of 2 in log n time compleixity
+
+int func(int x,int n){           |iterative solution to compute power of a number in nlogn time the idea is based on the fact 
+    if(n==0){                    |every number can be written as sum of powers of two
+        return 1;                |
+    }                            |3**10= 3**8*3**2 10:1010
+    int temp=fun(int x,n/2);     |while(n!=0)
+    temp=temp*temp;              |{
+    if(n%2==0){                  |    if(n%2!=0){
+        return temp;             |        result*=x;
+    }else{                       |    }
+        return temp*x;           |    n=n/2;
+    }                            |    x=x*x;
+}                                |}
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+bitwise operators & | ^
+int x=3;
+cout<<(x<<1)<<endl; x<<y --x*2**y
+cout<<<(x>>2)<<endl;x>>y --x/2**y
+
+in case of signed numbers you have 31 bits to represent the signed numbers hence reange is -2**31 to 2**31-1
+
+proof for -2**31== negative numbers in binary are stored in 2's complement form we use 31 bits to represent the number and other 1 bit is the sign bit
+                   100000000...31 0's
+                   2**32-1-(2**31-1) ==>2**32-2**31  value is -2**31 
+
+brina karningam's algorithm |lookup table method for 32 bits numbers                             |finding two odd appearing numbers;
+int countbits(int n){       |int table[256];                                                     |
+    int res=0;              |void initialize(){                                                  |the task is extract single digit from 5^6
+    while(n>0){             |    table[0]=0;                                                     |consider set bit in the expression 5^6
+        n=(n&n-1);          |                                                                    |
+        res++;              |    for(int i=1;i<256;i++)                                          |void oddAppearing(int arr[],int n){
+    }                       |    {                                                               |    int xor=0,res1=0,res2=0;
+    return res;             |        table[i]=(i&1)+table[i/2];                                  |    for(int i=0;i<n;i++){xor=xor^arr[i];}
+}                           |    }                                                               |**  int set_bit=xor&~(xor-1);    
+                            |}                                                                   |for(int i=0;i<n;i++){
+                            |int count(int n){                                                   |    if(arr[i]&sn)!=0){
+n&(n-1)counting set bits         int res=table[n&oxff];n&oxff gets the number from first 8 bits  |        res1=res1^arr[i];
+n&~(n-1)rightmost set bit        int n=n>>8;                                                     |    }else{
+you get a number which has       int res=table[n&oxff];n&oxff gets the number from first 8 bits  |        res2=res2^arr[i];
+all the bits as zero             int n=n>>8;                                                     |    }
+and the last set bit as one      int res=table[n&oxff];n&oxff gets the number from first 8 bits  |}
+                                 int n=n>>8;                                                     |
+                                 int res=table[n&oxff];n&oxff gets the number from first 8 bits  |
+                                 int n=n>>8;                                                     |
+                             }                                                                   |
+don't see think about it
+void printpowerset(String n){
+    int n= str.length();
+    int powersize =pow(2,n);
+    for(int counter=0;counter<powersize;count++){
+        for(int j=0;j<n;j++){
+            if(counter&(1<<j)!=0){
+                cout<<str[i];
+            }
+        }
+        cout<<endl;
+    }
+}                                                                                                 |
+-------------------------------------------------------------------------------------------------------------------------------------------------
+                                   RECURSION
+
+tail recursion--
+a function is called tail recursive when the parent function has nothing more to do when the child has finished its exection
+void func(int n){ |void fun(int n){
+    if(n==0)      |    if(n==0)
+        return ;  |        return;
+    print(n);     |    fun(n-1);
+    func(n-1);    |    print(n);
+}                 |}
+
+changes modern compilers do to optimze the tail recursive code
+void func(int n){                                                            |int fact(int n){        |
+    start:                                                                   |    if(n==0|| n==1)     |this function is not tail recursive multiplication is done after the function has finished its call
+    if(n==0)                                                                 |        return 1;       |
+        return;                                                              |    return n*fact(n-1); |
+    print(n);                                                                |}                       |
+    func(n-1);  n=n-1;       |these changes are called tail call elimination |                        |
+                goto start;  |                                               |                        |
+}                            |                                               |                        |
+
+
+
+**rope cutting problem
+n=5,a=2,b=5,c=1
+
+int rope_cutting_problem(int a,int b,int c,int n){
+    if(n<0)return -1;
+    if(n==0)return 0;
+
+    int result= 1+max(rope_cutting_problem(n-a,b,c,n-a)
+                rope_cutting_problem(n,n-b,c,n-b)
+                rope_cutting_problem(a,b,n-c,n-c)
+                )
+**    if(result==-1)return -1; |here you are missing 
+    else return result+1;      |
+}                              |
+
+
+*****joseph's problem 
+        
+        to understand clearly take the example of (4,3) and (5,3) in the form (n,k) k-->position of the poerson you want to kill
+                                                                                    n-->number of persons on the circle
+          
+          solution for joseph's problem
+          int josephs_prob(int n,int k){
+              if(n==1)return 0;
+              int result=(josephs_prob(n-1,k)+k)%n;
+              return result+1;
+
+          }     //the third element is getting removed in the larger circle and next element is acting as the first circle i.e number 4
+                in the current circle is acting as the as the 1 next circle(smaller after removing kth element)
+                hence the conclusion is 
+
+                (5,3)         (4,3) 
+                  3<=========== 0
+                  4<=========== 1
+                  0<=========== 2
+                  1<=========== 3
+-------------------------------------------------------------------------------------------------------------------------------------------------
+subset sum problem                                                                                   |printing all the permutations of a string
+int subset_sum_problem(int sum,int arr[],int n){                                                     |s="abc"
+    if(n==0){                                                                                        |void func(string &s,int i=0){
+        return (sum==0)?1:0;                                                                         |
+    }                                                                                                |    if(i==s.length()-1{cout<<s<<" ";}
+    return subset_sum_problem(arr,n-1,sum)+subset_sum_problem(arr,n-1,sum-arr[i]);                   |    for(int j=1;j<s.length();j++)
+}                                                                                                    |    {
+                                                                                                     |        swap(s[i],s[j]);
+total recursive calls it takes is 2**n for the leaf node and 2**n-1 for the above rest of the nodes  |        func(s,n+1);
+if n is 3 you will have 8 recursive calls and then you'll have 7 recursive calls here                |        swap(s[j],s[i]);
+                                                                                                     |    }
+the time compleixity of the dynamic programming solution is n * sum                                  |}
+-------------------------------------------------------------------------------------------------------------------------------------------------
+========================================================ARRAYS======================================================
+
+array data structure
+
+int arr[]{10,15,20,30,40};                                                     |vectors in cpp
+                                                                               |
+advantages of contigous memory locations                                       |problems---
+--random acess                                                                 |**in arrays we always end up wasting space by allocating extra memory 
+--cache friendliness cache is a memory that is closest to the cpu and ideally  |its not dynamically changing in size that's where vectors come to the picture
+    you want that every item that your program is accessing to be there        |
+    in the cache because it is fastest of all the other memories so you want   |advantages--
+    items to be their in the cache                                             |
+    *what processess generally do when they acess an item generally prefetch   |dynamic size
+    the item which are at nearby locations                                     |rich library functions
+                                                                               |find()
+when you access item 10 in the arr it is very likely that your processor is    |erase()
+generally going to prefetch nearby items according to the cache capacity       |insert()
+------------------------------------------------------------------------------ | .size();
+                                                                               | no need to pass size
+                                                                               | can be returned from a functions
+                                                                               | 
+                                                                               |             vector<int> fun() {
+                                                                               |                 vector<int> v;
+                                                                               |             }
+                                                                               | 
+                                                                               | by default vectors are initalized by default value
+                                                                               | we can copy a vector to other
+ ArrayList is a dynamic sized array initally there are no items when you add                                                                                     | v1=v2;
+ items you don't have to do anything it will automatically grow its size interna
+ ly
+ advantages of ArrayList
+ .add();
+ an ArrayList should be created of non primitive data types
+ here i created an arrayList of integer which is a wrapper class over primitive int
+ 
+ *when you are creating an arraylist you can either create an empty array list
+ or you can speicify a size or you can speicfy size as well
+ *ArrayList<Integer> al=new ArrayList<Integer>(10);
+ java internally preallocates that much space
+ *you can create arraylist from other container like hash set if you pass
+ hasset it will iterate thgrough the hash set and store and store the items 
+ in the array list and create array lst from the hash set
+
+
+
+search in the array                              |insert in an array             |**    insert in a dynamic sized array
+time complexity :                                |                               |        
+                                                 |    time-complexity:avg:-o n   |        if you insert after the array is full then
+    worst-case:linear                            |    insert at the end:o 1      |        it creates a new array of double the size
+    sorted:big o of logn time(binary search)     |    insert at the beginning:o n|        copy all the elements into the newly created 
+                                                                                 |        array on average dynamic sized arrays takes big o 1
+                                                                                          time
+                                                                                  
+                                                                                          time comp for every insert for n element:o 1
+                                                                                          avg time comp for n+1 insert:o1+o1+o1+...+on/n+1
+                                                                                  
+                                                                                          this operation is .push_back in vectors
+                                                                                          and add operation in case of java
+                                                                                  
+                                                                                  insert at the end and delete from the end cab be done in o 1 time
+
+finding the second largest elemnt
+approaches by mainting two variables largest and second largest
+            by running two loops one for largest and one for second largest
+
+reversing an array problem
+approach maintain start and end run while start<end and swap at those indexes
+timecomplexity:o n/2 times i.e:o n; 
+
+
+remove duplicates from a sorted array {10,20,20,30,30,30,30};              |14>move all the zeroes to the end {10,5,0,0,8,0,9,0}
+approach maintain two pointers from the start from second postion          |approach maintain two pointers from the start 
+                1-->if curr and prev are same move only one pointer        |                1-->if you see non zero element swap pointers move both pointers
+                if both are diff then move both pointer forwards           |                if you see a zero element move only one pointer
+                2-->createa temperary array put all the unique elements    |nive approach run two loops if you see a zero element run the second 
+                                                                           |loop and swap with the non zero element
+
+
+15--left rotate an array by one arr[]={1,2,3,4,5}; |
+                                                   |leader in an array
+left rotate an array by d elements                 |{7,10,4,3,6,5,2};
+take first d elements put it in array of size d    |approach start from the end keep track of the max
+start from index d to n put the range towards start|element from the end
+from n-d+i i from 0 d-1 put it into the array      |
+                                                   |
+                                                   |
+***reversal alogirthm reverse 0 to d-1             |
+                        reverse d to n-1           |
+                        reverse 0 to n-1           |
+                                                   |
+
+
+**maximum value of arr[j]-arr[i] such that j is > i
+arr[]={2,3,10,6,4,8,1};
+brute force:by making two loops
+efficient:traverse from left to right keep track of minimum element so far
+and for every element you sub min element from it and see is it giving you 
+the more difference and you also make sure that you update the minimum element
+when you find a smaller element
+
+** finding the frequencies in a sorted array
+int arr[]={10,10,10,25,30,30};
+efficient
+    
+start from index one
+int i=1
+while(i<n){
+int freq=1;
+    
+while(i<n && arr[i]==arr[i-1]){
+    freq++;
+    i++;
+}
+cout<<"frequency of the array is"<<arr[i-1]<<" is "<<freq<<endl;
+i++;
+}
+if(n==1||arr[n-1]!=arr[n-2]){
+    cout<<"frequency of the array "<<arr[i-1]<<" is "<<1<<endl;
+}
+
+**20>stock buy and sell by maximizing the profit
+int arr[]{1,5,3,8,12};                               |**cosider all such pairs such that i<j and price[j]>price[i];
+int arr[]{1,5,3,1,2,8};                              |int maxprofit(int price[],int start,int end){
+int start,end;                                       |    if(end<=start){
+int i=1;                                             |        return 0;
+while(arr[i]==arr[i-1])i++;                          |    }
+if(i==n)return;                                      |    int profit=0;
+                                                     |    for(int i=0;i<end;i++){
+while(i<n){                                          |        for(int j=0;j<=end;j++)
+                                                     |        {
+if(arr[i-1]<arr[i]){                                 |            if(price[j]>price[i]){
+     start=arr[i-1];                                 |                int curr_profit=price[j]-price[i]+maxprofit(price,start,i-1)+
+     while(arr[i-1]<arr[i] && i<n){                  |                                                    maxprofit(price,j+1,end);
+         i++;                                        |                profit=max(profit,curr_profit)
+     }                                               |            }
+     i--;                                            |        }
+     end=arr[i];                                     |    }
+     total=total+(start)-(end);                      |    return profit;
+}                                                    |}
+i++;                                                 |i=0,j=1 curr_profit=(5-1)+maxprofit(arr,0,-1)+maxprofit(arr,2,4);//4+0+9=13
+                                                     |i=0,j=2 curr_profit=(3-1)+maxprofit(arr,0,-1)+maxprofit(arr,3,4);//2+0+4
+}                                                    |
+                                                     |
+int maxprofit(int price[],intn){
+    int profit=0;
+    for(int i=1;i<n;i++)
+    {
+        if(arr[i]>arr[i-1]){
+            profit+=(price[i]-price[i-1]);
+        }
+    }
+    return profit
+}
+
+
+//trapping rain water
+int arr[]{2,0,2}; 
+int arr[]{3,0,1,2,5};
+for(int i=1;i<n;i++){
+    int max_left=0;                                  |max_left=arr[i],max_right=arr[i] |the effieicnt solution is to precompute left max and right max                         |
+    for(int j=0;j<i;j++){                            |                                 |    rather than computing it for every index we precompute it in theta n time          |
+        max_left=max(max_left,arr[j]);               |                                 |                                                                                       |
+    }                                                |                                 |by mainting two arrays of left max and right max                                       |
+    for(int k=i+1;k<n;k++){                          |                                 |
+        max_right=max(max_right,arr[k]);             |                                 |
+    }                                                |                                 |
+    if(arr[i]<max_left && arr[i]<max_right){         |                                 |
+        total+=max(max_left,max_right)-arr[i];       |                                 |
+    }                                                |                                 |
+}                                                    |                                 |
+                                                                                       |
+
+
+//coutning maximum consecutive 1's in a binary array                  |//maximum sum of a sub array
+arr[]{0,1,1,0,1,0};                                                   |int arr[]{2,3,-8,7,-1,2,3};
+arr[]{1,1,1,1};                                                       |
+                                                                      |int current_sum=0;
+                                                                      |for(int i=0;i<n;i++)                 |int maxsum(int arr[],int sum)
+int i=0;                                                              |{                                    |{
+int result{};                                                         |    if(arr[i]>current_sum)           |    int res=arr[0];
+while(i<n){                          |int res=0;                      |    {                                |    int current_sum=arr[0];
+    if(arr[i]==1){                   |for(int i=0;i<n;i++)            |        current_sum=arr[i];          |    for(int i=1;i<n;i++)
+        int freq=0;                  |{                               |    }else{                           |    {
+        while(arr[i]==1 && i<n){     |    if(arr[i]==0){              |        current_sum+=arr[i];         |        current_sum=max(current_sum+arr[i],arr[i]);
+            freq++;                  |        cur=0;                  |    }                                |        res=max(res,current_sum);
+            i++;                     |    }                           |    result=max(result,current_sum);  |    }
+        }                            |    else{                       |}                                    |}
+        result=max(freq,result);     |        cur++;                  |
+    }                                |        res=max(res,curr);      |
+    i++;                             |    }                           |
+}                                    |}                               |
+                                                                      |
+                                                                      |
+
+//maximum length of even odd subarray            |//maximum circualr subarray
+int maxevenodd(int arr[]int n){                  |brute force:
+    int res=1;                                   |            
+    int curr=1;                                  |int macircularsum(int arr[],int n){
+    for(int i=1;i<n;i++){                        |    int res=arr[0];
+        if((arr[i]%2==0 && arr[i-1]%2!=0)||      |    for(int i=0;i<n;i++) {
+                (arr[i]%2!=0 && arr[i-1]==0)){   |        int curr_max=arr[i];
+            curr++;                              |        int curr_sum=arr[i];
+            res=max(res,curr);                   |        for(int j=1;j<n;j++) {
+        }                                        |            int index=(i+j)%n;
+        else{                                    |            curr_sum+=arr[index];
+            curr=1;                              |            curr_max=max(curr_max,curr_sum);
+        }                                        |        }
+    }                                            |        result=max(result,curr_sum);
+}                                                |    }
+                                                 |    return result;
+                                                  }
+efficient approach;
+int arr[]{8,-4,3,-5,4};
+**    invert the elements and and find the maximum you will get minimum
+**      total sum - minimum sum ===>you'll get max circular sum
+**      maximum sum in the inverted array =minimum sum in the original array with negative sign
+        we subtract this sum from the total sum
+        
+        insted of subtracting the minimum sum we add the maximum sum  
+
+maximum sum of the normal sub array can be calculated using kaden's algo
+maximum sumo of the circualar sub array
+
+the idea is to find the minimum sum sub array of the using modified kaden's 
+algorithm and subtract this sum from the overal sum
+
+//finding the miximum sum function
+
+                int maximum_sum(int arr[],int n){
+                    int res=arr[0],curr_sum=[0];
+                    for(int i=1;i<n;i++){
+                        curr_sum=max(curr_sum+arr[i],arr[i]);
+                        result=max(result,curr_sum);
+                    }
+                    return result;
+                }
+int overallmaxsum(int arr[],int n){
+    int max_normal=maximum_sum(arr,n);
+    if(max_normal<0){
+        return max_normal; 
+    }
+    int arr_sum=0;
+
+    for(int i=0;i<n;i++) {
+        arr_sum+=arr[i];
+        arr[i]=-arr[i]
+    }
+    int max_circular=arr_sum+normal_max_sum(arr,n);
+    return max(max_normal,max_circular);
+}
+
+*************************************************************************************************************************************************
+                                    finding the mejority element in an array if  it exist
+                                    element is called if it appears more than n/2 times
+
+int arr[]{8,3,4,8,8};output:-0 or 3 0r 4
+int arr[]{3,7,4,7,7,5};output:--1
+
+approach:traverse through the array it is necessary to check if the objtained result is greater than n/2 to understand dry run for second array input
+
+int finding_mejority(int arr[],int n){   |count=0;
+    int result=-1;                       |for(int i=0;i<n;i++)
+    result=0;                            |{
+    int count=1;                         |    if(arr[result]==arr[i]){
+    for(int i=1;i<n;i++) {               |        count++;
+        if(arr[i]==arr[result])count++;  |    }
+        else{                            |}
+            count--;                     |if(count<=n/2){
+        }                                |    result=-1;
+        if(count==0){                    |}
+            result=i;                    |return result;
+            count++;                     |
+        }                                |
+    }                                    |
+}                                        |
+
+*************************************************************************************************************************************************
+                                            minimum group flips to make same
+int arr[]{1,1,0,0,0,1};
+int arr[]{1,0,0,0,1,0,0,1,1,1,1};
+
+appraoch:better to flip always second appearing element
+            for(int i=1;i<n;i++) {
+                if(arr[i]!=arr[i-1]){
+                    if(arr[i]!=arr[0]){
+                    cout<<"from "<<i<<" "; 
+                    }else{
+                        cout<<"to "<<i-1<<" ";
+                    }
+            }if(arr[n-1]!=arr[0])
+            cout<<(n-1)<<endl;
+}
+
+*************************************************************************************************************************************************
+                                                window sliding techinique
+
+given an array of integers and anumber k, find the maximum sum of k consecutive elements;
+int arr[]{1,8,30,-5,20,7};
+naive approach:
+**for(int i=0;i<n-k+1;i++){
+    for(int j=i;j<i+k;j++){
+        sum+=arr[j];
+        max_sum=max(sum,max_sum);
+    }
+}
+effiecient approach:
+we first calculate the sum of first n numbers;
+for(int i=0;i<k;i++){
+    sum+=arr[i];
+}
+max_sum=sum;
+for(int i=k;i<n;i++){
+    max_sum=max(max_sum-arr[i-k]+arr[i],max_sum);
+}
+
+**if array contains non-negative integers 
+    find if there is a subarray with given sum note that subarray size is not specified
+naive:
+for(int i=0;i<n;i++){
+    int sum=0;
+    for(int j=i;j<n;j++){
+        sum+=arr[i];
+        if(sum==givensum){
+            return true;
+        }
+    }
+}
+we have discussed big o n solution based on hashing and prefix sum technique in the hashing video that solution requires big o n extra space
+that solution works really great if your array contains non negative integers also if your array contain only positive integers
+we can solve in big o n time complexity and big o 1 extra space
+
+**what we do is we maintain a window of current sum
+currentsum=0;                                            |another approach
+while(current_sum<given_sum){                            |int curr_sum=arr[0],s=0;
+    current_sum+=arr[i];                                 |for(int e=1;e<n;e++){
+    i++;                                                 |    while(curr_sum>sum && s<e-1){
+}                                                        |        curr_sum-=arr[s];s++;
+if(current_sum==give_sum){return true;}                  |    }if(curr_sum==sum)
+else{                                                    |    return true;
+    int i=0;                                             |    if(e<n)
+    while(current_sum>give_sum){                         |        curr_sum+=arr[e];
+        current_sum-arr[i];                              |}return (curr_sum==sum);
+        i++;                                             |
+    }                                                    |
+    if(current_sum==give_sum)return true;                |
+    else{                                                |this both apporaches does not work for the negative elements
+        return false;                                    |
+    }                                                    |int arr[]{4,7,-3,1,2};
+}                                                        |
+
+========================problems
+printing the first n n-bonachhi numbers;
+
+--printing the first m n-bonachii numbers;
+
+
+cout<<"enter m and n to print m n-bonacci numbers"<<endl;            |   //reducing the time complexity
+cin>>m>>n;                                                           |    cout<<"enter the value of m and n to print m n-bonacci numbers"<<endl;
+int arr[m];                                                          |    int m;
+for(int i=0;i<m;i++){                                                |    int n;
+    arr[i]=0;                                                        |    cin>>m>>n;
+}                                                                    |    int arr[m];
+arr[n-1]=1;                                                          |    for(int i=0;i<m;i++){
+                                                                     |        arr[i]=0;
+for(int i=n;i<m;i++){                                                |    }
+    for(int j=i-n;j<i;j++){                                          |    arr[n-1]=arr[n]=1;
+        arr[i]+=arr[j];                                              |    for(int i=n+1;i<m;i++){
+    }                                                                |        arr[i]=arr[i-1]-arr[i-1-n]+arr[i-1];
+}                                                                    |    }
+for(int i=0;i<m;i++){                                                |    for(int i=0;i<m;i++){
+    cout<<arr[i]<<" ";                                               |        cout<<arr[i]<<" ";
+}                                                                    |    }
+                                                                     |
+                                                                          return 0;
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                prefix sum technique--
+-------------------------------------------------------------------------------------------------------------------------------------------------
+given a fixed array and multiple queries of following types on the array, how to efficiently perform the 
+prefix_sum[i0]=arr[0];
+int getSum(int prefix_sum[],int l,int r){
+    if(l!=0){                                    |find if a given array has an equilibrium point or not
+        prefix_sum[r]-prefix_sum[l-1];           |int arr[]{3,4,8,-9,20,6};
+    }else{                                       |brute force
+        prefix_sum[r];                           |
+    }                                            |for each i compute the left sum and right right sum check whether they are equal or not 
+}                                                |for(int i=0;i<n;i++){
+                                                 |    int l_sum=0,r_sum=0;
+for(int i=1;i<n;i++){                            |    for(int j=0;j<i;j++){
+    prefix_sum[i]=prefix_sum[i-1]+arr[i];        |        l_sum+=arr[j];
+}                                                |    }
+                                                 |    for(int k=i+1;k<n;k++){
+                                                          r_sum+=arr[k];
+                                                      }
+                                                      if(l_sum==r_sum)
+                                                          return true;
+                                                  }
+                                                  return true;
+implement the binary search algorithm                        |simple big o n solution is to calculate the sum
+                                                             |bool iseqpoint(int arr[],int n){
+int arr[]{1,10,10,10,20,20,40};                              |    int sum=0;
+                                                             |    for(int i=0;i<n;i++){
+index of last occurance in an array                          |        sum+=arr[i];
+                                                             |    }
+counting occurances in a sorted array                        |    int l_sum=0;
+int arr[]{10,20,20,20,30,30};                                |    for(int i=0;i<n;i++){
+                                                             |        if(l_sum==sum-arr[i]){
+**calculating the last occurence and the first occurence     |            return true;
+to get the required result                                   |        }
+int countocc(int arr[],int n,int x){                         |        l_sum+=arr[i];
+    int first=firstocc(arr,n,x);                             |        sum-=arr[i];
+    if(first==-1){                                           |    }
+        return 0;                                            |}
+    }else{                                                   |
+**        return (lastoccurence(arr,n,x)-firsrt+1);          |
+    }                                                        |
+}                                                            |
+                                                             |
+
+
+count 1's in a sorted binary array |*we need to do it in log n time complexity which is much smaller |//search in an infinte sorted array
+int arr[]{0,0,0,1,1,1,1};          |int squareroot(int x){                                           |int arr[]{1,10,15,20,40,80,90,100,120,500};
+                                   |    int low=0;                                                   |int searchin_infinite(int arr[],int x){
+printing the square root           |    int high=x;                                                  |    int low=1;
+int squareroot(int x){             |    int ans=-1;                                                  |    while(arr[low]<x){
+    int i=1;                       |    while(low<=high){                                            |**        low=low*2;
+    while(i*i<=x){                 |        int mid=low+high/2;                                      |    }
+        i++;                       |        int squareroot=mid*mid;                                  |    if(arr[low]==x)return low;
+    }                              |        if(squareroot==x)return mid;                             |    returun binarysearch(arr,x,i/2+1,i-1);
+    return i-1;                    |        else if(squareroot>x)mid=mid-1;                          |}
+}                                  |        else                                                     |
+*it's time complexity is x^1/2                  mid+=1;                                              |
+                                                result=mid;                                          |
+                                        }                                                            |
+                                        return result;                                               |
+                                    }                                                                |
+-------------------------------------------------------------------------------------------------------------------------------------------------
+**search in a rotated array                      |find a peak element
+                                                 |
+int arr[]{10,20,40,60,5,8};                      |int arr[]{5,10,20,15,7};
+int search(int arr[],int n,int x){               |
+    int low=0,high=n-1;                          |***go towards the greater one from the mid you will get the peak element
+    while(low<=high){                            |
+        int mid=(low+high)/2;                    |
+        if(arr[mid]==x)return x;                 |**two pointer appraoch
+        if(arr[low]<arr[mid]){                   |we can use this appraoch to find the if there exit a two numbers who's 
+            if(x>arr[low] && x <arr[mid]){       |sum is equal to the sum given in the question
+                high=mid-1;                      |
+            }else{                               |**think about a triplet with a given sum
+                low=mid+1;                       |naive:
+            }                                    |for(int i=0;i<n;i++){
+        }else{                                   |    for(int j=i+1;j<n;j++){
+            if(x>arr[mid] && x<=arr[high]){      |        for(int k=j+1;k<n;k++) {
+                low=mid+1;                       |            if(arr[i]+arr[j]+arr[k]){
+            }else{                               |                return true;
+                high=mid-1;                      |            }
+            }                                    |        }
+                                                 |    }
+        }                                        |}
+    }                                            |for(int i=0;i<n;i++){
+    return -1;                                   |    if(ispair(arr,i+1,n-1,x-a[i])){
+}                                                |        return true;
+                                                      }
+                                                  }
+
+******=============================finding the median of the two sorted arrays==
+int arr1[]{10,20,30,40,50};
+int arr2[]{5,15,25,35,45,55,65,75,85}; 
+
+i1 is the middle of the first sorted array then
+size of arr1  n1  5
+size of arr2 n2   9
+total size is 9+5=14;
+
+- ,- ,- ,- ,- ,- -->n1
+- ,- , - ,- ,- ,- ,- ,-  --n2;
+double getmed(int arr1[],int arr2[],int n1,int n2){
+    int begin =0,end=n1
+        while(begin<=end){
+            int i1=(begin+end)/2;
+            int i2=(n1+n2+1)/2-i1;
+
+            int min1=(i1==n1)?INT_MAX:a1[i1];
+            int max1=(i1==0)?INT_MIN:a1[i1-1];
+
+            int min2=(i2==n2)?INT_MAX:a2[i2];
+            int max2=(i2==0)?INT_MIN:a2[i2-1];
+
+            if(min1>=max2 && max1<=min2){
+                if((n1+n2)%2==0){
+                    return ((double)max(max1,max2)+max(min1,min2)/2)
+                }else{
+                    return (double)max(max1,max2);
+                }
+            }else if(max1>min2)end=i1-1;
+            else begin=i1+1;
+        }
+}
+**if total elements are odd left has greater elements than right part
+
+
+******repeating element in a an array
+only one element is repeating in the array find the the element
+solve the problem in linear time and big o 1 auxiliary space 
+int arr[]{0,2,1,3,2,2};
+
+ super naive solution in order to solve the problem
+for(int i=0;i<n-1;i++){      |*efficient solution
+    for(int j=i+1;j<n;j++){  |int arr[]{1,3,2,4,6,5,7,3};
+        if(arr[i]=arr[j]){   |
+            return true;     |int findrepeating(int arr[],int n){
+        }                    |    int slow=arr[0],fast=arr[0];
+    }                        |    do{
+}                            |        slow=arr[slow];
+                             |        fast=arr[arr[fast]];
+                             |    }while(slow!=fast)
+*naive solution:sort the arr |    slow=arr[0];                    
+                             |    while(slow!=fast){
+                             |        slow=arr[slow];
+                             |        fast=arr[fast];
+                             |    }
+                             |    return slow;
+                              }
+
+**allocate minimum number of pages
+int arr[]{10,20,30,40};
+int k=2;
+we need to choose k-1 cuts out of
+n-1 cuts shown above
+
+int minpages(int arr[],int start,int end,int k){                     |int arr[]{10,20,10,30}; k=2;
+    if(k==1){                                                        |the maximum pages assigned to a student is upper bounded by total number of pages 
+        return sum(arr,start,end);                                   |int worst case the student is going to read all the books i.e 70
+    }                                                                |
+    if(end==0){                                                      |and the minimum possible value is 30
+        return arr[0];                                               |our answer cannot be less than 30   --our answer cannot be less than maximum pages
+    }                                                                |in a book
+    int res=INF;                                                     |
+    for(int i=start;i<=end;i++){                                     |so the range is from [30 70]
+        res=min(res,max(minpages(arr,i+1,end,k-1),sum(arr,start,i)));|
+    }                                                                |middle value is 50 we are going to check is 50 is a feasible solution or not
+    return result;                                                   |
+}                                                                    |we are going to find out number of students required such that no student reads
+                                                                     |more than 50 pages i.e minimum possible value of maximum pages read by a student
+                                                                      is 50
+                                                                      
+                                                                      so we will try to figure out how many students are required for 50 pages maximum
+                                                                      
+                                                                      if check the array {10,20,10,30} we can see that 2 students are required to reach
+                                                                          the maximum pages 50 1 gets 40 and 1 gets 30
+                                                                      
+                                                                      here 50 is a feasible solution but we want to find out the minimum value so we are
+                                                                      going to skip the right side of 50 and search in the left half
+                                                                      
+                                                                      x=30+49/2=39
+                                                                      now count the number of students for the sum to be less than 39 we get 3 which is
+                                                                      not a feasible solution so move to the right half
+                                                                      
+                                                                      40 to 49===midpoint===44 on checking we get it as feasible solution
+                                                                      40 to 43===midpoint===41 on checking we get it as feasible solution
+                                                                      40 to 40===midpoint===40 on checking we get it as feasible solution
+**int minpages(int arr[],int n,int k){ |bool isfeasible(int arr[],int n,int k,int ans){
+    int sum=0;mx=0;                    |    int req=1,sum=0;
+    for(int i=0;i<n;i++){              |    for(int i=0;i<n;i++){
+        sum+=arr[i];                   |        if(sum+arr[i]>ans)
+        mx=max(mx,arr[i]);             |        {
+    }                                  |            req++;
+    int low=mx,high=sum,res=0;         |            sum=arr[i];
+    while(low<=high){                  |        }
+        int mid=(low+high)/2;          |        else
+        if(isfeasible(arr,n,k,mid)){   |            sum+=arr[i];
+            res=mid;                   |    }
+            high=mid-1;                |    return (res<=k);
+        }else{                         |
+            low=mid+1;                 |}
+        }                              |
+    }                                  |
+    return res;                        |
+}                                      |
