@@ -1,0 +1,590 @@
+
+Arrays.sort(arr);
+
+Arrays.sort is used to sort normal arrays these normal arrays can be of primitive types or non primitive types
+
+int arr1[]={5,20,12,30};
+char arr2[]={'b','c','a','c'};
+
+**does not allow you to provide a custom comparator you can only sort in increasing order(natural)
+    if you wish to do it in decrease order first do Arrays.sort() and call the reverse function on the array
+
+this comparator restriction is only for primitive types you can use comparator in case of non primitive types
+
+
+**Arrays.sort() can sort a sub array of a given array |Point arr[]{new Point(10,20),new Point(3,12),new Point(5,7)}
+int arr[]={5,30,20,10,8};                             |Arrays.sort(arr);//increasing order
+                                                      |Collections.reverse(arr);//decreasing order 
+Arrays.sort(arr,1,4);                                 |
+System.out.println(Arrays.toString(arr));             |eg:array is an arrays of objects of a class that does not implement comparable 
+[start_index(included),end_index(not included))       |interface
+                                                      |since the class does not going to tell you how to compare its objects we are
+    class point implements Comparable<Point>{         |going to write a seperate class which is going to implement the comparator interface
+        int x,y;                                      |class Mycmp implements Comparator<Point>
+        Point(int x,int y){                           |{
+            this.x=x;                                 |    public int compare(Point p1,Point p2){
+            this.y=y;                                 |        return p1.x-p2.x;
+        }                                             |    }
+        public int compareTo(Point p){                |}
+            return this.x-p.x;                        |Arrays.sort(arr,new Mycmp());
+        }                                             |
+                                                      |there are other ways also to handle primitive types there are wrapper classes
+    }                                                 |
+                                                      |Integer arr[]{5,20,10,12};
+                                                       Arrays.sort(arr,Collections.reverseOrder());//sorts in reverse order
+                                                       
+                                                       public int compare(Integer a,Integer b){
+                                                           return a%2-b%2;    //if a%2 is zero then a has higher priority
+                                                                             //if b%2 is zero then b has higher priority
+                                                       }
+
+
+Collections.sort() is used to sort list collections              |analysis of merge sort algorithm
+list collections are the collections that implement              |int arr[]{30,10,18,3,2,16,50,1};
+list interface and the popular collections that implement        |merge process takes in total theta n time if there are n elements in total to
+list interface are array list and linked list                    |
+                                                                 |how many levels do you have log(base)2 n+1 levels
+                                                                 |
+wrapper classes they implement comparable interface              |
+which tells you to sort                                          |when number of elements are even then you have log(base)2n+1 levels
+                                                                 |if the number of elements reduces to odd the the number of levels still remains
+***in collections.sort we cannot use sort function to sort       |    the same    i.e ceiling[log(base)2n]+1;
+a sub array                                                      |
+                                                                 |
+we have only two functions in collections.sort and these         |in general we have theta nlogn  time complexity
+two functions serve the purpose for all the data types           |
+that implements list interface                                   |
+                                                                 |auxilary space requirements
+                                                                  at any moment in ram you will need theta n space only
+                                                                  infact you can create one left and right arrays in can use them in all the
+                                                                  recursive calls
+
+
+======================================stablity in sorting algorithms
+
+stable algorithms:-(IBM)  bubble sort,insertion sort,merge sort----
+unstable algorithms:- selection sort,quick sort,heap sort-------
+
+
+bubble sort         --always going to compare adjacent elements;             |merge sort
+                        tc-big o n^2                                         |divide and conquer algorithm
+selection sort      --finds minimum element swaps with the last element      |**stable sorting
+                        has theta n^2 time in all cases                      |**it works in theta nlogn time
+                        good thing is it does less memory rights             |it takes big o n extra space
+                        then any other sorting algorithms                    |it is not an inplace algorithm
+                                                                             |**well suited for external sorting
+                        **however this is not the optimal algorithm          |**well suited for linked list works in o 1 aux space
+                        in terms or memory writes there is another           |bad thing** in general for arrays, quick sort outperforms it.
+                        algorithm cycle sort which is optimal                |
+                        in case of memory writes                             |but merge sort is still used a log in standard library implementations
+                                                                             |perl library
+insertion sort      --o n^2 in worst case                                    |java 8      uses quick sort and merge sort depending on the input type
+                    in place and stable                                      |python      uses a variation of merge sort called tim sort
+                    used in practice for small arrays                        |
+                    o n in best case;                                        |
+                                                                             |
+                    **insertion sort is the most popular and the             |
+                    most used algorithm for the smaller sized arrays         |
+
+
+
+quicksort  --divide and conquer algorithm                               |analysis
+           worst-cast time:big o n^2                                    |for lumuto partition we do qsort(arr,l,p-1) qsort(arr,p+1,h)
+           despite big o n^2 worst case,it is considered                |    ensures that pivot is fixed at its correct position
+           it is considered faster than merge sort the reasons are      |for hoare partition we do qsort(arr,l,p) qsort(arr,p+1,h)
+                                                                        |    it ensures that the elements on the left side are smaller than or equal to
+               1-->inplace                                              |    elemet on the right side it returns index of last element on the left side
+               2-->cache friendly                                       |
+               3-->average case is big o nlogn                          |
+               4-->tail recursive                                       |best case:-
+                                                                        |    when the input array is divided into two half pivot is always picked in such a 
+                   in merge sort the last thing that was happening was  |    way that it is the middle element value wise
+                   merge function not the recursive call                |    t(n)=2t(n/2)+theta 1
+                                                                        |worst case:-
+                   in quick sort the last thing that happends is recu   |    when the array is divided in such a way that we have one element on one side
+                   risve call this recur call can be replaced by can    |    and n-1 element on the other side then tc becomes
+                   simply be replaced by a loop in python or goto state |    t(n)=t(n-1)+theta 1
+                   ment with java and cpp                               |    for n nodes you'll have n levels
+                                                                        |average case:-
+                                                                        |     we are considering fairly unequal division where we have n/10 elements on one
+                                                                        |     side and 9n/10 on the other side
+                                                                        |     if you see the recursion tree the leftmost tree is going to exhaust first and then
+                                                                        |     we assume the recursion tree to be completely full
+                                                                        |         if you see the right part of every node you are diving you are dividing every
+                                                                        |             level by 10/9
+                                                                        |             when you divide by 2 you have log(base)2n levels
+                                                                        |             when you divide by 10/9 you have log(base(10/9)n) levels
+                                                                        |                 you have cn work at every level
+                                                                        |                 tc=cn*log(base(10/9)n)=nlogn
+                                                                        |**if the array is sorted both the partition algorithm will turn into worst case 
+                                                                        |int arr[]{10,50,100,200};
+                                                                        |when you pick first element as pivot you have one element on one side and n-1 
+                                                                        |    element on the other side
+                                                                        |when you pick last element as pivot you'll be having the same case;leading
+                                                                        |    you to the worst case scenario
+                                                                        |    for this pattern the algorithm is going to o n^2 every time
+                                                                                in such case you use random function to generate a random pivot
+bubble sort:-                                                                   that's what generally done 
+int arr[]{2,10,8,7};
+i got it
+//sourab's bubble sortalgorithm  sorting done in ascending order |//bubble sort algorithm sorting done is descending order 
+bool test=true;                                                  |bool test =true;
+for(int i=0;i<n-1;i++){                                          |for(int i=0;i<n-1;i++){
+    for(int j=i+1;j<n-1;j++){                                    |    for(int j=0;j<n-1;j++){
+        if(arr[j]<arr[i]){                                       |        if(arr[j]>arr[j+1]){
+            swap(arr[j],arr[i]);                                 |            swap(arr[j],arr[j+1]);
+            test=false;                                          |            test=false;
+        }                                                        |        }
+    }                                                            |    }
+    if(test){                                                    |    if(test){
+        break;                                                   |        break;
+    }                                                            |    }
+}                                                                |}
+
+
+
+
+void insertion_sort(int arr[],int n){ |    void selection sort(int arr[],intn ){ |//merge two sorted arrays
+for(int i=1;i<n;i++){                 |        for(int i=0;i<n;i++){             |int merge_two_sorted(int arr1[],int arr2[],int n,int m){
+    int j=i-1;                        |            int min_index=i;              |    int temp[n+m];
+    int result=-1;                    |            for(int j=i+1;j<n;j++){       |    int i=0,j=0;
+    while(arr[j]>arr[i] && j>=0){     |                if(arr[j]<arr[min_index]){|    int k=0;
+        arr[j+1]=arr[j];              |                    min_ind=j;            |    while(i<n && j<m){
+        result=j;                     |                }                         |        if(arr1[i]<arr2[j]){
+        j--;                          |            }                             |            temp[k++]=arr1[i++];
+    }                                 |            swap(arr[min_ind],arr[i]);    |        }else if(arr2[j]<arr[i]){
+    if(result!=-1){                   |        }                                 |            temp[k++]=arr2[j++];
+        arr[j]=arr[i];                |    }                                     |        }else{
+    }                                 |                                          |            temp[k++]=arr1[i++];
+}                                     |                                          |            j++;
+}                                     |                                          |        }
+                                                                                      }
+                                                                                      while(i<n){
+                                                                                          arr[k++]=arr[i++];
+                                                                                      }
+                                                                                      while(j<n){
+                                                                                          arr[k++]=arr[i++];
+                                                                                      }
+                                                                                  }
+
+void mergesort(int arr[],int l,int r){ |                                     |cyclesort---
+    if(r>l){                           |                                     |for(int cs=0;cs<n;cs++){
+        int m=l+(r-l)/2;               |intersecting of two arrays           |    int item=arr[cs];
+        mergesort(arr,l,m);            |int arr[]{3,5,10,10,10,15,15,20};    |    int pos=cs;
+        mergesort(arr,m+1,r);          |int arr1[]{5,10,10,15,30};           |    for(int i=cs+1;i<n;i++){
+        merge(arr,l,m,r);              |naive:--                             |        if(arr[i]<item){
+    }                                  |if(arr[i]==arr[i-1]){                |            pos++;
+}                                      |    continue;                        |        }
+                                        }                                    |    }
+                                                                                  swap(item,arr[pos]);
+                                                                                  while(pos!=cs){
+                                                                                      pos=cs;
+                                                                                      for(int i=cs+1;i<n;i++){
+                                                                                          if(arr[i]<item){
+                                                                                              pos++;
+                                                                                          }
+                                                                                      }
+                                                                                      swap(arr[pos],item);
+                                                                                  }
+                                                                              }
+
+int arr[]{1,2,3,4,5};                                    |//counting inversions                                   
+the idea is based on merge function of merge sort        |int mergefunction(int arr[],int start,int mid,int end) {
+we divide the array into two halfs  we sort this two     |    int n1=mid-start+1;
+halfs and then we murge this two halfs                   |    int n2=end-mid;
+                                                         |    int arr1[n1];
+every inversion (x,y) where x>y has three possibilities  |    int arr2[n2];
+    a--.both x and y are in left half                    |    int result=INF;
+    b-- both x and y are in right half                   |    for(int i=0;i<n1;i++){
+    c-- x is in left half and y is in                    |        arr1[i]=arr[i];
+    right half                                           |    }
+                                                         |    for(int j=0;j<n2;j++){
+    //calculating the merge function of the merge sort   |        arr2[j]=arr[mid+j+i];
+                                                         |    }
+                                                          
+                                                              int i=0;int j=0;
+                                                              int k=l;
+                                                              while(i<n1 && j<n2){
+                                                                 if(arr1[i]<arr2[j]){ arr[k]=arr1[i];i++;k++; }
+                                                                 else if(arr1[i]>arr2[j]){
+                                                                    arr[k]=arr2[j];
+                                                                    result++;
+                                                                    j++;k++; 
+                                                                 }else{
+                                                                     arr[k]=arr[i];
+                                                                     i++;
+                                                                     j++;
+                                                                     k++;
+                                                                 }
+                                                          
+                                                              }
+                                                              return result;
+                                                          }
+
+
+partition a given array 
+int arr[]{3,8,5,6,12,10,7};
+there can be different versions of partition what convention we are going to
+follow in the naive parition algorithm is we are going to put all smaller 
+elements on the left and all the greater elements on the right returning the
+index of element of pivot
+
+partition can be of two type one stable and unstable
+naive           --stable but inefficient
+lomuto          --not stable but efficient
+hoare           --not stable most efficient of all
+
+int arr[]{10,80,30,90,40,50,70};
+
+int lomuto_partition(int arr[],int n){ |when i=low-1;
+    int i=j=0;                         |int lomuto_partition(int arr[],int low,int high){
+    int pivot=n-1;                     |    int i=low-1;
+    for(int i=0;i<n-1;i++){            |    int pivot=arr[high];
+        if(arr[i]<arr[pivot]){         |    for(int j=low;j<=high-1;j++){
+            swap(arr[i],arr[j]);       |        if(arr[j]<pivot){
+            j++;                       |            i++;
+        }                              |            swap(arr[i],arr[j]);
+    }                                  |        }
+    return j;                          |    }
+}                                      |    swap(arr[i+1],arr[h]);
+                                            return i+1;
+                                        }
+
+
+hoare's partition
+int arr[]{5,3,8,4,2,7,1,10};
+the idea is we maintain two pointers one at the start of the array
+and another at the end of the array
+we move start until we come across an element which is greater than the pivot element
+and we end until we come across an element which is lesser than the pivot element;
+
+int partition(int arr[],int low,int high){
+    int pivot=arr[low];
+    int i=low-1;
+    int l=high+1;
+    while(true){
+        do{
+            i++;
+        }while(arr[i]<pivot)
+        do{
+            j--;
+        }while(arr[j]>pivot)
+        if(i>=j)return j;
+        swap(arr[i],arr[j]);
+    }
+}
+
+void qsortint arr[],int l,int r){
+    begin:
+    if(l<r){
+        int partition(arr,l,r);
+        qsort(arr,l,p);
+        l=p+1;
+        goto begin;
+    }
+}
+
+***
+k-th smallest element in the array                               |this solution looks like big o n^2 time in worst case
+int arr[]{10,5,30,12};                                           |    but on average it works in linear time
+you do partitioning after if index is required one then return   |
+                                                                 |avg solution is based on the assumption your lomuto partition
+int kthsmallest(int arr[],int n,int k){                          |    function uses a random function to pick a random pivot
+    int l=0,r=n-1;                                               |    and if you consider all the permutations of an input array
+    while(l<=r){                                                 |    then this can be proved that this solution is linear
+        int p=partition(arr,l,r);                                |    this algorithm is called quick select
+        if(p==k-1)                                               |
+            return p;                                            |    we talked about two sols
+        else if(p>k-1)                                           |    one is nlogn
+            r=p-1;                                               |    two is quick select sol which is n^2 in worst case thet n in avg
+        else                                                     |    their exist a meidan order statistics algo that can give you
+            l=p+1;                                               |    kth smallest element in worst case linear time
+    }                                                            |
+    return -1;                                                   |    but this particular quick select algo works much better compared to worst
+}                                                                |    case linear time algo the reason is constants are really high in that algo
+                                                                 |
+                                                                 |    it will partially sort the array
+
+
+chocolate-distribution problem---                                    |sort an array with two types
+int arr[]{7,3,2,4,9,12,56};                                          |the idea is to apply lumuto partition or hoares partition
+int m=3;//3 children                                                 |
+                                                                     |segregate positive and negatives
+rules:-                                                              |int arr[]{15,-3,-2,18}
+    every child should get exactly one packet                        |op:- {-3,-2,15,18}
+    2-->minimize the difference between the min choc                 |segregate even and odd
+        a child gets and max choc a child gets                       |sort a binary array
+we need to pick m packets such that the differences                  |
+    between the minimum and maximum is minimum                       |hoares partition
+the idea is you sort the array and you will get the min difference   |void segarray(int arr[],int n){
+int minDiff(int arr[],int n,int m){                                  |    int i=-1,j=n;
+                                                                     |    while(true){
+    if(m>n)return -1;                                                |        do{i++;}while(arr[i]<0);
+    //sort the array                                                 |        do{j--;}while(arr[i]>=0);
+    sort(arr,arr+n);                                                 |        if(i>=j)return;
+    //2,3,4,7,9,12,56                                                |        swap(arr[i],arr[j]);
+    int res=arr[m-1]-arr[0];                                         |    }
+                                                                     |}
+    for(int i=1;i<n;i++){                                            |
+        res=min(res,arr[i+m-1]-arr[i]);                              |
+    }                                                                |
+}                                                                    |
+
+sort an array with three types                               |merge-overlapping intervals-----
+int arr[]{0,1,0,2,1,2};                                      |int arr[][]{{1,3},{2,4},{5,7},{6,8}}
+op:-{0,0,1,1,2,2};                                           |op:-{{1,4},{5,8}}
+idea is to use hoare partition scheme with three pointers    |
+                                                             |the idea is to sort in the ascending order of their start time
+void func(int arr[],int n){                                  |
+    int low=mid=0;                                           |if(arr[i].start<=arr[result].end)
+    int high=n-1;                                            |    for(int i=1;i<n;i++){
+    while(mid<=high){                                        |        if(arr[res].end>=arr[i].start){
+    if(arr[mid]==0){                                         |            arr[res].end=max(arr[res].end,arr[i].end);
+        swap(arr[low],arr[mid]);                             |            arr[res].start=min(arr[res].start,arr[i].start);
+        low++;                                               |        }else{res++;arr[res]=arr[i];}
+        mid++;                                               |    }
+    }else if(arr[mid]==1){                                   |    struct interval{
+        mid++;                                               |        int start;
+    }else if(arr[i]==2){                                     |        int end;
+        swap(arr[high],arr[mid]);                            |    };
+        high--;                                              |for(int i=0;i<=res;i++){
+        }                                                    |    cout<<arr[i].start<<" "<<arr[i].end;
+    }                                                        |}
+}                                                            |naive solutioin is to check if it overlaps with any of the other interval if it does
+                                                              you merge and delete the other interval
+i remember him being angry once because he realized we were trying to build a browser he was like yo uknow what it takes to build  aa browser
+because he gone through the broswer battles he definately didn't was hesitent to do it partly how did i do it i didn't tell people for a while
+and only when we have something to show we had a chance to show the product that got people exited but it is it's a good lesson if you have a set
+of commited people passionate people you can achieve even i couldn't have foreseen what it would eventually become shows the power of small group of
+committed people 
+
+axiom.ai lets you create bots automate anything on the internet
+wolfrome alpha.com uses ai to answer complex questions in math,
+tinywow.com has free tools to do basically anything online
+opensourcealternative.to --alternatives to some of the top saas products
+jotform.com has thousands of templates that you can add on to your websites
+
+int arr[]={900,940};
+int arr[]={1000,1030};
+
+int arr[]={900,600,700};
+int dep[]={1000,800,730}; 
+
+*****hint is this problem becomes very similar to the merge function of the merge sort 
+we have to meet maximum people possible 
+****the idea is to take time into consideration not the people coming and going
+
+void meet_max_people(int arr[],int dep[],int n){
+    int curr=0;
+    sort(arr,arr+n);
+    sort(dep,dep+n);
+    int result=0;
+    int i=0;
+    int j=0;
+    while(i<n && j<n){
+        if(arr[i]<dep[j]){
+            curr++;
+            i++;
+        }else{
+            curr--;
+            j++; 
+        }
+        result=max(result,curr);
+    }
+    return result;
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                   cycle sort           
+-------------------------------------------------------------------------------------------------------------------------------------------------
+big o (n^2) worst case algorithm                                                 |int arr[]{20,40,50,10,30};
+does minimum number of memory right                                              |
+    there is not algorithm which does less memory right than cycle sort          |for(int cs=0;cs<n;cs++){
+                                                                                 |    int item=arr[cs];
+in-place and not stable                                                          |    int pos=cs;
+useful to naive questions like find minimmum swaps required to sort an array     |    for(int i=cs+1;i<n;i++){
+                                                                                 |        if(arr[i]<item){
+the idea is to start with first element count how may elements smaller than      |            pos++;
+that element                                                                     |        }
+                                                                                 |    }
+                                                                                      swap(item,arr[pos]);
+the task is fixing the elements in the form of cycles                                 while(pos!=cs){
+                                                                                          pos=cs;
+                                                                                          for(int i=cs+1;i<n;i++){
+                                                                                              if(arr[i]<item){
+                                                                                                  pos++;
+                                                                                              }
+                                                                                          }
+                                                                                          swap(arr[pos],item);
+                                                                                      }
+                                                                                  }
+-------------------------------------------------------------------------------------------------------------------------------------------------
+                                                               heap sort
+-------------------------------------------------------------------------------------------------------------------------------------------------
+the basic idea of heap sort is based on selection sort algorithm(where we find
+the minimum element and swap it with the current element)
+
+--and that's how the selection sort algorithm becomes big o n^2 heap sort does
+optimization over selection sort uses the same idea for finding the max
+element heap sort uses max heap data structure
+                        
+                        what we do is we rearrange the elements in an array so
+                        that they form a max heap and building a max heap or
+                        a min heap from a random array is big o n time
+
+
+                        after building the max heap we swap the last element with
+                        the root of the max heap so your element goes to the end
+
+                        after that you do heapify which is an operation when the
+                        subtrees are heapified and root is disturbed
+
+
+parent of i in a tree is i-1/2      
+index of the last element is n-1 ==n-1-1/2=n-2/2
+
+void maxheapify(int arr[],int n,int i){      |void maxheapify(int arr[],int n,int i){                |//building the heap
+    int largest=i;                           |    int largest=i;                                     |void buildheap(int arr[],int n){
+    int left=2*i+1;                          |    int left=2*i+1;                                    |    for(int i=(n-2)/2;i>=0;i--){
+    int right=2*i+2;                         |    int right=2*i+2;                                   |        maxheapify(arr,n,i);
+    if(left<n && arr[left]>arr[i]){          |    if(left<n && arr[i]<arr[left]){largest=left};      |    }
+        swap(arr[i],arr[left]);              |    if(right<n && arr[i]<arr[right]){largest=right};   |}
+        maxheapify(arr,n,left);              |    if(largest!=i){                                    |
+    }else if(right<n && arr[right]>arr[i]){  |        swap(arr[largest],arr[i]);                     |
+        swap(arr[i],arr[right]);             |        heapify(arr,n,largest);                        |
+        maxheapify(arr,n,right);             |    }                                                  |
+    }else{                                   |}                                                      |
+        return;                              |                                                       |
+    }                                        |                                                       |
+}                                            |                                                       |
+
+
+
+heapsort(int arr[],int n){
+    buildheap(arr,n)
+        for(int i=n-1;i>=1;i--){
+            swap(arr[0],arr[i]);
+            heapify(arr,i,0);
+        }
+}
+heapsort can be mainly seen as an improvement over
+selection sort it uses heap datastructure and the concept of
+selection sort whose worst case time compleixty is big o
+n^2 heap sort time complexity is big o nlogn
+
+merge sort takes big o nlogn time in worst case
+quick sort takes big o nlogn time in average case
+
+heap sort takes big o nlogn time in all cases
+constants hidden in heap sort are higher compared to merge and quick
+in practise merge sort and heap sort takes less time than heap sort
+
+however there are hybrid algo intro sort this uses heap sort
+what happens in quick sort is it may go big o nlogn in certain cases
+and recursion depth can become big o log n and this intro sort algo 
+switches to heap sort when the recursion depth goes beyond log n
+
+
+**heap sort is not used as stand alone sorting algorithms in libraries
+but it is used as a helper sorting algorithm in hybrid algorithms
+
+
+n--size of the array
+k--max range of the array
+void contingsort(int arr[],int n,k){
+
+    int count[k];
+    for(int i=1;i<n;i++)
+        count[i]=0
+
+    for(int i=0;i<n;i++){
+        count[arr[i]]++;
+    }
+    for(int i=0;i<k;i++){
+        for(int j=0;j<count[i];j++){
+            arr[index]=i;               //problems arise when assigning to a
+                                            objects
+            index++;
+        }
+    }
+}
+int arr[]{1,4,4,1,0,1}
+int count[]{1,3,0,0,2}
+elements <= i in count[]
+int count[]={1,4,4,4,6};
+
+build the output array from arr[] start with n-1 to maintain stablity 
+int output[]{0,1,1,1,4,4}
+-------------------------------------------------------------------------------------------------------------------------------------------------
+                                                radix sort-----
+-------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                             |void radixsort(int arr[],int n){
+like counting sort is also a linear time aglgorithm                          |    int max=arr[0];
+if your data is within a limited range                                       |    for(int i=1;i<n;i++){
+not a comparision based                                                      |        if(arr[i]>max){
+counting sort will take time big o n+k where k is                            |            max=arr[i];
+the range of elements and if k is n^2 then counting                          |        }
+sort will take n^2 which is worst than std comparision                       |    }
+based algo like merge sort and heap sort                                     |    int i=1;
+                                                                             |    while(max/i>0){
+                                                                             |        countingsort(arr,n,i);
+radix sort is a sorting algorithm that supports linear time                  |        i=i*10;
+even for a larger range it works in linear time even if your                 |    }
+data is from 0 to n^2 or 0 to n^3 it uses couting sort as a                  |}
+sub routine to sort the elements                                             |                                              
+                                                                             |countingsort(int arr[],int n,int k){
+319,212,6,8,100,50                                                           |    int count[10];
+                                                                             |    for(int i=0;i<n;i++){
+re-write number with leading zeroes                                          |        count[(arr[i]/k)%10]++;
+319,212,006,008,100,050                                                      |    }
+                                                                             |    for(int i=1;i<10;i++){
+stable sort according the last digit                                         |        count[i]=count[i-1]+count[i];
+100,050,212,006,008,319                                                      |    }
+                                                                             |    for(int i=n-1;i>=0;i--){
+stable srot according to the middle digit                                    |                                              
+100,006,008,212,319,050                                                      |        output[count[arr[i]/k%10-1]]=arr[i]; 
+                                                                             |        count[arr[i]/k%10]--;
+stable sort according to the most significant digit                          |    }
+006,008,050,100,212,319                                                      |    for(int i=0;i<n;i++){arr[i]=output[i];}
+                                                                             |}
+the idea is:-                                                                |
+        1--find the maximum element                                          |
+        2--call the counting sort for every digit in the maximum number      |
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+                                                        bucket sort algorithm--
+-------------------------------------------------------------------------------------------------------------------------------------------------
+consider a situation where we have numbers uniformly distributed in range 1 to 10^8 how do we sort efficiently
+20,88,70,85,75,95,18,82,60
+range is from 0 to 99
+create 5 buckets
+
+1--0-19
+2--20-39
+3--40-59
+4--60-79
+5--80-99
+
+the idea is :-                                                                         |        void bucketsort(int arr[],int n,int k){
+        0--find the maximum                                                            |            int max_val=arr[0];
+        1--traverse the array put it into its appropriate bucket range                 |            for(int i=1;i<n;i++){
+        2--sort the individual buckets                                                 |                max_val=max(max_val,arr[i]);
+        3--put back the elements into array from buckets                               |            }
+                                                                                       |            max_val++;
+                                                                                       |            vector<int>bucket[k];
+time complexity:-                                                                      |            for(int i=0;i<n;i++){
+    assuming k ~ n;                                                                    |*******                int bi=(k*arr[i])/max_val;       //arranging in appropriate bucket
+    best-case:                                                                         |                bucket[i].push_back(arr[i]);
+        data is uniformly distributed                                                  |            }
+        big o n                                                                        |            for(int i=0;i<k;i++){
+                                                                                       |                sort(bucket[i].begin(),bucket[i].end());
+    worst-case:                                                                        |            }
+        if the data is not uniformly distributed everything goes into a single         |            int index=0;
+            bucket if you insertion sort here you might have big o n^2 time worst case |            for(int i=0;i<k;i++){
+                                                                                       |                for(int j=0;j<bucket[i].size();j++){
+        if you use nlogn algorithm your worst case can also become nlogn               |                    arr[index++]=bucket[i][j];
+                                                                                       |                }
+                                                                                       |            }
+    **so bucket sort is the best suitable algorithm when your data is uniformly        |        }
+    distributed across the range                                                       |
