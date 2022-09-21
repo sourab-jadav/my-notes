@@ -588,3 +588,40 @@ time complexity:-                                                               
                                                                                        |            }
     **so bucket sort is the best suitable algorithm when your data is uniformly        |        }
     distributed across the range                                                       |
+
+
+overview of sorting algorithm--
+special cases:--
+
+1--binary array                partition quicksort(lomuto,hoare,niave); 
+2--array with three values      using naive or lomuto,or hoare
+3--array if size n
+    range is 100 to 200         counting sort
+4--for higher range             radix sort
+5--data is uniformly dis        bucket sort
+    tributed
+6--when memory right are        selection sort,cycle sort(more optimal interms of memory rights)
+    costly    
+7--adjacent swaps are allowed   bubble sort,cocktail sort(optimized version for bubble sort)
+8--when array size is small     selection sort,insertion sort(it works best)
+9--when available extra memory  shall sort(does not use extra memory)(tc:big o (n*(logn)^2))
+    is less                             better than insertion and selection
+
+genearl purposes:--
+merge sort      --merge sort is stable and works really great for linked list
+                    divide and conquor
+heap sort       --unstable
+quick sort      --if you compare quick sort is the fastest of them all
+                    ustable
+                    divide and conquor
+
+hybrid sorting:--
+timsort(in python)      --hybrid of insertion(when input becomes small) and merge(for genearl input)
+introsort(in cpp)       --in genearl it uses quick sort 
+                            when it does unfair partitioning and array size going beyond log n switches to heap sort
+                            insertion sort when the array becomse small
+
+many languages have also have another function for stable sorting
+as quick sort is not stable in genearl
+
+in cpp they have stable_sort() it is typically implemented using merge sort 
