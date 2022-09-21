@@ -7,24 +7,14 @@ start tmux  with tmux -u
 alias tmux tmux -u
 
 
-
-
 prefix + q to shoow the pane number
+prefix+ : -->to go into the command mode
 ctrl+b o toogle between the current and previoius pane
 
-
-
-prefix+ : -->to go into the command mode
-
-
-
-
 set-window-option mode-keys vi ==>copy mode inn tmux
-
 to start a new session :new
                         tmux new
                         tmux new-session
-
                         tmux new -s myssession
 
 rename the session    ctrl+b $
@@ -34,13 +24,6 @@ attach from the last session
 
 
 previous session  ctrl+b (
-
-
 next session  ctrl+b )
 
-
-
-
-
-
-
+repeating the command <type a number>

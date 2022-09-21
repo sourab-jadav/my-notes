@@ -61,7 +61,7 @@ two alternatives to typig ::
 ********************************************************************************
 
 basic io
-cerr and clog are the output streams that defaults to the std error and std log
+cout and clog are the output streams that defaults to the std error and std log
 cin is an input stream that default to the keyboard
 
 << insertion operator used with output streams
@@ -175,7 +175,7 @@ declaring--
 #include<vector>         |initializing--                                                     |
 using namespace std;     |vector<char>vowels{'a','e','i','o','u'};                           |
 vector<char> vowels;     |vector<int> test_scores{100,98,89,85,93};                          |
-vector<int> test_scores; |vector<int> hi_temp {365,80.0}; //initializing 365 double to 80.0  |
+vector<int> test_scores; |vector<int> hi_temp (365,80.0); //initializing 365 double to 80.0  |
 
 
 accessing vector                         |methods                                                |vector <vector<int>> movie_ratings 

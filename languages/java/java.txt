@@ -66,6 +66,60 @@ expressoins are built with values variables and operators and also with method c
 
 expression--
 **int (score=100)expression;
-**8double (kilometers=(100*1.699344))expression;
+**double (kilometers=(100*1.699344))expression;
 **the compnonent within the brackets is also an expression
 sysout("this is an expression");
+
+
+
+strings in java
+str.charAt(index);
+
+int score=100;          --remember the datatype and semicolon at the end are |method calls;
+                             not part of the expression                      |value assigning;
+                        --compnonents that's in betweeen the brackets in the |statements don't have to be on one line
+                            double quotes is also an expression              |sysout("this is"+
+score=0;                --is also an expression as well                      |"another"+
+                                                                              statement);
+                                                                              
+                                                                              go to the code and menu and click reformat code --auto formatter 
+
+ if(score=4000)                                  |if(ljsdf){
+     sysout("your screwas 500")                  |                                                                                         
+                                                 |}else if(score){
+ if(score==4000){                                |
+     sysout("your score is 4000");               |}else{
+ }else{                                          |
+     sysout("your score is less than 4000");     |}
+ }                                               |
+
+
+methods---
+public static void method(boolean gameover,int score,int levelcomleted,int bonus);
+use diff merge tool to compare the original and made file
+
+**Math.round(kilometersPerHour/1.609); //returns the int value if the argument is floot
+                                            returns long value if te arguement is double
+
+public static void printConversion(double kilometersPerHour){
+    if(kiloemetersPerHour<0){
+        sysout("invlid value");
+    }else{
+        long milesPerHour=tomilePerHour(kiloemeterPerHour);
+        sysout(kilometersPerHour+"km/h="+milesPerHour+"mi/h")
+    }
+}
+
+**put the methods in one file in this case SpeedConverter.java 
+use this file in Main.java
+SpeedConverter.<method name initiazlied with public static>
+
+double feet=(int)inches/12;
+double remainingInches=(int)inches%12;
+
+println method is a great example of method overloading in the java language
+there are actually 10 methods with the name println
+
+
+return hours+"h "+remainingMinutes+"m "+seconds+"s";
+private static final String INVALID_VALUE_MESSAGE="invalid value";

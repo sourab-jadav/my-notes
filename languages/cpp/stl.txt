@@ -42,10 +42,43 @@
 ========================================elements of the stl
 
 
-            std::vector<int> v{1,5,3};
-
-            std::sort(v.begin(),v.end());
-
+std::vector<int> v{1,5,3};                                                |more details:-                                                                |
+                                                                          |                                                                              |
+std::sort(v.begin(),v.end());                                             |    it is a hybrid of quick sort heap sort and insertion sort(intro sort)     |
+std::sort(v.begin(),v.end(),greater<int>);//descending order              |    by default it uses quick sort if it is doing unfair partitioning          |
+struct point{                                                             |    time and taking more than nlogn time it switches to heap sort             |
+    int x,y;                                                              |    when your array size becomes really small it switches to insertion sort   |
+};                                                                        |                                                                              |
+bool mycomp(point p1,point p2){                                           |   worst case and average case performacen is nlogn                           |
+    return p1.x<p2.x;               //sorts in increasing order of x value|   uses intro sort                                                            |
+    return p1.x>=p2.x;              //sorts in decreasing order of x value|                                                                                
+}                                                                         |   sort in java--
+sort function internally uses quick sort                                  |   in java sort is implemented in classes one is arrays class and 
+                                                                          | collections class
+                                                                          | arrays class-->as implementation for normal arrays
+                                                                          |          there are two types of arrays in arrays class
+                                                                          |          arrays of premitives(int char) and arrays of non premitives
+                                                                          |          (Sring,Integer,Student,..) when you are sorting an array of non
+                                                                          |          primitives it is important to have stable sorting algorithm
+                                                                          |          (it insures that original order is retained)
+                                                                          |  ***java has simple rule they use unstable algorithm for
+                                                                          |  sorting array of primitive type and stable algo for non primitive types
+                                                                          |          -->primitive types algo--   dual pivot quicksort(unstable)
+                                                                          |          -->non primitives they use-- algo based on merge sort
+                                                                          |                                      adaption of timsort(used in
+                                                                          |                                      python sort functions)
+                                                                          |                                                                              
+                                                                          | collection class--> as implementation for collections
+                                                                          |      note:-collections are there only for non premitives arraylist and
+                                                                          |              linked list they cannot be made of int char type we can made
+                                                                          |              with only non primitive types like(string,Integer,Student..)
+                                                                          |      
+                                                                          |      which collections allow sorting 
+                                                                          |              which are list interface implementing classes
+                                                                          |              like arraylist linkedlist vector
+                                                                          | **tim sort uses merge sort for general purpose arrays it 
+                                                                            switches to insertion sort for smaller arrays
+            
             for(auto elem:v)
             {
                 std::cout<<elem<<std::endl; 

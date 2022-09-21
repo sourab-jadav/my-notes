@@ -20,7 +20,7 @@ bool isPal(int n)
 }
 int main() {
     
-    	int number = 4553;
+    	int number = 4554;
     	
     	cout<<(bool)isPal(number);
     	

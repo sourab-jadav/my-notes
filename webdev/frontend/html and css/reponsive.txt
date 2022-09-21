@@ -113,7 +113,7 @@ backdrop-filter: blur(3px);
 
 *for images 
     using width: it fixes the size of img
-        width:100%  --occupies the size of the parent contaienr
+        max-width:100%  --occupies the size of the parent contaienr
    --to make the images attractively equal 
       filter: brightness(0);
       opacity: 50%;
