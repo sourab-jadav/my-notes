@@ -26,4 +26,3 @@ sourab
 Wrote to /home/sourab/my_workspace/cp/sourab-notes/npm/package.json:
 
 ╰─ npm install lodash --save  (save flag is very important as it will update in the .json file of the project)
-

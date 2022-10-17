@@ -1,0 +1,485 @@
+strings===
+
+***---you are given a string you need to find the sum of all the possible substring 
+    string str="abbca";
+    unordered_set<int>s;
+    int result;
+    for(int i=1;i<=str.length();i++){
+        for(int j=0;j<str.length()-i+1;j++){
+            for(int k=0;k<i;k++ ){
+                s.insert(str[j+k]);
+            }
+            result+=s.size();
+            s.clear();
+        }
+    }
+    cout<<result<<endl;
+
+
+string is a sequence of characters
+why do we need a seperate datastructure for string why can't it be just character array
+
+the reason that makes strings special is small set of elements
+or small set of characters
+
+    in strings you typically very small set of characters if you talk about english sentences or english strings
+    lower case english characters or string then you will have only 26 possible characters
+
+    there are 128 standard ascii values that covers most of the characters that you genearlly see
+    and also have some extra control characters
+
+    this limited set of characters makes strings special
+
+
+
+c/cpp                        |java
+char data type:ascii 8bits   |utf-16        --unicode standard format(there was a need of larger character set to store the characters of other langauges)
+also supports wchar_t        |16bits
+                              also supports bytes
+'A'(65) to 'Z'(90)
+'a'(97) to 'z'(122)
+
+utf-16 has same first 128 characters as ascii
+
+char x='a';
+cout<<(int)x;
+
+char x='a';
+System.out.println((int)x);
+
+print frequencies of characters (in sorted order) in a string of 
+lower case alphabets
+string str="geeksforgeeks";     
+op:e 4 f 1 g 2 k2 o 1 r1 s2
+the idea:-  
+        since all the smaller case characters range from the 97 to 122
+        loop starts from 0 to 121
+        for(int i=0;i<str.length();i++){
+            count[str[i]-a]++;
+        }
+for(int i=0;i<str.length();i++){
+    if(count[i]>0){
+        cout<<(char)(i+'a')<<" "<<count[i]<<endl;
+
+    }
+}
+
+========================================strings in cpp ================================================================================
+checkout strings in cpp notes for the reference
+
+
+--------------------c-style-strings                                          |--------------------c++ style strings
+                                                                             |richer library
+char str[]{'g','f','g'} --doesn't put the \0 at the end of the string        |supports operator like +,<,>,==,<=,>= are possible
+char str[]{"gfg"};      --puts the \0 at the end of the string               |can assign a string later
+cout<<sizeof(str);      --output is 4 consedring size of a chracter is 1 byte|do not have to worry about size
+                                                                             |can be coverted to c-style if needed
+char str[5];                                                                 |
+str="gfg";              --not allowed                                        |.length()                               --gives the length of the sring
+strcpy(str,"gfg");      --allowed                                            |str+="xyz"                              --concates the string
+                                                                             |.substr(<star-index>,<length>)          --gets the substring in the given string
+                                                                             |.find("eeks")                           --return the starting index of the search
+strlen(str)                                                                  |                                            if not found it returns string::npos
+strcmp(s1,s2) if s1 is greater than the s2 it returns +value                 |getline(cin,str)                        --reading the string from the console delemeter is \n not the space character
+                if both the strings aresame it returns 0                     |getline(cin,'a')                        --character a as the delemeter  
+                    if s1 is smaller than s2 it retusn -value                |for(int i=0;i<str.length();i++){
+                                                                                  cout<<str[i];
+                                                                              }
+                                                                                  cout<<endl;
+                                                                                  for(auto x:str){
+                                                                                      cout<<x;
+                                                                                  }
+========================================string in java ================================================================================
+character array/ArrayList
+char []arr=['g','e','e','k','s']
+string is a sequence of characters java uses utf 16 encoding to store the characters
+
+String class        --use when you want immutable strings 
+                        as they are already immutable so thread safety is not required
+StringBuffer class  --it is a thread safe class  --mutable
+                        when you create a thread safe class that involves extra ovehead as well
+StringBuilder class --is is not thread safe  --mutable
+    String str="geeks";
+    or
+    String st= new String("geeeks"); you cannot change for eg: g(characters) in the geeeks
+
+    **string class objects that we create that are immutable that means the content of the strings cannot be changed
+
+
+functions:
+    String str="geeks";
+    System.out.println(str.length());
+    system.out.println(str.charAt(3)); str.charAt(3)='a'-- this is not allowed --becuase char at is immutable and it returns a character
+    system.out.println(str.substring(2))--prints eks
+    system.out.println(str.substring(2,4)) [<star_index>,end)
+
+    when you create java string objects using literals your java compiler doesn't allocate new memory for the literals if they have same content
+
+    String s1="geeks"
+    String s2="geeks"   --compiler does the memory optimization hence both s2 and s1 refer to the same content geeks
+
+    if(s1==s2){         --here references are compared not the content  --returns true
+        System.out.println("yes");      --this is called string literal pool in java the if block gets executed
+    }
+
+    **when you create a string with the new keword then the meory gets allocated and not refer to the same thing
+    String s3=new String("geeks");
+    if(s1==s3){
+        System.out.println("yes")
+    } else{
+        System.out.println("no")        --exec this statement
+    }
+
+    String s1="geeksforgeeks"
+    String s2="geeks"
+    **system.out.println(s1.contains(s2));  --returns true;
+
+    String s1="geeksforgeeks"
+    String s2="geoks"
+    **system.out.println(s1.contains(s2));  --returns false;
+
+    s1.equals(s2) --returns true when both the string contenets are same  --here contenets are compared
+    s1.compareTo(s2) --returns + vlaue if greater returns lex - value else return 0     --compares lexecographically
+
+    s1.indexOf(s2); --returns a negative value if string s2 is not present in s1
+    s1.indexOf(s2,1); --starts searching from index 1
+
+
+
+----------------------------------------check the given string is palindrome or not
+input:str{"agcdcba"}
+op:yes
+
+idea:
+    take the start and end index as input paramters and start comparing recursively
+
+    naive method:
+    bool is_pal(string str){        --in c++ objects of the string class are mutable
+        string str=str;
+        reverse(str.begin(),str.end());
+        return (rev==str);
+    }
+
+    int checkpalindrome(string str,int start,int end){
+        if(start>=end){
+            return true;
+        }else{
+            return str[start]==str[end]&&checkpalindrome(str,start+1,end-1);
+        }
+    }
+    can do the same thing using the while loop 
+
+
+----------------------------------------check of the string is subsequnce of the other
+input:s1{"abcd"} s2{"ad"}
+op: true 
+
+idea:-
+
+brute force 
+print all the permutations if any permutations is equal to s2 then return true;
+time complexity :2^^n*n
+
+efficient :-
+    idea is to use the two pointer approach
+
+    have two pointers start and end
+    start comparing the from the start and end 
+    **optimization for the solution can 
+        if(n>m)return false;
+    while(start<m && i<n){
+        if(s1[start]==s2[i]){
+            start++;
+            i++;
+        }else{
+            start++;
+        }
+    }return (i==n);
+    time:big o n+m;
+    aux_space: o one
+
+    if you thrink recursively we are matching last characters instead of first characters
+    bool issubseqrec(const string &s2,const string &s2,int n,int m){
+        if(m==0){
+            return true;
+        }if(n==0){
+            return false;
+        }
+        if(s1[n-1]==s2[m-1])
+            return issubseqrec(s1,s2,n-1,m-1);
+        else
+            return issubseqrec(s1,s2,n-1,m);
+    }
+    time big o n+m
+    aux_space: o n+m
+
+-----------------------------------------------------------------check if the string is anagram(permutations of each other) or not
+s1="listen",s2="silent"
+op:true;
+
+idea:-
+    my approach well he used the same approach but he used onnly one array
+    count the frequences of the each number of s1 in the count1[]
+    count the frequences of the each number of s2 in the count2[]
+    traverse the count1[] and count2[] if botht he array element are same
+    return true else return false;
+
+    another approach
+    we first sort both the strings after sorting if they are anagram they should become same
+    complexity is nlogn
+
+    const int char=256;
+    bool areanagram(const string &s1,const string &s2){
+        if(s1.length()!=s2.length()){
+            return false;
+        }
+        int count[char]={0};
+        for(int i=0;i<s1.length();i++){
+            count[s1[i]]++;
+            count[s2[i]]--;
+        }
+    }
+-----------------------------------------------------------------leftmost character that repeats
+ip: str{"geeksforgeeks"};
+op:0
+ip:str{"abbcc"}
+op:1
+ip:str{"abcd"}
+op:-1
+
+idea:-
+    the idea is there are 128 characters create a count[] array initialized to zero to initially
+    start putting the elements and increase the frequencies accordingly 
+    if the frequency becomes 2 return that as the answer
+    int leftmost(string & str){
+        for(int i=0;i<str.length();i++){
+            for(int j=i+1;j<str.length();j++){
+                if(str[i]==str[j]){
+                    return i;
+                }
+            }
+        }
+    }
+    const int CHAR=256;                   |think of a solution that finds leftmost character in only one traversal
+    int count[CHAR]={0}                   |    the idea is to traverse from left to right and keep track of the leftmost character
+    for(int i=0;i<str.length();i++){      |    int res=INT_MAX;
+        count[str[i]]++;                  |
+        if(count[str[i]]>1){              |    think aabout solving while traversing from right to left
+            return i;                     |    bool visited[char];
+        }                                 |    fill(visited,visited+char,false);
+    }                                     |
+    for(int i=0;i<str.length();i++){      |    int res=-1;
+        if(count[str[i]]>1){              |    for(int i=str.length()-1;i>=0;i--){
+            return i;                     |        if(visited[str[i]]){
+        }                                 |            res=i;
+        return -1;                        |        }else{
+    }                                     |            visited[str[i]]=true;
+                                          |        }
+                                               }
+
+-----------------------------------------------------------------left-most non-repeating character
+str="geeksforgeeks"                                              |int fi[char];
+op:-5                                                            |fill(fi,fi+char,-1);
+str="abcabc"                                                     |for(int i=0;i<str.length();i++){
+op:-1                                                            |    if(fi[str[i]]==-1){
+                                                                 |        fi[str[i]]=i;
+brutforce   o n^^2 timecomplexity                                |    }else{
+                                                                 |        fi[str[i]]=-2;
+efficient:- o n timecomplexity but two loops                     |    }
+                                                                 |}
+think about o n and require only one traversal of the loop       |int res=INT_MAX;
+    in this traversal we are traversing the string only once     |for(int i=0;i<char;i++){
+                                                                 |    if(fi[i]>0){
+    the idea is to                                               |        res=min(res,fi[i]);
+        first inititalize all the elements to -1                 |    }
+        now traverse through the string                          |}
+        if not visited  initialize the index to it               |return (res==INT_MAX)?-1:res;
+            if it is already visited add -2 to it                |
+
+*****-----------------------------------------------------------------reverse words in a string
+str='welcome to gfg'
+op: 'gfg to welcome'
+
+idea:-
+    reversing the string is easy but how do we reverse the words
+    the idea is to use stack put the words one by one to the stack |void reverse(int arr[],int low,int high){
+                                                                   |    while(low<=high){
+    pop words from the stack and append to output                  |        swap(str[low],str[high]);
+    int start=0;                                                   |        low++;
+    for(int end=0;end<n;end++){                                    |        high--;
+        if(str[end]==' '){                                         |    }
+            reverse(str,start,end-1);                              |}
+            start=end+1;                                           |
+        }                                                          |
+    }                                                              |
+    reverse(str,start,n-1);                                        |
+    reverse(0,n-1);                                                |
+
+
+*****if the user gives you java string as input wants you to reverse individual words you can use char[]str=s.toCharArray() to conver the given string into a character array
+        to convert a character array back to a string you can use this line String s=new String(str);
+
+        in cpp its better to use cpp strings
+-------------------------------------------------------------------|------------------------------------------------------------------------------
+
+**********pattern searching algorithm
+
+txt="GEEKSFORGEEKS"
+pat="EKS"
+op:2 10
+
+txt="AAAAA"
+pat="AAA"
+op:0 1 2
+
+txt="ABCABCD"
+pat="AAA"
+op:not present
+
+
+----------overview of pattern searching algorithm
+naive:big o n-m+1*m
+**naive when all the charcters of the pattern are distict :big o n
+
+rabin karp:big o n-m+1*m --but better than the naive algorithm on average
+                            uses the idea of rolling hash to optmize the naive algorithm it first matches the hash function and then tries
+                            to match all the characters in the pat
+kmp:big o n             --linear time algorithm for any kind of text
+                            it preprocesses the redundincies within the pattern
+                            for distinct characters your niave is good how to handle the redundencies
+                                by precomputing an lps array of size equal to the pattern length
+
+                                other algorithm includes moimure algo,z algo
+
+**suffix tree:big o m   --its a data structure
+    we are going to discusss the trie data structure and suffix tree is built using the trie data structure 
+
+
+----------------------------------------naive pattern searching algorithm
+for(int i=0;i<=n-m;i++){         |int i=0
+    for(int j=0;j<=m;j++){       |while(i<=n-m){
+        if(pat[j]!=txt[i+j]){    |    int j=0;
+            break;               |    while(pat[j]==txt[i+j] && j<m){
+        }                        |        j++;
+    }                            |    }
+    if(j==m){                    |    if(j==m){
+        cout<<i<<" ";            |        cout<<i<<" ";
+    }                            |    }
+}                                |**    if(j==0){
+                                          i++;
+                                      }else{
+                                          i=i+j;
+                                      }
+                                  }
+improved naive when all the char in the pattern are distict
+the idea is the while loop and try searching for a pattern
+
+
+
+***rabin karp algorithm 
+the idea is to compute the hash value of the pattern and hash value of the every window of the text if these two integer values match then only
+we compare the indiviudal characters
+
+
+***to compute the hash function of the pattern and the string we are going to follow horners rule
+
+    void rbsearch(pat,txt,m,n){
+        int h=1;
+        for(int i=1;i<=m-1;i++){
+            h=(h*d)%q;
+        }
+        int p=0;
+        int t=0;
+        for(int i=0;i<m;i++){
+**            p=(p*d+pat[i])%q;             --horners rule
+            t=(t*d+txt[i])%q;
+        }
+        for(int i=0;i<=n-m;i++){
+            if(p==t){
+                bool flag=true;
+                for(int j=0;j<m;j++){
+                    if(txt[i+j]!=pat[j]){
+                        flag=false;break;
+                    }
+                }
+                if(flag==true){
+                    cout<<i<<" ";
+                }
+            }
+            if(i<n-m){
+                t=((d*t-txt[i]*h)+txt[i+m])%q;
+                if(t<0)t=t+q;
+            }
+
+        }
+    }
+
+    constructing longest proper prefix and suffix in an array
+
+    proper prefix of abc are        "" "a" "ab"     note:"abc" is not a proper prefix we add proper when its length is smaller than the given str length
+    suffix of abc are               "" "c" "bc" "abc"
+
+    str="ababc"                                          |
+    lps[]={0,0,1,2,0}                                    |********************efficient solution with big o n
+                                                         |str[]=a a a a
+    str="abacabad"                                       |lps[]=0 1 2 3
+    lps[]={0,0,1,0,1,2,3,0};                             |
+                                                         |initially len=0 ,lps[0]                     --len is the maximum prefix suffix possible computed earlier
+    str="abbabb"                                         |the idea is to compare str[i] and str[len]
+    lsp[]={0,0,0,1,2,3};                                 |    if  str[i] and strl[len] are same 
+    "abacabad"                                           |        do len++
+                                                         |    else if str[i] and str[len] do not match
+                                                         |        if len =0
+****int longestProperPrefixSuffix(str,n){                |            lps[i]=0
+    for(int len=n-1;len>0;len--){                        |        else 
+        bool flag=true;                                  |            len=lps[len-1]
+        for(int i=0;i<len;i++){                          |            we now compare str[i] and str[len] we do it recursuively until we find a matching character
+            if(str[i]!=str[n-len+i])                     |            
+                flag=false;                              |
+        }                                                |            do the dry run for the above example to understand
+        if(flag==true){                                  |                str="a b c b a b c a"
+            return len;                                  |
+        }                                                |                void filllps(str,lps[]){
+    }                                                    |                    int n=str.length();
+    return 0;                                            |                    int len=0;
+}                                                        |                    lps[0]=0;
+void filllsp(str,lps[]){                                 |                    int i=1;
+    for(int i=0;i<str.length();i++){                     |                    while(i<n){
+        lsp[i]=longestproperprefsuf(str,i+1);            |                        if(str[i]==str[len]){
+    }                                                    |                            len++; lps[i]=len;i++;
+}                                                        |                        }else{
+                                                                                      if(len==0){lps[i]=0;i++;}
+                                                                                      else{
+                                                                                          len=lps[len-1];
+                                                                                      }
+                                                                                  }
+                                                                              }
+                                                                          }
+
+          --------------------KMP STRING MATCHING ALGORITHM-----------
+
+txt=a a a a a b
+pat=a a a a
+lp={0,1,2,3}
+
+void kmp(pat,txt){
+    int n=txt.length();
+    int m=put.length();
+    int lps[m];
+    fullLsp(put,lps);
+    int iL0,j=0;
+    while(i<n){
+        if(pat[j]==txt[i]){
+            i++;
+            j++;
+        }
+        if(j==m){print(i-j);j=lps[j-1];}
+        else if(i<n && pat[j]!=txt[i]){
+            if(j==0){
+                i++;
+            }else{
+                j=lps[j-1];
+            }
+        }
+    }
+}

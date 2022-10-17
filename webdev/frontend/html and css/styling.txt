@@ -13,7 +13,7 @@ too align the container at the middle of the page
 for grey color for the background use f7f7f7
 
 
-    background :linear-gradient(to top right,#65dfc9,#6cdbeb)
+**    background :linear-gradient(to top right,#65dfc9,#6cdbeb)
     background-color: black;
 
 
@@ -26,7 +26,7 @@ cursor:pointer
 
 
 
-for anchor margin top bottom doesnt works yyou have to display it as 
+**for anchor margin top bottom doesnt works yyou have to display it as 
 display:        inline block
 
 
@@ -303,10 +303,13 @@ websites==========>opecolors.github.io
 ===========================================================================
                 toolbox for pictures
                     
-                    unsplash
-                    pexels
                     drawkit
                     undraw
+                    1freepik
+                    2pixabay
+                    3unsplash
+                    4freeimages
+                    5pexels
 
 
                 crop images to fit our message

@@ -27,3 +27,6 @@ previous session  ctrl+b (
 next session  ctrl+b )
 
 repeating the command <type a number>
+
+ctrl+k+o clock wise rotate
+ctrl+shift+k+o anti clock wise rotate

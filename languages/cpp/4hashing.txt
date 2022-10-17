@@ -1,0 +1,629 @@
+--hashing--
+
+provides search insert delete in big o one                         |
+===>finding closest value will take big o n time with hashing      |
+===>you cannot get the data in sorted order                        |
+    (in these cases we use avl tree or red black tree)             |
+no duplicates allowed                                              |
+prefix searching(can be done with trie data structure)             |
+                                                                   |
+--in arrays--                                                      |
+if the data is sorted                                              |
+big o log n time for search                                        |
+big o n     time for insert                                        |
+big o n     time for delete                                        |
+                                                                   |
+if the data is not sorted                                          |
+insert and delete big o one on avg                                 |
+search            big o n                                          |
+                                                                   |
+--BST--                                                            |
+*binary search trees specially avl tree and red black tree they    |
+ take big o log n time for search insert and delete                |
+however with bst you can find a key that is just smaller or larger |
+     than the given key                                            |
+                                                                   |
+                                                                   |
+
+applications of hashing
+
+dictonaries
+data base indexing  
+            databases they use indexing to quckly find records(using b or b plus trees other is hashing)
+cryptography
+caches
+symbol tables in compilers/interpraters
+        when you programs you use many variables and these variables have to looked up quickly to find out that they are valid or not
+        to find out there addresses compilers use symbol tables which are nothing but hash tables
+routers        
+    it needs to quicly find out a device for a given ip address
+    that mapping routers store using hashing to find out the correct device for a given ip adress
+
+getting data from databases in the form of tables which are stored in the form of multiple columns 
+    we use these columsn as keys most of the libraries provide these library functions to get this data in the form of associative arrays
+    these associative arrays are nothing but hashes
+    
+
+                              DIRECT ADDRESS TABLE
+used to perform search insert and delete efficiently                              
+
+hash functions
+    should values from 0 to m-1;
+    should be fast o of 1 for integers o of ln(n) for string of length of 'len'
+    should uniformly distribute large keys into hash table slots
+
+1-->h(large_key)    = large_key%m m can be prime number close to the max number a bad m value can be power of 2 are 10
+2-->for strings
+    str[]="abcd";
+        
+        str[0]*x^^0+str[1]*x^^1+str[2]*x^^2+str[3]*x^^4
+uinversal hashing   the idea of universal hashing is to make sure that your expected tc is big o 1
+
+------------------------------COLLISION HANDLING
+if we know key in advance then we can perfect hashing
+if we do not know keys, then we use one of the following
+        1-->chaining
+        2-->open addressing
+            1-->linear probing
+            2-->quadratic probing
+            3-->double hashing
+
+first method of collision handling
+
+1-->chaining 
+    
+    performance:
+        m=no. of slots in hash table
+        n=no. of keys to be inserted
+        load factor=n/m(slots);
+        if the hash table is small or load factor is big then you are likely to have more collisions
+
+in java:-            |
+    hash map         |
+    hash set         |all these functiosn they provide you an option to specify the load factor
+                     |
+in cpp:-             |
+    unordered map    |
+    unordered set    |
+                     |
+expected chain length is alpha 
+expected time to search=big o 1+alpha
+expected time to inset and delete= big o 1 + alpha                     
+
+
+datastructures to store the chains
+linked list     search is big o l,delete big o l,insert big o l
+                not cache friendly
+                it takes extraspace for storing the next references
+
+dynamic sized arrays    tc for search insert and delet is big o l
+                        advantage is they are cache friendly
+
+self balancing bsts     tc becomes big o log l in search insert and delete
+                        not cache friendly
+    
+
+IMPLEMENTATION OF CHAINING
+
+struct myhash{
+    int bucket;
+    list<int>*table;         //ArrayList<LinkedList<Integer>>table;--in java
+    myhash(int n){
+        this->bucket=n;
+        table= new list<int>[b];
+    }
+    void insert(int key){
+        int index=key%bucket;
+        table[index].push_back(key);
+    }
+    bool search(int key){
+        int index=key%bucket;
+        for(auto x:table[index]){
+            if(x==key){
+                return true;
+            }
+        }
+        return false;
+    }
+    void remove(int key){
+        int i=key%bucket;
+        table[index].remove(key);
+    }
+};
+
+2-->OPEN ADDRESSING
+
+the basic requirement is the number of slots in the table should be greater than or equal to number of key element present
+50,51,49,16,56,15,19
+
+linear probing  --we linearly search and find the next empty slot when there is a collision
+try open adddressing with linear probing for the above example
+    48,42,50,55,53
+    m=7;
+
+    clustering(a problem with linear probing);
+    if one collision happens you have cluster of size 2 now if any of these two keys are going to have new key to going to inserted then there is
+        a cluster of size 3 and if insert another key which maps to any of these indexes you will have a cluster of size 4; 
+    
+    how to handle this problem
+        when you failed to insert in a slot you begin with i=1
+        hash(key,i)=(h(key)+i)%7    this is what we were doing in linear probing
+            h(key)=key%7;
+
+
+        in quadratic probing
+        hash(key,i)=(h(key)+i^^2)%7 //so that these cluseters do not form together //secondary clusters are formed in quadratic probing
+        it might happen that it does not find a empty slot if there is an empty slot
+       --> it is proven that if alpha <0.5(number of slots should be double the number of keys) and m is a prime number 
+        then only it will find an empty slot
+
+
+        double hashing
+        hash(key,i)=(h1(key)+i*h2(key))%m;
+            
+            we use two hash functions one is the original one and one more to find the next slot
+
+            in double hashing if m is realtively prime to this h2 function then you do not need double size 
+            if there is a free slot you will always get one
+
+                also it avoids clustering since there are no clusters this distributes your keys more uniformly
+
+                eg:-49,63,56,52,54,48
+
+                h1(key)=(key%7)
+                h2(key)=6-(key%6)   --we call this when collsision happens
+                                    
+                                    key%6 return value from 0 to 5
+                                    we sub 6 from it we get values from 1 to 6
+
+**                                    why h2(key) and m should be realitvely prime 
+                                    
+                                    h2(key)=6,m=7 they are relitively prime
+                                    (1*6)%7=6       --shift by 6 position if collision occurs follow down
+                                    (2*6)%7=5       --shift by 5 pos if collision occurs follow down
+                                    (3*6)%7=4       
+                                    (4*6)%7=3       
+                                    (5*6)%7=2       
+                                    (6*6)%7=1       
+
+void doublehashing(int key){
+    if(table is full){
+        return error;
+    }
+    probe=h1(key),offset=h2(key);
+    while(table[probe] is occupied)//in linear probing offset is one
+        probe=(probe+offset)%m;
+    table[probe]=m;
+}
+
+time complexity :-
+    is based on alpha
+        if alpha is 0.5 then the array is 50 per filled and 50 per empty
+            if you have ten cells to fill an empty cell the worst case is 6th time
+            
+            if alpha is 0.8 80% is occupied and 20% is remaining
+                1/5th of the slot is empty that means you take 5 iterations on avg
+            if alpha is 0.9 10% is free how many searches you will take to reach
+                one of thoose 10% slots i.e:1/10th of the slot is empty hence
+                atleast 10 iterations
+            
+            no. of probes required=1/(1-alpha)  as alpha tends to 1 no.of probes
+            tends to infinite
+
+            if the alpha is .99  remaining is 1% is remaining i.e: 1/100th
+                of the slot is empty that means you take 100 iterations on avg
+                to find next empty slot
+
+
+
+
+    search:-
+        we stop when one of the three case arises
+        1-->empty slot
+        2-->key found
+        3-->traverse through the array
+
+    delete:-
+        problem with simply making the slot empty when we delete
+            if you make it empty the search will stop here and we cannot find element if there is
+                the idea is:-we mark the slot as deleted
+
+
+
+IMPLEMENTATION OF OPEN ADDRESSING
+
+
+struct myhash{          
+    int *arr;                    |bool search(int key){          |bool insert(int key){                              |
+    int capacity;                |    while(arr[i]!=-1){         |    int h=hash(key);                               |
+    int size;                    |    int h=hash(key);           |    int i=h;                                       |
+    myhash(int n){               |    if(arr[h]==key){           |    if(size==cap)return false;                     |
+        capacity=n;              |        return true;           |    while(arr[i]!=-1|| arr[i]!=-2||arr[i]!=key){   |
+        size=0;                  |    }                          |        i=(i+1)%cap;                               |
+        for(int i=0;i<cap;i++){  |    i=(i+1)%cap;               |    }                                              |
+            arr[i]=-1;           |    if(i==h){return false;}    |    if(arr[i]==key){                               |
+        }                        |    }                          |        return false;                              |
+    }                            |    return false;              |    }                                              |
+    int hash(int key){           |}                              |    else{                                          |
+        return key%cap;          |                               |        arr[i]=key;                                |
+    }                            |                               |        size++;                                    |
+                                                                          return true;                               |
+                                                                      }                                              |
+                                                                  }                                                  |
+                                                                                                                     |
+    
+     bool erase(int key){            
+         int h=hash(key);            
+         int i=h;                    
+         while(arr[i]!=-1){          
+             if(arr[i]==key){        
+                 arr[i]=-2;          
+                 return true;        
+             }                       
+             i=(i+1)%cap;            
+             if(i==h)return false;   
+         }                           
+         return false;
+     }
+ }
+
+
+what if -1 and -2 are part of our input keys
+    in library implementations you don't actual keys to store at the slots you use there
+    pointers(cpp) or references(in java)
+
+    so empty can be quickly checked by checking the null
+    if the slot is empty then the slot must be null
+
+        to handle a delete  
+                they create a dummy node inside a class it is part of the class it is shared by all the functions
+                when you delete something you share references or pointer to this dummy node
+
+
+                         CHAINING AND OPEN ADDRESSING
+
+1>hash table never fills             |1>table may become full
+                                     |2>extra care require for clusturing
+2>less sensitive to hash functions   |3>cache friendly
+                                     |4>extra space might be needed to achieve same  performance as chaining
+3>cache performance                  |
+                                     |
+4>extra space for links              |
+
+=================================================================================================================================================
+
+unordered set in cpp stl                                                             |                                HASH SET IN JAVA
+set::unordered_set(is based on hashing)                                              |add()                                       --returns true if the item is added 
+      unordered_set<int>s;                                                           |contains() |these 3 are big o 1 on avg
+      does not mantain any order                                                     |remove()   |
+      insert()                                                                       |
+      begin()         --iterator to the first element                                |iterator()
+      end()           --iterator beyond the last element                             |isEmpty() |these 2 are big o 1
+      size()                                                                         |size()    |
+      clear()                                                                        |clear()
+      find()          --returns iterator to the element if not found returns .end(); |
+      count()         --returns 1 if the element is present else 0                   |HashSet<String> h=new HashSet<String>();
+      empty()                                                                        |HashSet<String> h=new HashSet<String>(<capacity>);
+      no duplicates in unordered set                                                 |
+      s.erase(s.begin(),s.end());                                                    |h.add("gfg");
+                                                                                     |sysout(h);
+      tc:-                                                                           |
+          all are big o 1                                                            |Iterator<String> i=h.iterator();
+          applications:-                                                             |while(i.hasNext){
+              used mostly when you want to search insert delete                      |    sysout(i.next()+" ");
+                                                                                      }
+
+=================================================================================================================================================
+
+UNORDERED MAP IN CPP STL                                                         |                               HASH MAP IN JAVA
+std::unordered_map(is based on hashing)                                          |
+whereas map is based on hashing                                                  |HashMap<String,Integer> m = new HashMap<String,Integer>();
+                                                                                 |m.put("gfg",10);
+unordered_map<string,int> m;                                                     |m.put("ide",15);
+m["gfg"]=20; --using [] operator it returns the reference if key is present      |sysout(m);
+                if the key is not present it creates and returns the ref         |sysout(m.size())
+                                                                                 |hashmap implements map interface
+for(auto x:m){                                                                   |
+    cout<<x.first<<" "<<x.second<<endl;                                          |
+}                                                                                |
+for(auto it=m.begin();it!=m.end();it++){                                         |
+    cout<<it->first<<" "<<it->second<<endl;                                      |
+}                                                                                |
+to get a value for a corresponding key                                           |
+auto it=m.find("ide");                                                           |
+if(it!=m.end()){                                                                 |
+    cout<<(it->second);                                                          |
+}                                                                                |
+                                                                                 |
+begin                                                                            |
+end                                                                              |
+size                                                                             |
+empty                                                                            |
+                                                                                 |
+m.find("ide")    //if the key is not present it returns m.end()                  |
+m.insert({"course",15});                                                         |
+m.count("ide")  //returns 1 if found else 0 retun type is size_t                 |
+m.erase("ide")  //removes the key value pair                                     |
+m.erase(m.begin())//removes the first element from the unordered map             |
+m.erase(m.begin(),m.end());                                                      |
+m.at()                                                                           |
+
+
+count distinct elements in every window of size k
+int arr[]{10,20,20,10,30,40,10};
+int k=4;
+**there are n-1+k widows in array of size n
+
+*the idea is to use unordered map
+    --create the frequency the mpa for first k items;
+    --decrease the frequency of arr[i-k];
+    --if arr[i] does not exist in the map insert it
+        else increase the frequency in the map
+    --print the size of the map
+    for(int i=k;i<n;i++)
+
+*intersection of two unsorted arrays
+
+int a[]{10,20,10,30,20}
+int b[]{20,10,10,40}
+    idea:-
+        we traverse through every element of a
+            for every element we check if it appeared before or not
+                if(appeared)continue with next element
+                else
+                    check if it is there in the b array if there do res++;
+
+        efficient:-
+            you insert all a[] elements in the set
+            for every element in b find if it is there in map if there do res++
+                    and remove that element from the map
+
+in cpp when you recieve array as a parameter then it is a pointer
+    for pointer you cannot use for each loop
+        we can use for normal arrays which are declared inside the function
+        and not passed as parameter
+
+        int interse(int arr[],int b[],int m,int n){
+            unordered_set<int> s(a,a+m);
+            for(int i=0;i<n;i++){
+                if(s.find(b[i]!=s.end())){
+                    res++;
+                    s.erase(b[i]);
+                }
+            }
+        }
+
+
+int arr[]{15,20,5,15};
+int b[]{15,15,15,20,10};
+
+    idea:
+    naive:-
+    here we traverse through every element of a[]
+        if it seen before then we continue with next element (checking backwards in the same array is optional)
+            else we check in the dis[] if not found then we put it in
+        now we do the same thing with the array b[]
+
+    efficient:-
+        use the unordered_set and put the two arrays in it and finall return the size
+        int unordered_set(int arr[],int b[],int m,int n){
+            unordered_set<int>h(a,a+m);
+            for(int i=0;i<n;i++){
+                h.insert(b[i]);
+            }
+            return h.size();
+        }
+
+
+int arr[]{3,2,8,15,-8};                                                          |subarray with o sum;
+sum=17;                                                                          |naive:-
+pair with given sum                                                              |    traverse through each element and check if element beginning with that 
+                                                                                 |    element results in zero sum or not
+naive approach                                                                   |
+big o n^2                                                                        |efficient:-
+                                                                                 |    we create a hash set and store the prefix sum of the appropriate index
+2pointer approach                                                                |    int arr[]{1,4,13,-3,-10,5};
+big o nlogn                                                                      |
+                                                                                 |bool isSubarray(int arr[],int n){
+        the blind approach is put all the elements in a hash table               |    unordered_set<int>h;
+        and then traversing through the array to find the pair                   |    int pre_sum=0;
+            but there is  a cache here                                           |    for(int i=0;i<n;i++){
+                                                                                 |        pre_sum+=arr[i];
+            arr[]={8,3,2,5};                                                     |        if(h.find(pre_sum)!=h.end()){
+            sum=6;                                                               |            return true;
+            h={8,3,2,5};                                                         |        }
+            now you traverse through the array and check for 6-3 you found       |        if(pre_sum==0)
+            it in the map and return true;                                       |            return true;
+                                                                                 |        h.insert(pre_sum);
+            the idea:-                                                           |    }
+                before putting in to the hash table we check if it is forming    |    return false;
+                a piar or not                                                    |}
+                                                                                 |
+                bool ispair(int arr[],int n,int sum){                            |
+                    unordered_set<int>h;                                         |
+                    for(int i=0;i<n;i++){                                        |
+                        if(h.find(sum-arr[i]!=h.end())){                         |
+                            return true;                                         |
+                        }else{                                                   |
+                            h.insert(arr[i]);                                    |
+                        }                                                        |
+                    }                                                            |
+                    return false;                                                |
+                }                                                                |
+                time:o n                                                         |
+                aux space :o n                                                   |
+                                                                                 |
+                                                                                 |
+
+IF THERE IS A SUBARRAY WITH GIVEN SUM OR NOT         |LENGTH OF THE LONGEST SUB ARRAY WITH GIVEN SUM
+                                                     |
+int arr[]{5,8,6,13,3,-1};                            |naive:-
+sum=22;                                              |    int sum=0
+if(pre_sum==sum)return true;        --corner case;   |    for(int i=0;i<n;i++){
+h.find(pre_sum-sum) return true;                     |        int sum=0;
+                                                     |        for(int j=i;j<n;j++){
+                                                                 curr_sum+=arr[j] ;
+                                                                 if(curr_sum==sum){
+                                                                     res=max(res,j-i+1);
+                                                                 }
+                                                              }
+                                                          }
+                                                      int arr[]={5,8,-4,-4,9,-2,2}
+                                                                   -------    --- 
+                                                      efficient:-
+                                                          now you use unordered_map<int,int>j;
+                                                          unordered_map<int,int> m;
+                                                          int pre_sum=0,res=0;
+                                                          for(int i=0;i<;i++){
+                                                              pre_sum+=arr[i];
+                                                              if(pre_sum==sum){
+                                                                  res=i+1;
+                                                              }
+                                                              if(m.find(pre_sum-sum)==m.end()){
+                                                                  m.insert({pre_sum,i});
+                                                              }else if(m.find(pre_sum-sum)!=m.end()){
+                                                      **            res=max(res,i-m[pre_sum-sum]);
+                                                              }
+                                                          }
+LONGEST SUBARRAY WITH EQUAL NUMBER OF ZEROES AND ONES
+int arr[]{1,0,1,1,1,0,0};
+op:6
+
+int arr[]{1,1,1,1};
+op:0
+
+efficient:-
+        the idea is to maintain a map<int,int>m with keys 0 and 1
+        calculate the prefix sum on the way
+        if(m[0]==m[1])result=2*m[0];
+        if(m[0]>m[1])
+
+    for(int i=0;i<n;i++){
+        if(arr[i]==0)m[0]++;
+        else if(arr[i]==1)m[1]++;
+
+        if(m[0]==m[1])result=2*m[0];
+        else if(m[0]>m[1]){
+            if(m.find(m))
+        }
+    }
+    {1,0,1,1,1,0,0} becomes {1,-1,1,1,1,-1,-1}
+
+{{0,1},{1,1},{1.2},{1,3},{1,4},{2,4},{3,4}}
+replace 0 with -1 and find the longest sub array with sum 0
+
+
+COUNTING THE DISTINCT ELEMENTS IN AN ARRAY
+
+cpp
+int countdistinct(int arr[],int n){ |java
+    unordered_set<int> s(arr,arr+n);|int countDinstinct(Integer arr[]){
+    return s.size();                |    HashSet<Integer> s= new HashSet<>(Arrays.asList(arr))
+}                                   |    return s.size();
+                                     }
+
+
+========================================LONGEST CONSECUTIVE ELEMENTS========================================
+int arr[]{1,9,3,4,2,20}
+op:4
+
+int arr[]{8,20,7,30}
+op:2
+
+int arr[]{20,30,40}
+op:1
+
+using sorting and do the linear traversal to find the result
+
+int longestsub(int arr[],int n){
+    sort(arr,arr+n);
+    int res=1,curr=1;
+    for(int i=1;i<n;i++){
+        if(arr[i]==arr[i-1]+1){curr++;}
+        else if(arr[i]!=arr[i-1]){
+            result=max(result,curr);
+            curr=1;
+        }
+    }
+    return max(result,curr);
+}
+
+efficient:-
+   idea:-
+   the idea is to use a look up table method insert all the element in the table
+
+   traverse through the each element  check the element is the first consecutive
+   element if it is :
+                use while loop and calculate the number 
+
+                check teh number we have now and result get the maximum of it
+    leave it
+
+    int longest_sub(int arr[],int n){
+        unordered_set<int>m(arr,arr+n);
+        int result=0;
+        for(auto x:m){
+            if(m.find(x-1)==m.end()){
+                int k=1;
+                while(m.find(x+k)!=m.end()){
+                    k++;
+                }
+                result=max(result,k);
+            }
+        }
+    }
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+printing the numbers which occurences are more than n/k 
+void printnbyk(int arr[],int n){
+    sort(arr,arr+n);
+    int i=1,count=1;
+    while(i<n){
+        while(i<n && arr[i]=arr[i-1]){
+            count++;
+            i++;
+        }
+        if(count>n/k){
+            print(arr[i-1]+" ");
+        }
+        count=1;
+        i++;
+    }
+}
+int arr[]{10,10,20,30,20,10,10};
+
+*****efficient:-
+    the idea is to use array elements as keys and there occurences as values
+
+    void printnbyk(int arr[],int n,int k){
+        unordered_map<int,int>m;
+        for(int i=0;i<n;i++){
+            m[arr[i]]++;
+        }
+        for(auto e:m){
+            if(e.second>n/k){
+                cout<<e.first<<" ";
+            }
+        }
+    }
+
+    try to think of a solution where n is very very large and k is very small
+    it is based on murez moting algorithm
+
+    ***let re_count be the number of elements in the result
+    re_count<=k-1;
+    to prove lets say if there k elements in the result
+    k*(n/k+1)<=n;
+
+int arr[]{30,10,20,20,20,10,40,30,30};
+k=4 n=9
+how does the appraoch work
+    
+    rejected
+    10,30,20,40
+
+    selected
+    10,20,20,30,30
+
+    when 40 came your map has three elements inside it with the count
+    the arrival of 40 removes the chances of other elements prsent in the map by 1

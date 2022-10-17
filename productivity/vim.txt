@@ -204,3 +204,186 @@ increement with ctrl+a on the number line |to get the above result vertical high
 ---deleting a block of text
 ctrl v shift g shift d
 
+--deletign the for loop block or whie loop block or and block of code
+    shift+v shift+4+5+enter 
+    
+
+    working on takiya vim config file
+
+
+    what we will get 
+        open a new tab
+        lauch telescope
+        open base.lua
+        color codes are highlited with colorizer.nvim
+        splitwindow
+        typescipt diagnostics by lspsaga <ctrl+j>
+        hoeverdoc by lspsaga
+        lsp finder with preview by lsp saga
+        autocompletion with nvim-cmp
+        autoimport with nvim-cmp
+        tailwind css language server with mason.nvim
+
+
+
+
+
+
+
+
+        ingredients
+
+
+
+        packer.nvim     --a plugin manager foor nvim
+
+        neosolorized.nvim   --a truecolor,  solorazied dark colorscheme
+
+        lspkind-nvim        --vscode like pictorgrams
+
+        luasnip             --snippet engine
+
+        nvim-cmp            --completion engine
+
+        cmp-nvim-lsp        --nvim cmp source for build in lsp
+
+        cmp-buffer          --nvim--cmp source for buffer words
+
+        nvim-lsp-config     --nvim's built in lsp configuration set
+
+        null-ls.nvim        --use neovim as a language server
+
+        prettier.nvim       --prettier plugin for neovim's built in lsp client
+
+        mason.nvim          --portable package manager for lsp servers, dap -servers,linters and formatters
+
+        masonlspconfig      --lsp config extension for mason.nvim
+
+        lspsaga.nvim        --a highly perfomant ui for lsp
+
+        nvim-treesitter     --treesitter configuration and abstraction layr
+
+        nvim-devicons       --lua fork of vim-web-devicons
+
+        telescope.nvim      --a highly extendable fuzzy finder over lists
+
+        telescope-file-browser.nvim     --file browser extension for telescope
+
+        nvim-autpairs
+
+        nvim-ts-autotag     --use treesitter to autoclose and auto rename html tag
+
+        nvim colorizer      --a high performance color highlighter
+
+        nvim-bufferline     --a snazzy buffer line
+
+        gitsigns.nvim       --git integration for buffers
+
+        git.nvim            --a simple clsone of the plugin vim-fugitive
+
+
+
+writing lua in the nvim :lua print('hello')
+
+in .config mkdir nvim
+
+where binary is located         --which nvim
+
+create symlink for the installed neovim or create an aliase for the neovim
+            ln -s (which nvim) /opt/homebrew/bin/vim
+
+
+----------in .config/nvim/    init.lua    -->add print('init.lua loaded')
+
+config
+    nvim
+    init.lua        ---->add require('base')
+
+        lua
+        base.lua    ----->print('base')
+        highlights.lua
+
+        after
+        plugin
+--------------------
+
+
+now ready to write the base configuration of lua
+
+
+
+M=vim.opt
+M.scriptencoding='utf-8'
+M.encoding='utf-8'
+M.fileencoding='utf-8'
+
+
+M.nu=true;
+M.autoindent=true;
+M.hlsearch=true;
+M.backup=false;
+M.showcmd=true;     --show the cmd in typed in normal mode on the screen
+**M.cmdheight=1;      --set the cmd height
+M.laststatus=2;
+expandtab=true;
+scrolloff=10
+shell=zsh;
+backupskip='/tmp/*./private/tmp/*'
+inccommand='split'
+ignorecase=true
+smarttab=true
+**breakindent=true
+shiftwidth=2                    --- the number of spaces inserted for each indentation
+tabstop=2                       --  insert two spaces for a tab
+ai=true --auto indent
+si=true -- smart indent
+wrap=false
+backspace='start,eol,indent'
+**path:append{'**'}               --finding files search down into subfolders
+wildignore:append{'*/node_modules/*'}
+
+
+--undercurl
+
+
+vim.api.nvim_create_autocmd("InsertLeave",{     --turn off paste mode when leaving insert mode
+    pattern='*',
+    command="set nopaste"
+})
+
+vim.apt.formatoptions:append{'r'}
+
+
+
+
+
+=================highlights.lua
+cursorline=true;
+termguicolors=true;
+winblend=0
+wildoptions='pum'
+publend=5
+background='dark
+
+
+
+============================================maps
+
+local keymap=vim.keymap
+
+keymap.set('n','x',"_x")                    --do not yank with x
+
+
+keymap.set('n','+','<C-a>')                 ---****to increase
+keymap.set('n','-','<C-x>')                 ---****to decrease
+
+keymap.set('n','dw','vb"_d')                -----delete a word backwords
+keymap.set('n','<C-a>','gg<S-v>G')          -----**select all
+
+
+
+        TABS
+keymap.set('n','te',':tabedit<Return>')
+keymap.set('n','ss',':split<Return><C-w>w')
+keymap.set('n','vs',':vsplit<Return><C-w>w')
+

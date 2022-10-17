@@ -15,11 +15,41 @@ o-other
 
 
 to differ between the direc and the files             ---ls -F 
-to list the size in the human readable format         ---ls -lh 
+**to list the size in the human readable format       ---ls -lh 
 to lsit horizintally all contents                     ---ls -ax 
+try using                                             ---ls -lah
+alias ls='exa -al --color=always --group-directories-first'
+try using broot instead which has cool features
 
 
 
+--to search for a descriptions of files in programs         --apropos "the most"
+--install without typing yes                                --yes | sudo apt install vlc 
+
+
+---------orginizing the output                              --mount | column -t     --takes the spaces and make the columns out of it
+                                                            --cat /etc/passwd | column -t -s :
+
+--open the program from terminal and
+    close the terminal without clsoing                      --nohup kate
+    the program
+
+
+
+-------------------------having fun with the terminal
+fortune             --it spits out a joke or someother words
+fortune | cowsay
+fortune | cowthink
+ls | lolcat         --printing with the colors
+ls -la | lolcat
+sl                  --locomative running through the terminal
+sl -a(accident) -l -F 
+figlet              --prints the ascii text
+toilet              --prints the ascii text
+toilet raja --metal  --prints the ascii text 
+fortune | cowsay -f eyes | toilet --metal -f term
+fortune | ponesay
+rig                 --fake id
 
 
 ****************************************chmod command**************************************** 
@@ -92,12 +122,6 @@ david puddy is elina's booy friennd
 
 
 --------------------------------------------------------------------------------
-
-
-
-
-
-
  ==>to count the number of the words in the file                    --wc -c  
 ls -l | tee file1 file2 file3
 ls -l | tee fiel{1..4}.txt
@@ -168,23 +192,33 @@ se
 =========================	AWK=================
 for priting the columsn
 ❯ awk '{print $1}' jerry
-nithin
-ravi
-srija
-srikkath
-sourab
-ravi
-yash
-harish
-mohammet
 
 
 GREP======================
 ctrl-r is used to search from your command history press ctrl-r to navigate again through that entries
-is used to search in the file
-grep nithin jerry
-nithin chatla
+!<history_no>                   --to run the command at that number in the history
+!<any command>                  --it will run the command in the exact same way the last time you ran it
+!vim
+!!                              --is the last command you ran
+command1;command2               --multiple commands
+less <filename>                 --to look at the document
+cat <filename> | grep irssi     --it greps the lines which contained the word irssi
+(or)
+grep "irssi" <filename>         --does the same thing
 
+
+
+
+--------------------working with carrot^ and exclamation!
+sudo apt update
+^update^upgrade        --runs sudo apt upgrade
+
+sudo systemctl status ufw   --it will change only the first instance of search
+^status^stop
+
+!!:gs/foo/bar/              --to do the global substitution 
+^foo^bar^:&                 --to do the global substitution 
+fc -s foo=bar                 --to do the global substitution 
 
 
 =========================================
@@ -212,15 +246,23 @@ nithin chatla
 
 
 	====================COMPRESS AND UNCOMPLRESS FILE============
-	tar
-	tar cvf sourab.tar 
-	tar xvf(to extract everythinng) <tar_file>
-    tar -zxvf jdk-<version> -C /opt/java
-    sudo update-alternatives --install /usr/bin/java java /opt/java/jadk<version>/bin/java
-	gzip <tar _file>	//to coompress the tar file
-	gzip
-	gzip -d or gunzip   //to uncompress the tar file
-
+	tar                                                                                      |
+	tar cvf sourab.tar                                                                       |
+	tar xvf(to extract everythinng) <tar_file>                                               |
+    tar -zxvf jdk-<version> -C /opt/java                                                     |
+    sudo update-alternatives --install /usr/bin/java java /opt/java/jadk<version>/bin/java   |
+	gzip <tar _file>	//to coompress the tar file                                          |
+	gzip                --when you want to compress only one file                            |
+                        --original files will be removed                                     |
+	gzip -d or gunzip   //to uncompress the tar file                                         |
+                                                                                             |
+    zip file1 file2 file3                                                                    |
+    unzip <archive_file>                                                                     |
+    to encrypt a zip file                       --zipcloak archive.zip                       
+    to list all the details                     --zipdetails <archive.zip> | grep 'Entries'
+    searching in a zip file                     --zipgrep alias archieve.zip bashrc
+    info of the zip file                        --zipinfo archive.zip
+    to split a zip file                         --zipslit <zipfile>
 
 
 
@@ -286,9 +328,197 @@ COMMANDS:
 =======================for checking the disk spcace=========
         df -h
         lsblk
+        fdisk -l        --list all the divices on the system
+        fdisk /dev/vda
+        type m for help
+
+        before you do anything you have to create  an empty partition table 
+        either dos partition        --for boot record 
+                                    --for a dos paritiion you have upto 4 partition available
+                                    --for first sector press <enter>
+                                    --last sector press +1G<enter>
+                                        by default it creates a new partition of type 'LINUX'  we need to change it to swap
+        or  gpt partition table(uefi)
+                                    --for uefi you have 128 partition available
+
+
+                                    now that 1G swap is created you need to create a real filesystem like ext4 filesystem
+                                    
+                                    type n          --new partition
+                                    type p          --for primary
+                                    partition no 2  
+                                    first-sector    --hit <enter>
+                                    last-sector     --to fill all the rest of the disk just hit <enter>
+
+
+                                    now we gave 1 G to the swap and the rest 19G for extend4 filesystem
+                                    
+                                    now we have to change the partition type which is set to linux by default
+
+                                    type m          --for help
+                                    type t          --to change the partition type
+                                    partitionno 1   
+                                    type L          --to list all options
+                                    type 82         --number for swap   --now that the changes are done
+                                    type p          --to show the changes
+                                    type a          --to make the partition bootable
+                                    type 2          --makes the larger partition bootable
+                                    type q          --it will quit witout writing the changes
+                                    type w          --it will write the changes and quit
+
+
+                                    fdisk -l /dev/vdb   --choose another drive
+                                    type n              --for new
+                                    type p              --primary partition
+                                    type 1              --partition number
+                                    firstsector         --hit <enter>(starts at the first sector)
+                                    lastsector          --hit <enter>(ends to the last remaining)
+                                    type w              --to write the changes
+                                    -----this creates another whole partition in the vdb disk of type linux
+
+
+
+                                    ---now setup the swap space
+                                    nkswap /dev/vda1    --vda1 is the space of 1G we allocated for the swap
+                                    swapon /dev/vda1    --now we turn the swap on
+
+                                    --now make our ext4 filesystems
+                                    nkfs.ext4 /dev/vda2 --makes the vda2 as ext4 type
+                                    nkfs.ext4 /dev/vdb  --for mounting home directory on its own partition
+
+
+                                    --now the partitions are created we need to mount it
+                                    mkdir /mnt/music
+                                    mount /dev/sdb1 /mnt/music
+                                    --now we need to automount this partition every time the system is booted we do it by fstab
+                                    sudo blkid
+                                    vim /etc/fstab
+                                    uuid="lkjsdf" /home/dt/music(mount_point) ext4 defaults 0 2
+
+
+
+
+    --------------------MOUNTING REMOTE FILESYSTEMS WITH SSHFS
+    for archlinux
+        sudo pacman -s openssh
+    for debian based
+        sudo apt install openssh-client
+        sudo apt install openssh-server
+        suto apt list --installed               --to check what packages are installed
+    step2:
+        
+        make sure the ssh server is running which you are trying to access
+        sudo systemctl start sshd
+        sudo systemctl enable sshd
+    step3:
+        get the ipaddress of the remote machine         --ip addr or hostname -I
+
+    step4:
+        sshfs -h
+
+    step5:
+        sshfs <user_name>@<ip_address>(or)<hostname>:/home/sourab(this is remote root directory) /mnt/toshiba(this is mount point on your computer)
+        eg:
+            sshfs dt@10.0.0.25:/home/dt/ /mnt/toshiba/
+
+    step6:  --to unmount
+        fusermount -u /mnt/toshiba
+
+
+    ------------------getting in to others machine through ssh
+    on the remote server make sure you have the following packages installed
+
+
+    sudo apt update && sudo apt upgrade
+    openssh-client
+    openssh-server
+
+    sudo systemctl status ssh
+    sudo systemctl enable --now ssh
+
+    makesure firewall allows for connection         --sudo ufw allow ssh
+        
+
+    now login to your remote machien through your local machine
+    ssh dt@192.168.122.112
+    type exit                           --connection to that machien is ended
+
+
+     ssh-keygen -t ed25519              
+     ssh-copy-id dt@192.150.122.112     --now this is donw you do'nt need to type passowrd nextime
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+                             ----------ENVIRONMENT VARIABLES
+                             global variables
+                             printenv               --gives the list of all global variables
+                             echo $HOME
+                             echo $RANDOM           --from 0 to 32767
+                             echo $USER
+                             echo $UID
+                             echo $PATH             --this is the list of all the directories on the system that are on the shell patho
+                                                        add path locally
+                                                        PATH=$PATH:/path/to/dir
+                                                    --to add globally you can change in
+                                                        /etc/profie
+                                                        (or)
+                                                        ~/.bash_profile
+                                                        (or)
+                                                        ~/.bashrc       --recommended
+                                                        if [ -d "$HOME/.bin" ] :
+                                                            then PATH="$HOME/.bin:$PATH"
+                                                        fi
+
+                             local variables        --alive till the end of the shell session
+                                                    --use lowercasing to define local variables
+                                                    mystring="this is line of text"
+                                                    echo $mystring
+                                                    export mystring --it exports to the global variable
+                                                    unset mystring  --removes the variable 
+                                    
+
+
+
+
+
+
+
+
         ==========for finding the host name===
         hostname
         ====================setting the icons==============
+
+        --finding the file in the home directory recursively
+        find  -name 'temp'  //finding in the current directory
+        find ~/document -name '*.jpeg'  //find in the document folder
+        find   -size -5M        --all files under 5mb
+        find   -size +5M        --all files over 5mb
+
+        find   -amin -2         --find all the files that i have accessed in the last 2min
+        find   -cmin -2         --find all the files that i have created in the last 2min   in the home directory
+        find   -atime -2         --find all the files that i have accessed in the last 2 days  in the home directory
+        find   -ctime -2         --find all the files that i have created in the last 2 days  in the home directory
+
+
+        //check bitcoin value
+        curl rate.sx
+
+        use coinmon to check the price at the terminal
+        coinmon -t 5                --lists top 5 crytop details
+        coinmon -f lbc,eth,btc      --listing the specific coins
+        coinmon -h                  --shows the help section
+
+        ==============apt package manager===================
+        sudo apt install htop
+        apt search firefox
+        apt purge vim               --remvos the program and the config related to it
+        apt autoremove              --removes the not needed files
+        type su                     --to enable the root user now you don't have to type sudo
+        type sudo -s                --it does the same thing
+        sudo apt edit-sources       --allows you edit your sources  (for advanced users only)
+
+
+
 
 
 
@@ -323,3 +553,7 @@ ctrl+f                  ----to move towards right
 ctrl+b                  ----to move towards left
 ctrl+c                  ----to interrupt
 ctrl+d (delete)         ----to delete character after cursor
+
+
+try alacrity which is very fast
+

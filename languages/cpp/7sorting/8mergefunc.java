@@ -3,10 +3,8 @@ import java.util.*;
 import java.lang.*;
 import java.io.*;
 
-class Solution
-{
-    public static void main (String[] args) 
-    {
+class Solution {
+    public static void main (String[] args) {
         int a[] = new int[]{10,15,20,40,8,11,15,22,25};
 	    int l=0,h=8,m=3;
         
@@ -17,7 +15,6 @@ class Solution
     }
     
     static void merge(int arr[], int l, int m, int h){
-    
         int n1=m-l+1, n2=h-m;
         int[] left=new int[n1];int[]right=new int[n2];
         for(int i=0;i<n1;i++)

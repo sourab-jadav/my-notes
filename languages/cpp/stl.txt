@@ -1,6 +1,3 @@
-
-
-
 1   what is stl
 
 2 generaic programming
@@ -34,10 +31,6 @@
 13 priority queue
 
 14 algoritms
-
-
-
-
 
 ========================================elements of the stl
 
@@ -109,11 +102,6 @@ sort function internally uses quick sort                                  |   in
   3-forward iterators -->navigate one item at a time in one direction
   4-bidrectional iterators -->
   5-random access iterators
-
-  
-
-
-
 
   ================generic programming===
 
@@ -517,8 +505,25 @@ std::find(l.begin,l.end,3);
 
                                   ==============setconatainers============
 
-                                  std::set
-                                  set::unordered_set
+                                  std::set(is based on red black tree)
+                                  set::unordered_set(is based on hashing)
+                                        unordered_set<int>s;
+                                        does not mantain any order
+                                        insert()
+                                        begin()         --iterator to the first element
+                                        end()           --iterator beyond the last element 
+                                        size()
+                                        clear()
+                                        find()          --returns iterator to the element if not found returns .end();
+                                        count()         --returns 1 if the element is present else 0
+                                        empty()
+                                        no duplicates in unordered set
+                                        s.erase(s.begin(),s.end());
+
+                                        tc:-
+                                            all are big o 1
+                                            applications:-
+                                                used mostly when you want to search insert delete
                                   std::multiset
                                   std::unordered_multiset
 
@@ -654,12 +659,3 @@ if(m.find("bob")!=m.end())
       elements are inserted in the priority order(largest value is always be at the front)
       not iterators are supported
       must include queue header file
-
-
-
-
-
-        
-
-
-

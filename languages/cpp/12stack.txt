@@ -1,0 +1,209 @@
+
+stack is a linear datastructr it works like box
+
+OPERATIONS  --IN CPP
+    --push()    --adds item from the top
+    --pop()     --removes the top item from the stack
+    --empty()   --returns true is stack is empty else false
+    --size()    --returns the size
+    --top()     --returns the top item
+
+
+    **in python there is no explict stack or collection
+    we imlement it using a list or deque
+
+                --in java
+    --isEmpty()
+    --push();
+    --pop();
+    --peek();
+    --size();
+
+
+    --overflow: when the push called on a full stack
+    --underflow: when pop called on a empty stack
+
+
+ARRAY IMPLEMENTATION OF STACK                        |VECTOR BASED IMPLEMENTATION OF STACK CLASS
+                                                     |struct mystack{
+--attributes                                         |    vector<int> v;
+    capacity;                                        |    void push(int x){
+    size;                                            |        v.push_back(x);
+                                                     |    }
+--functions                                          |    int pop(){
+    pop();                                           |        int res=v.back();
+    push();                                          |        v.pop_back();
+    top();                                           |        return res;
+    size();                                          |    }
+    empty();                                         |    int size(){
+                                                     |        return v.size();
+    class stack{                                     |    }
+        int size;                                    |    bool isEmpty(){
+        int capacity;                                |        return v.empty();
+        int arr[capacity];  --int *arr;              |    }
+        stack(int size){                             |}
+            --arr=new int[size];                     |
+            capacity=size;                           |
+            size=0;                                  |
+        }                                            |
+        --operations                                 |
+            void push(int x){                        |
+                if(size==capacity){                  |
+                    cout<<"overflow "<<endl;         |
+                    return                           |
+                }                                    |
+                arr[size]=x;                         |
+                size++;                              |
+            }                                        |
+        void pop(){                                  |
+            if(size==0){                             |
+                cout<<"underflow"<<endl;             |
+                return                               |
+            }                                        |
+            size--;                                  |
+        }                                            |
+        int top(){                                   |
+            if(size==0){                             |
+                cout<<"stack is empty"<<" ";         |
+                return -1;                           |
+            }                                        |
+            return arr[size-1];                      |
+        }                                            |
+        bool empty(){                                |
+            return size==0;                          |
+        }                                            |
+                                                     |
+    }                                                |
+                                                     |
+v.back()    --returns the last element in the vector
+
+
+
+LINKED LIST IMPLENTATION OF STACK IN CPP
+
+linked we can insert at the front and delete from the front in big o one time |----------APPLICATIONS OF STACK DATASTRUCTURE----------
+so we do push and pop operation from the front                                |
+                                                                              |--function call stack
+struct Node{                                                                  |--checking for balanced paranthesis
+    int data;                                                                 |--reversing items
+    Node *next;                                                               |--infix to prefix/posfix
+    Node(int d){                                                              |    infix is the expression that we generally write in programs
+        data=d;                                                               |   -- in prefix expression  --operator first and then operands
+        next=null;                                                            |   -- in postfix            --operands first and then operator
+    }                                                                         |--evaluation of postfix/prefix
+};                                                                            |********************--stock span problem 
+                                                                              |--undo redo operation
+struct mystack{                                                               |--forward backward  opeartion
+    Node *head;                                                               |
+    int size;                                                                 |
+    mystack(){                                                                |
+        head=null;                                                            |
+        size=0;                                                               |stack in java
+    }                                                                         |in java stack is supported using two classes
+    void push(int x){                                                         |
+        Node *temp=new Node(x);                                               |    --array deque class
+        temp->next=head;                                                      |    --stack class
+        head=temp;                                                            |
+        size++;                                                               |    collections <--  list  <-- vector <-- stack
+    }                                                                         |    collections <-- queue  <-- deque  <-- ArrayDeque
+    void pop(){                                                               |
+        if(head==null){                                                       |    the question is which one of these two will you use?
+            return  INT_MAX;                                                  |        ArrayDeque                --specially in single
+        }                                                                     |                                   threaded environment
+        int res=head->data;                                                   |
+        Node *temp=head;                                                      |
+        head=head->next;                                                      |    stack inherits from the vector class which is thread safe class
+        delete(temp);                                                         |    if you are working in a single threaded environment these thread safe class
+        size--;                                                               |        is going to cause extra overhead hence should use ArrayDeque only 
+        return res;                                                           |
+    }                                                                         |        ArrayDeque<Integer> s = new ArrayDeque<>();
+    int size(){                                                               |        s.push(20);
+        return size;                                                          |        s.push(30);
+    }                                                                         |        s.push(40);
+    bool isEmpty(){                                                           |        sysout(s.peek());
+        return head==null;                                                    |        sysout(s.pop());    --returns the top item that is removed
+    }                                                                         |        sysout(s.size());
+    int peek(){                                                               |        sysout(s.isEmpty());    --false
+        if(head==null){                                                       |
+            return INT_MAX;                                                   |        all have complexity big o one
+        }                                                                     |
+        return head->data;                                                    |        in java both vector and deque are array implementations
+    }                                                                         |                                in array use can maintain one end where
+}                                                                             |                                you can remove and add items in big o one 
+                                                                                                               time complexity
+                                                                               
+                                                                                       these are dynamic sized array implementation so this big o one for
+                                                                                       push and pop is AMMORTIZED TIME COMPLEXITY ,not the worst case
+                                                                               
+                                                                                       in ammortized tc -->if you are doing n operations the avg time might
+                                                                                                           be big o one however one of thse opeartions is big o
+                                                                                                           n
+**----------CHECK FOR BALANCED PARENTHESIS
+str="([])"
+output:- yes
+
+str="((()))"
+output:- yes
+
+str="([)]"
+op:- no
+
+as you can observe this problem has clearly last in first out property               |----------IMPLEMENTING TWO STACK IN AN ARRAY
+    the bracket which opened last has to closed first                                |
+                                                                                     |the idea is maintain two pointers 
+    this is one of the classical problems and most useful applications of stack      |    top1 from the start 
+                                                                                     |    top2 from the end
+    **now how do you use stack                                                       |
+    push half of the elements into the stack                                         |    when you want to add at the begin do top++ add at the beginning
+    push another half othe elements into other stack                                 |
+    now traverse through the both stack check whether they are equal brackets or not |    when you want to add at the end
+    if not return false                                                              |    do top2-- add at the end
+        else return true;                                                            |
+                                                                                     |    class twoStack{
+    --optimization to the problem is                                                 |        int * arr,cap,top1,top2;
+    push into the stack until you see a closing bracket                              |        twoStacks(int c){
+                                                                                     |            cap=c;
+        when you see a closing a bracket try matching with the top of the stack      |            top1=-1;
+        if match is success pop it out of the stack and match next closing bracket   |            top2=cap;
+                                                                                     |            arr= new int[cap];
+        boolean matching(char a,char b){                                             |        }
+            return ((a=='('&& b==')'))||                                             |        void push(int x){
+                    (a=='{'&& b=='}')||                                              |            if(top1<top2-1){
+                    --same code                                                      |                top1++;
+        }                                                                            |                arr[top1]=x;
+                                                                                     |            }
+bool isbalanced(string &str){                                                        |        }
+    stack<char>s;                                                                    |        void push2(int x){
+    for(auto x:s){                                                                   |            if(top1<top2-1){
+        if(x=='('!!x=='{'|| x=='['){                                                 |                top2--;
+            s.push(x);                                                               |                arr[top2]=x;
+        }else{                                                                       |            }
+            if(s.empty()==false){                                                    |        }
+                return false;                                                        |        int pop1(){
+            }                                                                        |            if(top1>=0){
+            if(matching(s.top(),x)==false){                                          |                int x=arr[top1];
+                return false;                                                        |                top--;
+            }                                                                        |                return x;
+            else{                                                                    |            }else{
+                s.pop();                                                             |                exit(1);
+            }                                                                        |            }
+        }                                                                            |        }
+    }                                                                                |        int pop2(){
+    return (s.empty()==true);                                                        |            if(top2<cap){
+}                                                                                    |                int x=arr[top2];
+                                                                                     |                top2++;
+                                                                                     |                return x;
+                                                                                     |            }else{
+                                                                                     |                exit(1);
+                                                                                     |            }
+                                                                                     |        }
+                                                                                     |    }        
+****IMPLEMENTING K STACKS IN AN ARRAY
+
+given an array,how to implement k stack array
+
+the idea is to use additional array called next array
+
+
+
+**largest array area for a given sum

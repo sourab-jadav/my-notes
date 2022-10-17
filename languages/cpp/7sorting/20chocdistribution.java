@@ -1,12 +1,9 @@
-
 import java.util.*;
 import java.lang.*;
 import java.io.*;
 
-class Solution
-{
-    public static void main (String[] args) 
-    {
+class Solution {
+    public static void main (String[] args) {
         int arr[] = new int[]{7,3,2,4,9,12,56};
         
         int n = arr.length;int m=3;
@@ -14,7 +11,6 @@ class Solution
         System.out.print(minDiff(arr,n,m));
         
     }
-    
     static int minDiff(int arr[],int n,int m){
         if(m>n)
             return -1;

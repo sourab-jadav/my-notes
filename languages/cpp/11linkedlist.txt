@@ -1,0 +1,522 @@
+----------------------------------------LINKED-LIST DATASTRUCTURE
+
+in cpp
+int arr[10]
+int arr[n];
+int *arr=new int[n];
+vector<int> v;
+
+
+in java
+int arr[100];
+int []arr=new int[n];
+ArrayList<Integer> = new ArrayList<Integer>();
+
+
+----------------------------------------PROBLEMS WITH ARRAYS
+--either size is fixed or worst caseinsertion at the end is big o n
+--the problem with dynamic sized arrays is till the vector is filled the operation cost is big o 1
+                        when it is full and want to insert new element the cost becomes big o n
+--insertion at the middle is constly in arrays
+--deletion at the midddle is constly
+--implementation of data structure like queue and deque is complex with deque
+--how to implement round robin scheduling       --it will be difficult with array datastructure
+--given a sequence of items whenever we se an item x in the sequence, we need to replace it with 5 instance of another item y
+--in merge sort when you are sorting a linked list using merge sort you do not need any auxilary space 
+--in system programming you have limited memory environment you have make sure that you have enough space to allocate
+    for larger data whenever you need
+        --arrays        --if the memory is fragmented contigous allocation is not possible
+        --linked-list   --you link these available spaces better
+
+
+----------------------------------------LINKED LIST
+--elements do not need to be in contigous location
+--single linked list implementation 
+
+struct node{                                     |----------TRAVERSING THROUGH THE LINKED LIST |--------------------insert at the beggining of the singly linked list
+    int source;                                  |Node head=new Node(10);                      |void insert_at_the_begining(Node *head,int data){
+    node* destination;                           |head.next=new Node(20);                      |    if(head==null){
+    node(int n){                                 |head.next.next=new Node(30);                 |        Node temp(data);
+        source=n;                                |Node curr=head;                              |        return temp;
+        destination=null;                        |while(head!=null){                           |    }else{
+    }                                            |    cout<<head->data<<" ";                   |        node temp(data);
+}                                                |}                                            |        temp->next=head;
+class Node{                                      |recursively display the linked list          |        return node; 
+    int data;                                    |void print(Node *head){                      |    }
+    Node next;                                   |    if(head==null){                          |}
+    Node(int x){                                 |        return ;                             |struct node{
+        data=x;                                  |    }                                        |    int data;
+        next=null;                               |    cout<<head->data<<" ";                   |    node *next;
+    }                                            |    print(head->next);                       |    node(int x){
+}                                                |}                                            |        data=x;
+class test{                                      |                                             |        next=null;
+    public static void main(String args[]){      |                                             |    }
+        Node head=new Node(10);                  |                                             |}
+        Node temp1=new Node(20);                 |                                             |int main(){
+        Node temp2=new Node(30);                 |                                             |    node *head;
+        head.next=temp1;                         |                                             |    head=insert_at_the_begin(head,20);
+        temp1.next=temp2;                        |                                             |    head=insert_at_the_begin(head,30);
+    }                                            |                                             |    head=insert_at_the_begin(head,31);
+}                                                |                                             |    return 0;
+                                                                                                }
+                                                                                                
+
+--------------------INSERT AT THE END OF THE SINGLY LIST |--------------------DELETE FIRST NODE OF THE SINGLY LINKED LIST
+Node* insert_at_the_end(Node *head,int data){            |
+    if(head==null){                                      |Node* deletefrstnode(Node*head){
+        Node temp(data);                                 |    if(head==null){
+        return temp;                                     |        return null;
+    }else{                                               |    }
+        Node curr=head;                                  |    Node *temp=head-next;
+        while(curr->next!=null){                         |    delete head;
+            curr=curr->next;                             |    return temp;
+        }                                                |}
+        Node temp(data);                                 |Node delHead(Node head){
+        curr->next=temp;                                 |    if(head==null){
+        return head;                                     |        return null;
+    }                                                    |    }else{
+                                                         |        return head.next;       --as garbage collector handles the memory removal
+}                                                        |    }
+                                                          }
+
+--------------------DELETING THE LAST NODE OF THE SINGLY LINKED LIST
+
+Node *delNode(Node *head){
+    if(head==null)return NULL;
+    if(head->next==null){
+        delete head;
+        return null;
+    }
+    Node *curr=head;
+    while(curr->next->next!=null){
+        curr=curr->next;
+    }
+    delete curr->next;
+    curr->next=null;
+    return head;
+}
+
+--------------------INESRT AT GIVEN POSTION IN SIGNLY LIST |----------------------------------------SEARCH IN A LINKED LIST
+                                                           |int search(Node *head,int x){
+Node* insert_at_posittion(Node *head,int pos,int x){       |    if(head==null)return -1;
+    int k=0;                                               |    if(head->data==x){
+    if(head==null){                                        |        return 1;
+        Node *temp= new Node(10);                          |    }else{
+        return temp;                                       |        int res=search(head->next,x);
+    }                                                      |        if(res==-1)return -1;
+    while(k+2<pos && head!=null){                          |        else return (res+1);
+        head=head->next;                                   |    }
+        k++;                                               |}
+    }                                                      |
+    Node * temp=head->next;                                |linked list do not allow binary search to be implemented in big o log n
+    head->next= new Node(x);                               |    however there are variations of linked list which do some extra overhead
+                                                           |    and allow faster search incase of sorted linked list
+}                                                          |
+                                                           |
+Node insertpos(Node *head,int pos,int x){                  |
+    Node*temp=new Node(data);                              |
+    if(pos==1){                                            |
+        temp->next=head;                                   |---------------------------------------DOUBLY LINKED LIST
+        return temp;                                       |struct Node{
+    }                                                      |    int data;
+    Node *curr=head;                                       |    Node* prev;
+    for(int i=1;i<=pos-2&&cur!=null;i++){                  |    Node* next;
+        cur=curr->next;                                    |    Node(int x){
+    }                                                      |        data=x;
+    if(curr==Null){                                        |        prev=null;
+        return head;                                       |        next=null;
+    }                                                      |    }
+    temp->next=curr->next;                                 |}
+    curr->next=temp;                                       |ADVANTAGES
+    return head;                                           |can delete a node in big o 1 time
+}                                                          |insert or delete before a given node in big o 1 time
+
+
+                        IN SINGLY LINKED LIST WE CAN DO 
+insert at the begin
+delete at the begin
+insert at the end                   --we can do by maintaing two pointer variables head and tail
+
+                        IN DOUBLY LINKED LIST WE CAN DO
+--we can do all four operations on big o 1 time by maitnting two pointer variables head and tail
+ doubly ended queue this data structure allows insert and delete at both the ends
+--------------------CREATING THE THREE NODE DOUBLY LINKED LIST
+
+int main(){
+    Node* head=new Node(10);
+    Node* temp=new Node(20);
+    Node* temp2= new Node(30);
+
+    head->next=temp1;
+    temp1->prev=head;
+    temp1->next=temp2;
+    temp2->prev=temp1;
+}
+                        *****REVERSING A DOUBLY LINKED LIST
+
+the idea is to swap next and previous pointer of the linked list node 
+
+Node* temp;
+
+the position is on the head
+                         we have next
+                         we have previous
+
+                         **if(head==null!!head->next==null)return head; 
+                         here head->next is also handled because if you have a single node you can't return it's prevous prevous it's a null
+
+                        Node * curr=head;
+                         prev=curr->prev;
+                         curr->prev=curr->next;
+                         curr->next=prev;
+                         curr=curr->prev;
+
+                         now that the next and prev of the current are swapped next becomes prev and prev becomes next
+                         now we have prev pointing to the curr previous how's prevous is the current node address that is what we what
+
+                                    --->       --->
+                         <--    10  <--     20 <---  30 
+
+
+                         here we are swapping by storing the previous variable
+                                                and after iteration it's next becomes previous and previous becomes next
+                                                hence to get the previous next  we have to get the previous previous
+
+
+----------                    DELETING THE HEAD OF DOUBLY LINKED LIST |----------                    DELETING THE LAST NODE OF DOUBLY LINKED LIST
+                                                                      |we have the head in our hand
+we have the head of teh list                                          |
+if(head==null)return null;                                            |first things first
+**else if(head->next=null){                                           |    check if it is empty
+    delete head;                                                      |    check if the the only node head->next=null;
+    return null                                                       |    else now write the logic
+}                                                                     |
+else{                                                                 |
+    Node *temp=head;                                                  |    while(cur->next!=null){
+    delete temp;                                                      |        cur=cur->next;
+    head=head->next;                                                  |    }
+    head->prev=null;                                                  |    cur->prev->next=null;
+    return head;                                                      |    delete cur;
+}                                                                     |    return head;
+                                                                      |
+                                                                      |
+
+
+CIRCULAR LINKED LIST IN THIS LIST WE HAVE NEXT OF THE LAST NODE CONNECTING BACK TO THE FIRST NODE
+
+advantages and disdvantage
+1--from any node you can traverse through the whole list
+2--implementation of algorithms like round robin(cpu scheduling algorithm)
+3--we can inset at the beginning and end by just mainting one tail reference
+    --all the four operations can be done in big o one time
+
+disadvantages
+implementations becomes comlexx
+
+
+
+INSERT AT THE BEGINNING OF THE CIRCUALR LINKED LIST                                    |INSERT AT THE END OF CIRCULAR LINKED LIST
+we have the head in our hand                                                           |
+--but there is no going back we have the traverse through the                          |we only have the head
+--list to acieve at the result                                                         |    we have to find the end point
+Node * temp=new Node(x);                                                               |
+if(head==null){                                                                        |
+    temp->next=temp;                                                                   |DELETE HEAD OF THE LINKED LIST IN THETA ONE TIME
+}else{                                                                                 |copy the head next node data into the head->data and now delete the second
+    Node *curr=head;                                                                   |    we can always delete the node next to the head node in the theta one time
+    while(curr->next!=null){                                                           |
+        curr=curr->next;                                                               |
+    }                                                                                  |
+    curr->next=temp;                                                                   |DELETING THE KTH NODE FROM THE START IN THE LINKED LIST
+    temp->next=head;                                                                   |
+}                                                                                      |
+return temp;                                                                           |    how many times the loop should run
+how will you do it in big o one time        --the idea is put it between               |    k-2 times places before the target
+                                                head and head->next and swap the data  |    1<=k<=k-2       ===     0 <= x <k-2 (k-1 position)
+                                                of the first two nodes                 |
+                                                                                      r|    if(head==null)return head;
+                                                                                            if(k==1){
+                                                                                                return deletehead(head);
+                                                                                            }
+                                                                                            Node*curr=head;
+                                                                                            for(int i=1;i<=k-2;i++){
+                                                                                                curr=curr->next;
+                                                                                            }
+                                                                                            Node* temp=curr->next;
+                                                                                            curr->next=curr->next->next;
+                                                                                            delete temp;
+                                                                                            return head;
+
+CIRCULAR DOUBLY LINKED LIST                                      |SORTED INSERT IN A LINKED LIST
+struct Node{                                                     |    
+    Node*next;                                                   |    idea:
+    Node *prev;                                                  |        traverse through the linked list
+    int data;                                                    |        while(head->next->data<data){
+}                                                                |            head=head->next;
+                                                                 |        }
+single node circular doubly linked list                          |
+it's next is itself                                              |Node *sortedinsert(Node *head,int x){
+it's previous is itself                                          |    Node *temp=new Node(x);
+                                                                 |    if(head==null){
+                                                                 |        return temp;
+we get all advantages of circualr and doubly linked list         |    }
+    --we can access last node in the const time                  |    if(x<head->data){
+                                                                 |        temp->next=head;
+    --traversing through the circualr doubly linked list         |        return temp;
+    --insert at the beginning of the circualr dobuly linked list |    }
+        head->prev->next=temp;                                   |    Node *curr=head;
+        temp->next=head;                                         |    while(curr->next->data<x && curr->next!=null){
+        head->prev=temp;                                         |        curr=curr->next;
+                                                                 |    }
+                                                                 |    temp->next=curr->next;
+                                                                 |    curr->next=temp;
+                                                                      return head;
+                                                            }--when curr=null the below code handles automatically
+MIDDLE OF A LINKED LIST                                                  |finding the nth node from the end of linked list
+we cannot apply binary search tree here                                  |
+                                                                         |(total-n+1)th node from the beginning
+only way is to count the elements in the list find the middle element    |**********here we use again two pointer references
+traverse through that element                                            |
+                                                                         |
+    idea:                                                                |move 'first' n positions ahead,
+        based on the idea of slow and fast pointer references            |start 'second' pointer from the head;
+        when the fast reaches the end the slow is at the middle of the   |move both 'first' and 'second' at some
+        list                                                             |    we return 'second'->data when first reaches null
+                                                                         |
+        when the number of nodes are even then                           |
+        when the number of nodes are odd                                 |    void printnthend(Node* head,int n){
+        ****            while(fast!=null && fast->next!=null){           |        if(head==null)return;
+                                slow=slow->next;                         |        Node *curr=head;
+                                fast=fast->next->next;                   |        for(int i=0;i<n;i++){
+                        }                                                |            if(curr==null)return;
+                                                                         |            curr=curr->next;
+                                                                                  }
+                                                                                  Node * second=head;
+                                                                                  while(first!=null){
+                                                                                      second=second->next;
+                                                                                      first=first->next;
+                                                                                  }
+                                                                                  cout<<(second-data);
+                                                                              }
+                                                                          
+----------REVERSE A LINKED LIST                                    |Node * revlist(Node  * head){
+                                                         |    vector<int> vec;
+10->20->30->40                                           |    for(Node *arr=head;arr!=null;arr=arr->next){
+40->30->20->10                                           |        vec.push_back(curr->data);
+                                                         |    }
+idea:the idea is to modify the linked list               |    for(Node* curr=head;curr!=null;curr=curr->next){
+***the idea is to use an auxilary array                  |        curr->data=arr.back();
+                                                         |        arr.pop_back();
+the idea is chnage the links                             |    }
+first we store the head->next address in Node * temp;    |}
+                                                         |
+Node * reverselinkedlist(Node* head){                    |
+    if(head==null){                                      |
+        return null;                                     |
+    }                                                    |
+    Node *curr=head;                                     |
+    Node *prev=null;                                     |
+    while(curr!=null){                                   |
+        Node * next=curr->next;                          |
+        curr->next=prev;                                 |
+        prev=curr;                                       |
+        curr=next;                                       |
+    }                                                    |
+    return prev;                                         |
+}                                                        |
+
+
+reversing the linked list using recursion            |Node* reverselinkedlist(Node *curr,Node* prev){
+Node* reverselinkedlist(Node *head){                 |    if(curr==NULL){
+    if(head==null|| head->next==null){               |        return prev;
+        return head;                                 |    }
+    }                                                |    Node * temp=head->next;
+    Node* restnode=reverselinkedlist(head->next);    |    head->next=prev;
+    head->next->next=head;                           |    return reverselinkedlist(temp,head);
+    head->next=null;                                 |}
+    return restnode;                                 |
+}                                                    |
+ 
+void removeduplicates(Node *head){              
+    Node * curr=head;
+    while(curr!=null and curr->next!=null){
+        if(curr->data==cur->next->data){
+            Node *temp=curr->next;
+            curr->next=curr->next->next;
+            delete(temp);
+        }else{
+            curr=curr->next;
+        }
+    }
+}
+
+RECURSIVE SOLUTION TO PRINT THE GROUPS OF NUMBERS; |ITERATIVE SOLUTION TO PRINT THE GROUP OF NUMBERS
+                                                   |node *reverse(Node *head,int k){
+Node recursive(Node head,int k){                   |    Node *curr=head,*prevfirst=null;
+    Node curr=head,temp=null,prev=null;            |    bool isfirstpass=true;
+    int count=0;                                   |    count =0
+    while(head!=null && count<k){                  |        while(curr!=null){
+        temp =curr.next;                           |            Node *prevfirst=curr,*prev=null;
+        curr->next=prev;                           |            int count=0;
+        prev=curr;                                 |            while(curr!=null && count <k){
+        curr=next;                                 |                Node *next=curr->next;
+        count++;                                   |                curr->next=prev;
+    }                                              |                prev=curr;
+    if(next!=null){                                |                curr=next;
+        Node rest_head=reverse(next,k);            |                count++;
+        head->next=rest_head;                      |            }
+    }                                              |        }
+    return prev;                                   |    if(isfirstpass){
+                                                   |        head=prev;
+}                                                  |        isfirstpass=false;
+                                                        }else{
+                                                            prevfirst->next=prev;
+                                                        }
+                                                    }
+----------INTERSECTION POINT OF TWO LINKED LIST
+METHOD 1
+create an emputy hash set push the one side of the list into the set 
+now traverse thorugh the second list when find the node we retunr the intersection point of the list
+
+METHOD 2
+figure out wheich list have higher nodes
+traverse the bigger list n1-n2 times
+now both the pointers are at same locations 
+
+
+PAIRWISE SWAP EACH NODE IN THE LINKED LIST
+method1
+do pair wise swapping of data
+1  -->  2   -->  3 --> 4 -->  5
+
+head
+
+curr=head->next->next;
+prev=head;
+head=head->next;
+head->next=prev;
+while(curr!=null && curr->next!=null){
+    prev->next=curr->next;
+    next=curr->next->next;
+    prev=curr;
+    curr->next->next=curr;
+    curr=next;
+}
+prev->next=null
+
+curr=head->next->next; --saving the third node
+prev=head;              --marking the prev position
+head=head->next;        --marking the head right position
+head->next=prev;        --connecting the head and previous      previous    <---    head
+
+
+**CLONE A LINKED LIST WITH RANDOM POINTERS
+
+METHOD1
+
+create a hash map
+        for every curr address as a key create  new node with the data holding the curr address
+        for(curr=h1;curr!=null;curr=curr->next){
+            hm[curr]=new Node(curr->data);
+        }
+
+for(curr=h1;curr!=null);curr=curr->next){
+    Node * curradd=hm.find(curr)
+    curradd->next=hm(curr->next);
+    curradd->random=hm(curr->random);
+}
+
+
+METHOD 2
+the idea is to create a dublicate node after every node and copy the data into it same as the previous one
+    and copy the next and random pointers into it
+
+    head
+    10  -->  5  --> 20  --> 15 -->  20
+    
+
+    while(curr!=null){
+    Node * next=curr->next;
+    curr->next=new Node(curr->data);
+    curr->next->next=next;
+    curr=next;
+    }
+
+
+    ---now add the random pointers to the cloned linked list
+
+    for(curr=h1;curr!=null;curr=curr->next->next){
+**        curr->next->random=(curr->random!=null)?curr->random->next:null;
+    }
+
+    --now delete the primary nodes from whicch secondary nodes are created
+
+    next=head->next;
+    delete head;
+    head=next;
+    curr=head;
+    while(curr->next!=null){
+        temp=curr->next;
+        curr->next=curr->next->next;
+        delete temp;
+        curr=curr->next->next;
+    }
+
+
+    --merge two sorted linked list
+
+    a  -- 10  -->  20  -->  30
+    b  -- 5   -->  25  
+
+
+    the idea is maintain three pointer 
+    
+    pointing to the head of the a
+    pointing to the head of the b
+    and  a prev pointer to track the order
+
+    if(headb->data<heada->data){
+        next=headb->next;
+        prev=headb;
+        headb->next=heada;
+        headb=next;
+    }
+    
+    while(headb->next!=null && heada->next !=null){
+
+        if(headb->data<heada->data){
+            prev->next=headb;
+            next=headb->next;
+            prev=headb;
+            headb->next=heada;
+            headb=next;
+        }
+        else if(heada->data <headb->data){
+            prev->next=heada;
+            next=heada->next;
+            prev=heada;
+            heada->next=headb;
+            heada=next;
+        }else{
+            if(prev->next == heada){
+                next=heada->next;
+                temp=headb;
+                headb=headb->next;
+                delete temp;
+                heada->next=headb;
+                prev=heada;
+                heada=next;
+            }else{
+                --same code as that above
+            }
+        }
+    }
+if(heada->next==null){
+    connect prev to the headb
+}else if(headb->next==null){
+    connect  prev to the heada
+}
+    
+
+-----    SUFFERING IS INEVITABLE FOR THE GREATEST MINDS ..CAUSE THEY KNOW THIS IS WHAT IT TAKES TO BE THE GREATEST
+
