@@ -161,7 +161,7 @@ as you can observe this problem has clearly last in first out property          
         else return true;                                                            |
                                                                                      |    class twoStack{
     --optimization to the problem is                                                 |        int * arr,cap,top1,top2;
-    push into the stack until you see a closing bracket                              |        twoStacks(int c){
+    push into the stack until you see a closing bracket                              |        twostacks(int c){
                                                                                      |            cap=c;
         when you see a closing a bracket try matching with the top of the stack      |            top1=-1;
         if match is success pop it out of the stack and match next closing bracket   |            top2=cap;
@@ -206,4 +206,226 @@ the idea is to use additional array called next array
 
 
 
-**largest array area for a given sum
+
+**finding the greatest first in an array
+**finding the greatest last in an array
+**we are given a array every value in this array represents heights of different bars in a histogram
+width of these bars in an histogram are same they are all single unit widths
+
+int arr[]{6,2,5,4,1,5,6};   --find the largest rectangular area for this histogram
+--my ideas--
+brute force:-
+        the idea is traverse through the array
+            for every element count number of elements >= current element
+                and number of elements towrads right >= current element
+
+                total_count+1*height    --is the area
+
+efficient:-
+    the idea is to maintain a stack keep track of index of the previous large element greater than the
+    current element
+
+
+    for(int i=0;i<n;i++){
+        int curr=arr[i];
+        for(int j=i-1;j>=0;j--){
+            if(arr[i]>=arr[j]){
+                curr+=arr[i];
+            }else{
+                break;
+            }
+        }
+        for(int j=i+1;j<n;j++){
+            if(arr[j]>=arr[i]){
+                curr+=arr[i];
+            }else{
+                break;
+            }
+        }
+        res=max(res,curr);
+    }
+
+    his idea is to find previous smaller element and next smaller element in theta n time
+
+
+design a stack that supports push pop and getmin() operations in big on one time
+think of a solution which requires big o n auxilary space overall 
+we maintain two stack
+one for storing the min elments and other for normal elements and min elements
+
+push(x){
+    //if the newly added item is smaller than equal to the top of the auxilary stack then only we push to the auxilary stack
+    ms.push(x);                                                                         |push(x){
+    if(ms.top()<=as.top()){                                                             |    if(s.empty()){
+        as.push(x);                                                                     |        min=t;
+    }                                                                                   |        s.push(t);
+}                                                                                       |    }
+                                                                                        |    else if(x<=min){
+pop(){                                                                                  |        s.push(x-min);
+    if(ms.top()==as.top()){                                                             |    }else{
+        as.pop();                                                                       |        s.push(x);
+    }                                                                                   |        min=x;
+    ms.pop();                                                                           |    }
+}                                                                                       |}
+                                                                                        |
+--how do we acheive without auxialry space      --we maintain a min varaible            |
+                                                                                        |we have the prev min
+5 10 20 2 6 4                                   **--instead of storing 2 we store 2-min |we have the curr_min < prev min
+5 10 15 10 5                                                                            |
+                                                                                        |store the curr_min-prev min =t in the stack
+min                                                                                     |
+5                                                                                       |pop(){
+                                                                                             t=s.top();
+                                                                                             if(t<0){
+                                                                                                 min=min-t;
+                                                                                                 s.pop();
+                                                                                                 return t;
+                                                                                             }else{
+                                                                                                 s.pop();
+                                                                                                 return t;
+                                                                                             }
+                                                                                         }
+                                                                                         int peek(){
+                                                                                             t=s.top();
+                                                                                             return (t<=0)?min:t;
+                                                                                         }
+                                                                                         int getmin(){
+                                                                                             return min;
+                                                                                         }
+
+handling the negatives
+earlier we do x-min
+now we do 2x=min
+
+int peek(){
+    t=s.peek();
+    return (t<=min)? min:t
+}
+int pop(){
+    t=s.pop();
+    if(t<=min){
+        res=min;
+        min=2*min-t;
+        return res
+    }else{
+        return t;
+    }
+}
+
+x+y         --infix               
+xy+         --postfix             
++xy         --prefix              
+
+advantages
+->we do not need parenthesis ,precendence and associative rules
+->can be evaluated by writing the given expression exactly once
+
+--------------------PRECEDENCE AND ASSOCIATIVITY        --remember usually associativity is left to right
+^   -- right to left
+*,/ --left to right 
++,- --left to right
+
+                          CONVERTING INFIX TO POSTFIX
+
+x+y*z   --xyz*+
+(x+y)*z --xy+z*
+first convert the inner most expresssion    --yz*
+move towards left and keep converting       --xyz*+
+
+(x+y)*z 
+converting the inner most expression    (x+y)z*
+next convertint the left most expresion     xy+z*
+
+                           CONVERTING INFIX TO PREFIX(symbol occurs before)       --evaluate from right to left
+
+x+y*z   +x*yz
+(x+y)*z *+xyz
+
+**********THINK OF CONVERSION FROM INFIX TO POSTFIX USING STACK
+
+a+b*c   --acb*+
+
+we are going to use stack to store the operators
+
+(x+y)*z     xy+z*
+
+when you see left bracket       --push it in to the stack
+when you see +                  --+ has higher precedence than the ( so push it into the stack
+when you see right bracket      --pop out the symbols from the stack until you see left bracket
+then you see *(highest precedence)  --push it into the stack
+when you see lower prec ope     --push out the operators from the stack until you found a lower precedence or stack is empty
+then you see z                  --print it
+string is done                  --print out the leftout characters from the stack
+
+
+x*y+z       --xy*z+
+
+done with the logic of post fix conversion
+
+string conver_post_pix(string &s){
+    stack<int> stk;
+    hash_map<char,int> preced_table{
+        {'(':0},
+        {')':0},
+        {'+':1},{'-':1},
+        {'*':2},{'/':2},
+        {'^':3}
+    }
+    for(auto x:s){
+        --if x is  a character then print it
+        --if x is an operator   then check for preced
+            --if x is an opening bracket push the bracket into the stack
+            --if x is an closing bracket pop the items from the stack until you see closing bracket
+            --if the stack is empty push it
+            --else if top stack has lower precedence then push it
+            --else if higher precedence
+                --pop the operators from the stack until you find a lower precendence 
+            --else if equal precedence
+                --analyze associativity make another map to check the associativity
+    }
+    if the stack is not empty then pop out the rest operators from the stack
+}
+-----------------------NAIVE APPROACH TO SOLVE THE PROBLEM
+put the bracket whereever possible in the expression        --fully parenthesis
+now evaluate the expression by first converting  the innermost expression to post fix 
+
+--evaluting the post fix expression
+10 2 * 3 +      
+((10*2)+3)
+2 3 4 5 + - *
+
+((5+4)-3)*2)
+
+--the idea is traverse through the string
+    --when you find an opeartor
+        --initially total is zero
+        arr[i-1] arr[i] arr[i-2]
+
+whenever we see an operator we take previous two operands and evaluate the operator
+
+this guy is killingly utilizing the stack i don't know how do i use the stack
+i got the idea of utilizing the two variables but i failed to execute it
+
+if x is an operand , push to st
+
+else(x is an operator){
+    op1=st.pop();
+    op2=st.pop();
+    compute op1 x op2 and push the result to the stack
+}
+return st.top
+
+
+
+infix to prefix conversion(naive approach)
+
+
+infix=x+y*z
+prefix=+x*yz
+
+--naive solution is to fully parenthesis this expression
+--i guess the same trick here but we traverse from the right to left
+
+
+think of you are going to evaluate the prefix
+    i guess the same to that of the post fix the chnage is we have to traverse from the right to left

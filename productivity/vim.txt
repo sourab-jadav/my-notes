@@ -85,7 +85,22 @@ use gc flag to do interactive replacement
 
 
 =============to navigate in a large text===========
-gk,gj,g^,g$,gm-middle
+gk,gj,g^,g$,g-middle
+**gi                        --to put you in previous editing mode
+
+{   --parah begin       }   --parah end
+[[  --section begin     ]]  --section end
+(   --sentence begin    )   --sentence end
+
+H           --first line of the screen
+M           --middle line of the screen
+L           --last line of the screen
+zz          --adjusted at the middle of the page
+z<enter>    --current line under cursor at the top
+z-          --current line under cursor at the end
+z.          --current line under curosr at the middle
+
+:jumps      [ju]
 
 
 

@@ -1,0 +1,64 @@
+
+queue data structure        --also known as fifo
+<---dequeue                 enqueue()<---
+    front                       rear
+
+
+operations
+enqueue();
+dequeue();
+getfront();
+getrear();
+size();
+empty();
+
+
+-----------------------APPLICATIONS
+1-->single resource and multiple consumers
+2-->synchronization between slow and fast
+3-->in operating system(seaphores,fcfs scheduling,spooling, buffers for devices like keyboard)
+4-->in computer networks(routers,and mail queues)
+5-->variations:deque,priority queue doubly ended priority queue
+
+deque       --is doubly ended queue we can do insertions and deletions in both ends
+
+array implementations of queue data structure
+
+size();
+getfront();
+getrear();
+isfull();
+isEmpty();
+
+
+queue in cpp stl
+#include<queue>
+
+push()
+pop()       --removes the item from the front of the queue
+front()
+back()
+empty()
+size()
+
+all are big o one complexity
+
+there are two containers which provides the functionality in big o one 
+list and dequeue      --vector is noo their in the list bec vector doesn't provide pop front in big o one time
+
+queue in java is 
+    an interface implemented by the following classes 1-->linked list   --a doubly linked list implementation
+                                                    2---->arrayDequeue  --a array implementation of queue
+
+queue<Integer> q=new ArrayDequeue<Integer>();
+queue<Integer> q=new LinkedListArrayDequeue<Integer>();
+q.offer(10);
+q.offer(20);
+q.size();
+q.peek();   --gives the first item of the queue     --returns null if the element is not present
+q.poll()    --removes the first item and returns the first item --returns null if the queueu is empty
+
+.element() |    --all these throws exceptions except returning null
+.add()     |
+.remove()  |
+           |
