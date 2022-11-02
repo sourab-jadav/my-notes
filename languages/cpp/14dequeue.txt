@@ -1,0 +1,419 @@
+-----------------------dequeue data structure for the input operation
+
+<--front                back<---
+a dequeue can be used as both stack and queue
+maintaining history of actions
+a steal process scheduling algorithm
+
+implementing  a priority queue with two types o priorities
+
+max and min of all sub arrays of size k in an array 
+
+
+-----------------------ArrayDequeue in java
+collection<---queue<--dequeue<---ArrayDequeue
+
+Note:queue interface is different from the list interface
+
+linked list is a class that implements both queue and list interface
+
+ArrayDequeue is faster than linked list on average as it is an array implementation
+        and it can be used as a stack or as a queue or it can be used as a dequeue
+
+        Note:when you want to use a stack ArrayDequeue class is preffered over the standard stack class
+            reason is std stack class inherits from the vector class and vector class is thread safe class(causes extra overhead for thread safety)
+----------------------------------------------using arraydequeue as stack
+import java.util.ArrayDequeue;
+class GFG{
+    public static void main(string ar[]){
+        ArrayDequeue<Integer> ad=new ArrayDequeue<Integer> ();  --creates an empty stack
+        ad.push(10);
+        ad.push(20);
+        sysout(ad.peek());      --gives the top of the stack
+        sysout(ad.pop());       --returns and removes the top of the stack
+    }
+}
+
+--as array dequeue is a doubly ended stack having front and last end stack opertions are performed at the front end of the queue 
+--pop and peek functions they throw an exception when you tried to call them on an emtpy array dequeue
+
+
+-----using array dequeue as queue
+    --array dequeue has dequeue functions as well
+
+        .add()      --throws exceptions         --adds item at the beginning of the queue
+        .remove()                               --removes items from the end of the queue
+        .element()
+
+    .offer() |doesn't throw exception
+    .poll()  |
+    .peek()  |
+
+
+    ArrayDequeu<Integer> ad= new ArrayDequque<Integer>();
+    ad.offer(10);
+    ad.offer(20);
+
+
+----using array dequeue as dequeue
+    --when we talk about dequeue with have two ends first and last we are allowed to do insertion and deletion at the firt and last 
+    --offerfirst         |--addFirst()
+    --offerlast          |--addLast()
+    --pollfirst          |--removefirst()
+    --polllast           |--removeLast()
+    --peek first         |--getFirst()
+    --peek last          |--getlast()
+they do not throw excep     --they throw exceptions
+they returns null if
+the dequeue is empty
+
+    --dequeue traversal
+    --using iterator
+
+    Deque<Integer> d= new LinkedList<Integer>();
+    d.addFirst(10);
+    d.addLast(20);
+    d.addLast(30);
+    Iterator it =d.iterator();
+    while(it.hasNext()){
+        System.out.println(it.next()+" ");
+    }
+    System.out.println(x+" ");
+    for(int x:d){
+        System.out.print(x+" ");
+    }
+    System.out.println();
+
+
+    ---traversing the dequeue from last to first here is the descending iterator we are calling
+    Iterator it=d.descendingIterator();
+    while(it.hasNext()){
+        System.out.println(it.next()+" ");
+    }
+
+    ----------------------------------------traversing dequeue from last to first
+
+
+
+    --reduntant functions
+
+    push()   |addfirst()        --stack functions
+    pop()    |removefirst()
+    peek()   |peekfirst()
+
+    add()    |addLast()         --queue functions
+    remove() |removefirst()
+    poll()   |pollfirst()
+    offer()  |offerlast()
+    element()|getfirst()
+    peek()   |peekFirst()
+
+    --in array dequeue all the operations are big o one --AMORTIZED NOT THE WORST CASE
+        --we achieve the nth case big o one by usig the circular array 
+
+--ARRAY IMPLEMENTATION OF DEQUEUE
+
+
+operations---
+    insertFront
+    insertRear
+    deleteFront
+    deleteRear
+    getFront
+    getRear
+    size
+    isFull
+    isEmpty
+
+    method1-->
+    struct dequeu{
+        int size;
+        int * arr;
+        int cap;
+        dequeue(int x){
+            cap=x;
+            arr=new int[cap];
+            size=0;
+        }
+        bool isfull(){
+            return size==cap;
+        }
+        bool isempty(){
+            return size==0;
+        }
+        void insertRear(int x){
+            if(isfull()){
+                return;
+            }else{
+                arr[size]=x;
+                size++;
+            }
+        }
+        void insertfront(int x){
+            if(isfull()){
+                return;
+            }else{
+                for(int i=0;i<size;i++){
+                    arr[i+1]=arr[i];
+                }
+                arr[0]=x;
+                size++;
+            }
+        }
+        int getfront(){
+            if(isempty()){
+                return;
+            }
+            return arr[0];
+        }
+        int getrear(){
+            if(isempty()){
+                return;
+            }
+            retur arr[size];
+        }
+        void deleterear(){
+            if(isempty()){
+                return
+            }else{
+                size--;
+            }
+        }
+        void deletefront(){
+            if(isempty()){
+                return
+            }else{
+                for(int i=1;i<size;i++){
+                    arr[i-1]=arr[i];
+                }
+                size--;
+            }
+        }
+    }
+
+-----------------------    EFFICIENT IMPLEMENTATION OF THE DEQUEUE
+    the idea is to treat our array as circular buffer 
+    class dequeue{
+        int * arr;
+        int front,cap,size;
+        dequeue(int c){
+            arr=new int[c];
+            cap=c;
+            front=0;
+            size=0;
+        }
+        void insertfront(int x){
+            front=(front-1+cap)%cap;
+            deleteRear();
+            rear=(rear-1+cap)%cap;
+        }
+    }
+
+    trying to code efficient implementation of the dequeue using array
+
+    the idea is 
+        1--we maintain two variables front and rear                              |-----------------------------ANOTHER APPROACH
+            front =-1                                                            |struct dequeue{
+            rear=0                                                               |    int *arr;
+                                                                                 |    int front,cap,size;
+         ---we move front towards left and rear towards right                    |    dequeue(int c){
+                                                                                 |        arr=new int[c];
+            class dequeue{                                                       |        cap=c;
+                int front;                                                       |        front=0;
+                int rear;                                                        |        size=0;
+                int *arr;                                                        |    }
+                int cap;                                                         |    void deletefront(){
+                dequeue(int x){                                                  |        if(isempty()){
+                    cap=x;                                                       |            return;
+                    arr=new int[x];                                              |        }
+                    front =-1;                                                   |        front=(front+1)%cap;
+                    rear=0;                                                      |        size--;
+                }                                                                |    }
+                bool isfull(){                                                   |    void inertrear(int x){
+                    return front=0 &&rear=size-1 || front=rear+1;                |                                              
+                }                                                                |        if(isfull()){
+                bool isempty(){                                                  |            return;
+                    return front==-1 && rear==0;                                 |        }
+                }                                                                |        int new_rear=(front+size)%cap;
+                void insertatfront(int x){                                       |        arr[new_rear]=x;
+                    if(isfull){                                                  |        size++;
+                        return;                                                  |    }
+                    }else if(front==-1){                                         |    int getfront(){
+                        front=0;                                                 |        if(isempty()){
+                        rear=0;                                                  |            return -1;
+                    }else if(front==0){                                          |        }else{
+                        front=size-1;                                            |            return front;
+                    }else{                                                       |        }
+                        front=front-1;                                           |    }
+                    }                                                            |    void insertfront(int x){
+                    arr[front]=x;                                                |        if(isfull()){
+                }                                                                |            return;
+                //first document the stuff that you are going to code            |        }
+                initally front =-1 rear=0                                        |        front=(front+cap-1)%cap;
+                    if  front is -1 then no elements at the front arre added     |        arr[front]=x;
+        (array) initalize front to zero and rear=0 and add at the rear end of the|        size++;                               
+                    else if front is 0 then do rear =rear+1;                     |    }
+                void insertatrear(int x){                                        |    void deleterear(){
+                    if(isfull()){                                                |        if(isempty()){
+                        return;                                                  |            return;
+                    }else if(front=-1){                                          |        }
+                        front=0;                                                 |            size--
+                        rear=0;                                                  |    }
+                    }else if(rear =size-1){                                      |    int getrear(){
+                        rear=0;                                                  |        if(isempty()){
+                    }else{                                                       |            return -1;
+                        rear=rear+1;                                             |        }else{
+                    }                                                            |            return (front+size-1)%cap;
+                    arr[rear]=x;                                                 |        }
+                }                                                                |    }
+            }                                                                    |}
+
+design a data structure that supports following operations in big o one time
+
+1 insertmin(x)      --assumes that inserted item is always smaller than existing items
+2 insertmax(x)      --assumes that inserted item is always greater than existig items
+3 getmin()          --returns the current min
+4 getmax()          --returns the current max
+5 extractmin()      --removes the current min
+6 extractmax()      --removes the current max
+
+
+
+the idea is to create a deque mainting two pointers on one side having the min elements and max elements on the other side
+minimum inserted at the first position max inserted at the last poosition
+
+in java--
+
+dq=new LinkedList<Integer>();
+
+to inesert at the front         --.offerFirst(); |--.push_front(x);
+to isert at the rear            --.offerLast();  |--.push_back(x);
+to get min                      --.peekFirst();  |--.front();
+to get max                      --.peekLast();   |--.back();
+to extract min                  --.pollFirst();  |--.pop_front();
+to extract max                  --.pollLast();   |--.pop_back();
+
+
+dequeue<int> dq={10,20,30};
+queue
+
+dq.push_front(5);
+dq.push_back(50);
+
+for(auto x:dq){
+    cout<<x<<" ";
+}
+cout<<dq.front()<<dq.back()<<endl;
+return 0;
+
+**in most of the other languages it is implemented as doubly linked list in cpp stl it allows you have random access
+it allows you to do arbitary number of insertions in big o one time
+**doubly linked list doesn't provide random access
+
+dequeue<int> dq={10,15,30,5,12}
+auto it=dq.begin();
+it++;                       --it is at 15 
+dq.insert(it,20);           --inserts 20 at before iterator
+dq.pop_front();             --removes the first item
+dq.pop_back();              --remoes the last item
+cout<<dq.size();            --tells you how many elements are there in the dequeue
+return 0;
+
+similarly there are rbegin(points to last element) and rend(points to before the first element)
+                    cbegin(const version of begin and end) and cend
+
+=====how does dequeue work internally
+    dequeue with random acess can be implemented by circular array implementation
+    the problem is if the array becomes full then you have to create an array of double the size and copy the elements
+        --if the elements are user defined objects then this creation of doubl size array is going to be costly
+    
+    hence dequeue in cpp it is big o for push back and push front what it means is it is constant in terms of 
+    number of copy constructors called
+    
+    we use an array of pointers and these pointers point to some fixed size blocks
+    
+    when these array of pointers becomes full then it doubles the array size and copies the pointers back to the double sized array
+    Note:-it is copying the address not the values
+
+    push_back   big o one
+    push_front  big o one
+    pop_front   big o one
+    pop_back    big o one
+    [](randome-access)  big o one 
+
+
+FIRST CIRCULAR TOUR
+petrol[]={4,8,7,4};
+dest[]={6,5,3,5};
+
+petrol[]={4,8};
+dist[]={5,6};
+
+int curr_petrol=0;
+
+for(int start=0;start<n;start++){
+    int temp_petrol=petrol[start]-dist[start];
+    if(temp_petrol>0){
+        int end=start+1;
+        curr_petrol=temp_petrol;                   --if afterwards solution is not coming means we cannot add this remaining petrol we have to add the whole quantity
+        while(petrol[end]-dist[end]>0){
+            curr_petrol+=petrol[end]-dist[end];
+            end=end+1%n;
+            if(end==start){
+                return true;
+            }
+        }
+        continue;
+    }
+     
+}
+
+for(int start=0;start<n;start++){
+    int curr_petrol=0;
+    int end=start;
+    curr_petrol+=petrol[end]-dist[end];
+    while(true){
+        if(curr_petrol<0){
+            break;
+        }
+        end=end+1%n;
+        if(end==start){
+            return start+1;
+        }
+    }
+}
+
+
+
+petrol[]={50,10,60,100};
+dist[]{30,20,100,10};
+
+keep adding items to the end of the dequeu while curr_petrol is greater than equal to 0
+keep removing items from the front of the dequeu while curr_petrol is negative
+
+efficient solution: if curr_petrol becomes negative at pi, then none of the petrol pumps from p0 to pi can be solution
+
+int firstpetrolpump(int arr[],int dist[],int n){
+    int start=0,curr_pet=0;
+    int prev_pet=0;
+    for(int i=0;i<n;i++){
+        curr_pet+=(petrol[i]-dist[i]);
+        if(curr_pet<0){
+            start=i+1;
+            prev_pet+=curr_pet;
+            curr_pet=0;
+        }
+    }
+    return ((curr_pet+prev_pet>=0)?(start+1):-1):
+}
+int arr[]{50,10,60,100}
+int dist[]{30,20,100,10}
+
+--in the above eg the curr_pet becomes negative at i=2 put the sum in the prev_pet and start curr_pet from i=3;
+at pi the curr_pet<0 then 0 to pi is not going to be the solution start from pi+1 and store the previous value in a prev_pet
+
+---------------------------------------MAXIMUM IN ALL SUBARRAY OS SIZE K
+
+subarrays of n size input               --->n-k+1
+int arr[]{10,8,5,12,15,7,6};
+maximum array of size of k is another size of the array

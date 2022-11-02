@@ -1,0 +1,73 @@
+
+download the bootstrap and open in the vscode
+
+create file index.html
+
+    <head>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    </head>
+    <body>
+    <h1>Hello world</h1>
+    <script src="js/bootstrap.js"></script>
+    </body>
+    </html>
+
+
+    --using cdn
+    create index.html
+    copy past the jsDeilvr two links
+    css in the head
+    and js down below the body
+
+
+    --using package manager
+    npm init
+    creat index.html
+    npm install bootstrap
+
+
+    <head>
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css"/>
+    </head>
+
+    <body>
+        <h1>hello world</h1>
+        <script src="node_modules/bootstrap/dist/js/bootsrap.bundle.js"></script>
+    </body>
+
+
+    npm install @popperjs/core
+
+
+
+    --grid system
+extra large    >1400px         split into 12 cols in a single row .col-xl
+large           >992px          split into 4 cols                   .col-lg
+medium          >768px          splits into 3cols                   .col.md
+small           >576px          splits into 2cols(6 unit each)      .col-sm
+extra small     <
+
+
+<div class="container border">container</div>
+<div class="container-fluid border">container</div>    --container  uses whole width
+<div class="containermd border">container</div>
+
+.container-md border
+
+div class="row"
+    div class="col" col1
+    div class="col" col2
+    div class="col" col3
+
+
+    div class="col-4" col1
+    div class="col-4"  col2
+    div class="col"  col3
+
+    div class="col-md-8" col1       --controlling the medium scrren
+    div class="col-md-4" col1
+
+
+    div class="col-lg-8 col-md-6" col1       --controlling the medium scrren
+    div class="col-lg-4 col-md-6" col1
+    

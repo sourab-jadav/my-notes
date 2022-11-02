@@ -395,6 +395,13 @@ COMMANDS:
                                     vim /etc/fstab
                                     uuid="lkjsdf" /home/dt/music(mount_point) ext4 defaults 0 2
 
+--------------------MOUNTING NTFS FILE SYSTEM (WHICHI S A WINDOWS SUPPORTED FILE SYSTEM)
+/dev/sda6	/media/sourab/backup	ntfs-3g rw,uid=1000,gid=1000,umask=0022,fmask=0022	0	0
+
+sda6 is a drive name
+
+
+
 
 
 

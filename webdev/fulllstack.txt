@@ -1,0 +1,63 @@
+requirement     
+
+    html
+
+    css
+    frameworks
+    bootstap
+    tailwind css
+    tailblocks  tailblocks.cc
+    materialize
+    sass,postcss
+    cheetsheet
+    work on responsiveness
+
+
+    javascript
+    async/await promises
+    fetch api
+    array methods
+
+
+    array methods
+
+    pop
+    push
+    toString
+    join
+    splice
+    sort
+    shift
+    unshift
+    reverse
+    concat
+    slice
+    filter
+    find
+    forEach
+    map
+    reduce
+    every
+    some
+
+
+
+
+    frameworks
+    react/next  --master frame work
+    angular
+    vue.js
+
+
+    ====backend development===
+
+    nodejs  mongodb(or)redis  mongoose
+
+    (or)
+    django          python based orm
+    (or)flask
+
+
+    ====headless cms        -->creating api's through dashboard
+    strapi      
+    saniti

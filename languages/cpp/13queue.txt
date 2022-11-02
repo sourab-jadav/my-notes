@@ -50,15 +50,85 @@ queue in java is
     an interface implemented by the following classes 1-->linked list   --a doubly linked list implementation
                                                     2---->arrayDequeue  --a array implementation of queue
 
-queue<Integer> q=new ArrayDequeue<Integer>();
-queue<Integer> q=new LinkedListArrayDequeue<Integer>();
+queue<Integer> q=new ArrayDequeue<Integer>();               --it is amortized big o one
+queue<Integer> q=new LinkedList<Integer>();     --worst case big o one 
 q.offer(10);
 q.offer(20);
 q.size();
 q.peek();   --gives the first item of the queue     --returns null if the element is not present
 q.poll()    --removes the first item and returns the first item --returns null if the queueu is empty
 
-.element() |    --all these throws exceptions except returning null
-.add()     |
-.remove()  |
-           |
+.element() |    --all these throws exceptions except returning null |.peek()     |-->these doesn't throw the exception
+.add()     |                                                        |.offer()    |
+.remove()  |                                                        |.poll()     |
+                                                                    |            |
+                                                                    |            |
+-----------------------implement stack using a queue
+--the idea is to achieve push operation at the front of the queue
+    so that when pop is called it gets removed from the queue
+        we can achieve by maintaining two queue          |we can also achieve by making pop operation costly
+        q1{10,5,15}                                      |
+        q2{}                                             |
+        ----pushing 20 into the q1                       |
+        push all the itesm from the q1 to q2             |
+        q1{}                                             |
+        q2{10,5,15};                                     |
+        q1.add(20); --q1{20};                            |
+        --add the items from q1 back to q1               |
+        q1{20,10,5,15};                                  |
+                                                         |
+                                                         |
+        -------how do you achieve using one queue        |
+               by maintaining one stack
+                
+        --------------------------------------------------------------------------------------------------------------------------------                                                 |
+        --using one queue and one recursion call stack      --based on the reversing a queue
+        revere the queue and push it to the top of the queue 
+        
+        --implement queue using stack
+            --by making enqueue operation constly
+            --by making dequeue doperation constly
+            --by using one stack(and one recursion call stack) 
+    void reverse(queue<int> &q){
+        stack<int> s;
+        while(q.empty()==false){
+            s.push(q.top());
+            q.pop();
+        }
+        while(s.empty()==false){
+            q.add(s.pop());     (or)    q.push(s.top());
+                                        s.pop();
+        }
+    } 
+
+-----------------------how do we reverse the queue using recursion
+
+void recrusion(queue<int> &q){
+    if(q.empty()){
+        return ;
+    }
+    int x=q.top();
+    q.pop();
+    reverse(q);
+    q.push(x);
+}
+
+generate numbers with given digits
+given a number n, print first n number(in increasing order) such that all the numbers have digits in set {5,6} in increasing order 
+
+    the idea is the maintain a queue push 5 and 6 into the queue
+    now we pop the number and append 5 and 6 to the popped item and push it into the queue
+
+    void genearte number(queue<int> &q){
+        queue<int> q;
+        q.push("5");
+        q.push("6");
+        for(int i=0;i<n;i++){
+            int x=q.pop();
+            cout<<x<<" ";
+            int p=x*10+5;
+            int r=x*10+6;
+            q.push(p);
+            q.push(r);
+        }
+    }

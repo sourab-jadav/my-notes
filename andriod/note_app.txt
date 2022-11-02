@@ -1,0 +1,220 @@
+
+fun main(){
+    println("hello kotlin");
+}
+main<enter>
+println<enter>
+
+variables in kotlin
+
+var keyword variables --mutable
+var name:String ="Nate";
+name="bike"     --fine
+
+val                 --immutable
+val name:String="Nate"
+println(name);
+
+
+top level variables         --variables outside the main
+
+**types in kotlin are non null by default         --you cannot assign null to non null types
+                                                    to assign null to the non null string we use ?
+                                                    val name:String?=null;
+
+kotlin supports type inferences on variables and properties     --we can ommit the type declaraction of the variable
+var name="sourab"
+
+val greeting="hello"
+**greeting=null               --gives you error because types are non null by default in kotlin
+    var greeting=null           --raises warning implicit nothing type  it doesn't what greeting is null type of ?
+                                    in this case we do
+                                    var greeting:String?=null;
+                                    fun main(){
+                                        greeting=null       --valid
+                                        greeting="hellow"       --valid
+                                    }
+
+if(greeting!=null){
+    println(greeting)
+}else{
+    println("hi");
+}
+
+when(greeting){
+    null    -> println("hi");
+    else    ->  println(greeting)
+}
+
+var greeting:String?=null;
+** val greetingtoprint=if(greeting!=null)greeting else "hi";
+val greetingtoprint=when(greeting){
+    null-> "hi"
+    else -> greeting
+}
+
+                    FUNCTIONS IN KOTLIN
+
+                    fun getGreeting():String{
+                        return "hello kotlin"
+                    }
+
+fun sayHello():Unit{
+    --Unit means returns nothing    you can ommit them from the functions
+}
+fun main(){
+    println(getGreeting())
+}
+
+fun getGreeting():String?{
+    return null;
+}
+
+**function support type inferences as well
+fun getGreeting():String="hello kotlin"     ==  fun getGreeting()="hello world";
+
+                  fun sayHello(itemToGreet:String){
+                      val msg="hello "+itemToGreet      == val msg="hello $itemToGreet"
+                      println(msg);
+                  }
+
+                  fun sayHello(itemtogreet:String)=println("hello $itemtogreet");
+
+
+                    ARRAYS IN KOTLIN
+
+                    fun main(){
+                        val intersetingthings=arrayOf("kotlin","programming","comic books");
+                        println(interestingthings.size)
+                        println(interestingthings.get[0])
+                        println(interestingthings[0]);
+                        for(interestingthing in interestingthing){
+                            println(interestingthing)
+                        }
+
+                        (or)
+                        interestingthings.forEach{interestingthing ->
+                            println(interestingthing)
+                        }
+
+                        (or)    to handle the index
+
+                        interestingthings.forEach{ index,interestingthing->
+                            println("$interestingthing is at index $index")
+                        }
+
+                    }
+
+
+                    LIST IN KOTLIN
+
+                    val interest=listOf("kotlin","programming","comic bookks");
+                    val interest=mutableListOf("kotlin","programming","comic books")
+                    interest.add("dogs")
+                        interestingthings.forEach{interestingthing ->
+                            println(interestingthing)
+                        }
+
+collection types in kotlin are immutable
+                    map in kotlin
+
+                    val map=mapOf(1 to "a", 2 to "b", 3 to "c")
+                    val map=mutableMapOf(1 to "a", 2 to "b", 3 to "c")
+                    map.put(4,"d")
+                    map.forEach{ key, vlaue -> println("$key-> $value") }
+                    
+
+
+                    fun sayHello(greeting:String,itemstoGreet:List<String>){
+                        itemsToGreet.forEach{ itemToGreet ->
+                             println("$greeting $itemToGreet")
+                         }
+                    }
+
+                    sayHello("hi",listOf("kotlin","programming","comic books"))
+
+                    vararg  represents a variable number of arguments
+
+                    fun sayHello(greeting:String,vararg itemstoGreet:String){       --itemstoGreet is an array of type String with variable args
+                        itemsToGreet.forEach{ itemToGreet ->
+                             println("$greeting $itemToGreet")
+                         }
+                    }
+
+                    sayHello("hi","kotlin","programming","comic books")
+
+                    interestingthings=arrayOf("kotlin","programming","comic books")
+                    sayHello("hi",interestingthings)        --returns error
+                    sayHello("hi",*interestingthings)        --return no error
+
+                    fun greetPerson(greeting:String,name:String)=println("$greeting $name")
+
+                    greetPerson(name="nate",greeting="hello")
+
+
+                    **fun greetPerson(greeting:String ="hello",name:String="kotlin")=println("$greeting $name")
+
+                    fun main(){
+                        greetPerson(name="Nate")
+                    }
+
+
+                    sayHello(greeting="hi",*interestingthings)      --gives error after you use name argument syntax everything that follows 
+                                                                        must be named
+                    sayHello(greeting="hi",itemsToGreet=*interestingthings)
+
+                    class Person{
+
+                    }
+
+                    --creating an instance
+                    val person=Person()
+
+                    class Person()      --() represents primary constructor |
+                    class Person(firstName:String,lastName:String){         |
+                        --properties for firstname and lastname             |
+                        val firstName:String                                |
+                        val lastName:String                                 |
+                                                                            |
+                        init{                                               |
+                                                                            |
+                            this.firstName=firstName;                       |
+                            this.lastName=lastName;                         |
+                        }                                                   |
+                    }                                                       |
+--getting rid of init block
+class Person(_firstName:String,_lastName:String){
+    val firstName:String=_firstName
+    val lastName:String=_lastName
+}
+
+val person=Person("seeta","rama")
+person.lastname
+person.firstnameo
+--simplifying little bit more
+class Person(val firstName:String,val lastName:String){
+
+}
+
+class Person(val firstName:String,val lastName:String){
+    init{
+        println("init 1")
+    }
+    constructor():this("peter","parker"){
+        println("secondary constructor")
+    }
+    init{
+        println("init 2")
+    }
+}
+
+val person=Person("Nate","Ebel")    --primary constructor is going to invoke    and init blocks are going to run
+    ** init blocks are always going to run before the secondary constructor
+
+hence secondary constructor is not really necessary because of deafult paramters values
+
+class Person(val firstName:String="peter",val lastName:String="parker"){
+
+}
+
+the above class property has getters availabe but no setters
