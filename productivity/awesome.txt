@@ -11,3 +11,12 @@ alt+n               minimize the tab
 alt+h and alt+l to adjust the screen size
 
 alt+space to change the layout
+
+--to work double click in a mouse follow the above instructions and reboot the system
+Alternatively, create /etc/X11/xorg.conf.d/70-touchpad-settings.conf with contents such as (I'm not sure if I got the syntax right):
+
+Section "InputClass"
+    Identifier "Touchpads"
+    MatchIsTouchpad "on"
+    Option "Tapping" "on"
+EndSection
