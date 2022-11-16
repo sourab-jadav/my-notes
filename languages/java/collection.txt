@@ -1,0 +1,235 @@
+
+
+====list interface
+
+--creating a list       --List<String> li=List.of("raju","mohan","raj")
+--getting size          ---li.size()
+--isEmtpy()             ---li.isEmpty()
+--accessing             ---li.get(0)
+--checking contains or not   --li.contains("raj")      --returns true or false
+                              ---li.indexOf("mohan")    --returns  -1 if not found
+
+--list are immutable if you try to add it throws      **UnsupportedOperationException
+
+        mutable lists are 
+        ArrayList
+        LinkedList
+        Vector              --these supports add operation
+
+
+**arrayList and linked list underneath ds is array        --accessing is fast insertion deletion is slow
+**linked list is linked list                              --accessing is very slow  insertion deletion is fast
+
+vectors 
+since 1.0
+thread safe       --thread safetly comes with performance impact
+
+ArrayList
+since 1.2
+no thread safety
+
+List<String> li=List.of("raju","mohan","raj");
+List<String> wordArraylist=new ArrayList<>();
+wordArraylist.addAll(li);
+
+
+
+operations of array lsit
+wordArrayList.set(6,"fish")       --6 is the index
+if duplicates are present removes the first instance of the element 
+
+----------------------------------------loopin in the ArrayList
+--using for
+for(int i=0;i<words.size();i++){
+  sysout(word.get(i));
+}
+--using foreach
+for(String word:words){
+sysout(word);
+}
+
+Iterator wordsIt=word.Iterator();
+while(wordsIt.hasNext()){
+  sysout(wordsit.next());
+}
+
+List<String> wordsal=new ArrayList<>(words);
+
+**modifying the arraylist using foreach loop does not work you have to use iterator
+for(String word:wordsal){
+    if(word.endsWith("at"){
+      wordal.remove(word);
+    }
+}
+--using iterator
+Iterator<String> iterator=wordsal.iterator();
+while(iterator.hasNext()){
+  if(iterator.next().endWith("at")){
+    iterator.remove();
+  }
+}
+
+****List<Integer> numbers=List.of(101,102,103,104,105)      --the values are autoboxed
+numbers.indexOf(101);   --here also the value is autoboxed
+numbers.remove(101);    --returns IndexOutOfBoundException    as it takes int not the Integer there are two methods one accepts int and other Integer
+numbers.remove(Integer.valueOf(101))      --solves our problem
+
+
+**if you want to sort method present in list interface then you need to use comparator
+
+List<Student> numberal=new ArrayList<>();
+numberal.sort(comparator);
+
+or you can use Collections class        ---collections.sort(numberarr);
+**you can only pass the arraylist of those class which implement comparable interface which has a methods calle public int compareTo(T o);
+
+    **now go the student class and implement Comparable interface
+          public int compareTo(Student that){
+            Integer.compare(this.id,that.id)        --compares ascending order
+          }
+            
+            now Collections.sort(studentarrlist)    --works
+
+            --in collections class there is another overloaded method which accepts comparator  --we implement comparator using another class not by student class
+
+            class AscendingComparator implements Comparator<Student>{
+              public int compare(Student s1,Student s2){
+                return Integer.Compare(s1.getId(),s2.getId());
+              }
+            }
+            Collections.sort(studenarrlist,new AscendingComparator());
+
+            or    studentarrlist.sort(new AscendingComparator());
+
+set interface   --container is immutable
+
+-->no positional access
+-->only unique elements
+
+Set<String> set=Set.of("apple","orangel","cat")
+set.add("apple")      --UnsupportedOperationException
+set<String> hashset=new HashSet<>();
+hashset.add("apple")
+
+**order is lost in the set so cannot remove and add at the specific position
+
+--uses hashing to store the elements    --by evaluating the hash function
+
+***sub classes which impements set are tree set and linked hash set and tree set
+Set<Integer> set=new LinkedHashSet<>();
+Set<Integer> name=new TreeSet<>();
+
+TreeSet implements NavigableSet and Set Interface
+
+TreeSet<Integer> numbers=new TreeSet<>(Set.of(50,60,34,24,45,55))
+
+numbers.floor()   <=
+.lower()        <
+ceiling         >=
+.higher         >
+.subSet(20,80)
+        included  ,excluded
+.subSet(34,true,65,true)    --both included
+.headSet(50)                --all numbers upto 50
+.tailSet(50)                --all numbers > 50
+
+
+
+****************************************QUEUE INTERFACE
+in addition to collection class methods it supports 
+  bool add
+  bool  after
+        remove
+        poll
+        peek()
+
+     ********************PRIORITYQUEUE      --elements stored in sorted natural order
+     Queue<String> queue=new PriorityQueue<>();
+     queue.poll()   -->if queue is empty return null removes from fron of the queue follows the ascending order by default
+     .offer("apple")
+     .addAll(List.of("zebra","memeory","cat"))
+
+     to change the default order of the priority    we do it by impelementing Comparator in a class
+     class StringLenth implements Comparator<String>{
+      public int compare(String s1,String s2){
+        return Integer.compare(s1.length(),s2.length();
+      }
+     }
+     Queue<String>queue=new PriorityQueue<>(new StringLength());
+     queue.addAll(List.of("elem1","ele2","el3");
+
+
+******************************************************************************** MAP 
+**map doesn't extend collection
+**used to store key value pairs
+
+interface Map<k,v>{
+int size();
+boolean isEmtpy();
+containKey()
+containValue();
+get(obj key)
+put(obj k,obj,va);
+putAll()
+clear();
+Set<k> keySet();      --can get a set with all the keys
+Collection<v> values()    --collection of vlaues
+Set<k,v> entrySet();
+boolean equals(obj parentObject);
+  
+      --four implementations of map
+      **Hashmap     --unordered and allows to store a key with null value
+      HashTable     --like vector thread safe   null not allowed in hash table
+      LinkedHashMap  --insertion order is maintained
+      **TreeMap       --sorted order is maintained implements navigablemap
+
+Map<String,Integer> map=Map.of("a",3,"b",5,"z",10);
+.get("z")
+.size()
+.isEmpty()
+.containsKey("a")
+.containsKey("f")
+.keySet()
+.values()
+
+Map<String,Integer> hashmap=new HashMap<>(map);
+hashmap.put("f",5)      --returns the previous value of the f else returns null
+hashmap.put("z",10)
+
+
+HashMap   --no insertion order 
+            no sorting order
+
+LInkedHashMap   --only insertion order
+TreeMap         --only sorting order
+
+counting the occurrences in a give string
+Map<Character,Integer> occurences= new HashMap<>();
+****int char[]characters=str.toCharArray();
+for(char character:characters){
+  Integer integer=occerences.get(character);
+  if(integer==null){
+    occerences.put(character,1);
+  }else{
+    occerences.put(character,integer+1);
+  }
+
+}
+sysout(occerences);
+
+for computing the words do the samething except to get the string array
+String [] words=str.split(" ");
+now traverse through the array and follow the same algorithm
+
+
+
+TreeMap<String,Integer> treemap=new TreeMap<>();
+treemap.higherKey("c");
+.ceilingKey()
+.lowerKey()
+.floorKey()
+.firstEntry()
+.lastEntry()
+.subMap("c","y");
+        included excluded
+      .subMap("B",true,"z",true);
