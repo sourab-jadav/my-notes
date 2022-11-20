@@ -233,3 +233,14 @@ treemap.higherKey("c");
 .subMap("c","y");
         included excluded
       .subMap("B",true,"z",true);
+
+
+      && operator checks if first operand is true if it is true it proceed further
+      || operator checks if first operand is false if the is false it proceeds further
+      ??  operator is nullish where undefined and null are only the falsy not 0 and ''
+          if the first operand is false it proceeds further
+
+for(const item of menu.items()){
+  console.log(item);
+}
+
