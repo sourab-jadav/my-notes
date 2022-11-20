@@ -187,7 +187,10 @@ test_scores[0]; | test_scores.at(0)      |vector_name.size() --returns the size 
 test_scores[1]; | test_scores.at(1)      |                                                       |    {1, 2, 4, 4},
 test_scores[2]; | test_scores.at(2)      |                                                       |    {1, 3, 4, 5}
 **always remember using [] for accessing vector will not do bounce checking                      |};
-
+                                          .pop_back()       --removes item from the end
+                                          .front()          --gets the front elements
+                                          .back()           --gets the last element
+                                          .capacity()        --gives the capacity of the element
 **************************************expressions,statements,operators******************************************
 
 expression--
