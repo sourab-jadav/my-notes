@@ -1,0 +1,109 @@
+in simple words it is an optimization over plane recursion
+the idea is to reuse the solution of sub problems
+memoization   --top down
+tabulation    --bottom up
+    
+    1-->bellman ford algorithm      --to find the shortest path from  source to all the destination
+    2-->floyd warshell algorithm    --to find the shortest path between every pair of vertices of a graphr
+    3-->diff utility                --to know the differences between two files(LCS)
+    4-->search close words          --find the matching word to the given wrong word(Edit distance )
+    5-->Resource allocation         --0-1 knapsack problem
+
+
+
+subsequences
+    picking 0 or more characters and which may not be contigous and their order has to be same as they appear in the input string
+    finding the ceiling element in an array using binary search
+
+    we have the low and we have the high
+    mid =low + high /2
+    if(arr[mid]==x){
+        return mid;       --return this is the index
+      }
+      else if(arr[mid]<x){
+        low=mid+1;
+      }else {
+          high=mid-1;
+        }
+
+        --trying to find the ceiling of the element using the binary search   --very useful in finding the longest in
+                                                                                creasing subsequence in an array
+        input array   {8,100,150,10,12,14,110}
+
+            we need to find the ceiling of the 10
+            get the middle index
+            if middle index is lesser than the element low=mid+1;
+            else if the middle index is greater than the element  high=mid;result=mid;
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------VARIATIONS OF LONGEST COMMON SUBSEQUNCE PROBLEM
+                    minimum deletions to make the array sorted
+                    maximum sum increasing subsequence
+                    what is a bitonic subseqence --a subseqence which is first increasing and than decreasing
+                        the idea is to 
+                            using lis we get the logest increasing from the right side of a pivot lis-left[] is made
+                            for calculating the left decreasing 
+                                  we calculate the logest increasing from the right side           lis-right[] is made
+                                  now we take max(result,lis-left[i]+lis-right[i]-1)
+------------------------------------------------
+
+finding the maximum number of cuts needed to cut a roop of the given length n with pieces a,b,c
+void findmax(int n,int a,int b,int c){
+
+  --in the recursive sol 
+  int dp[n];
+  dp[0]=0;
+  for(int i=0;i<n;i++){
+    dp[i]=-1;
+    if(i-a>=0)dp[i]=max(dp[i],dp[i-a]);
+    if(i-b>=0)dp[i]=max(d[i],dp[i-b]);
+    if(i-c>=0)dp[i]=max(d[i],dp[i-c]);
+    if(dp[i]!=-1){
+      dp[i]++;
+    }
+  }
+}
+                                                          --here the solution is constructed from the bottom up manner
+
+------------------------------------------------building bridges problem
+  the idea is sort the array according to the first element of the bridge
+  and find the longest increasing subsequence according to the second element
+                        -------------------------  longest chain of pairs
+                        we need to form longest chain pairs such that if a1,b1 appears before a2,b2 then a1,b1 should be less than
+                        a2,b2
+
+                        the idea is we first sort the array according to the first values
+                        after sorting we find the lis with the second value of the first element with the first value of the second element
+                            in the dp solution the constraint we have to put is arr[j].second < arr[i].first
+                                  then arr[i] can append at the end of lis found _by arr[j]
+
+15---minimum coins to make a value
+coins[]={25,10,5};    --val=30
+writing the recursive solution is pritty simple
+int min_coins(int arr[],int n,int value){
+  if(value==0){return 0;}
+  int res=INT_MAX;
+  for(int i=0;i<n;i++){
+    if(arr[i]<value){
+      sub_res=min_coins(arr,n,value-arr[i]);
+      if(res!=INT_MAX){
+        res=min(res,sub_res+1);
+      }
+    }
+  }
+  return result;
+}
+ 
+ the idea of the dp solution is to construct the solution from the base case
+                    i.e it returns 0 when the value is 0
+                    when the value is 1   1-1 0
+
+17      ---working with knapsack problem
+

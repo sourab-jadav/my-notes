@@ -1,6 +1,10 @@
-
+data types
+Int,Float,String,Double
 fun main(){
     println("hello kotlin");
+}
+fun main(){
+  println("hello kotlin");
 }
 main<enter>
 println<enter>
@@ -21,6 +25,8 @@ top level variables         --variables outside the main
 **types in kotlin are non null by default         --you cannot assign null to non null types
                                                     to assign null to the non null string we use ?
                                                     val name:String?=null;
+**?:    --elvis operator    --if expression is not null exp before ?: executes else after exectues  after
+val name= nullable variable ?. method/property ?: default value
 
 kotlin supports type inferences on variables and properties     --we can ommit the type declaraction of the variable
 var name="sourab"
@@ -52,6 +58,24 @@ val greetingtoprint=when(greeting){
     null-> "hi"
     else -> greeting
 }
+val x=3
+when (x){
+  2,3,4,5 -> println("mutlple options selected");
+  else    -> println("no options are selected");
+}
+
+when(x){
+  **2,3,5,7 -> println("x is a prime nubmer between 1 and 10");
+  **in 1..10  ->println("x is a number beteween 1 and 10, but not a prime nubmer.");
+  else      -> println(" x is not a prime nubmer between 1 and 10)
+
+}
+**use is keyword to check datatype
+when(parem){
+  is type -> body1
+    condtion2 -> body2
+}
+**val x:Any=4;    --indicated x can be of value other than Int type
 
                     FUNCTIONS IN KOTLIN
 
@@ -134,41 +158,87 @@ collection types in kotlin are immutable
                     sayHello("hi",listOf("kotlin","programming","comic books"))
 
                     vararg  represents a variable number of arguments
-
                     fun sayHello(greeting:String,vararg itemstoGreet:String){       --itemstoGreet is an array of type String with variable args
                         itemsToGreet.forEach{ itemToGreet ->
                              println("$greeting $itemToGreet")
                          }
                     }
-
                     sayHello("hi","kotlin","programming","comic books")
-
                     interestingthings=arrayOf("kotlin","programming","comic books")
                     sayHello("hi",interestingthings)        --returns error
                     sayHello("hi",*interestingthings)        --return no error
 
                     fun greetPerson(greeting:String,name:String)=println("$greeting $name")
-
                     greetPerson(name="nate",greeting="hello")
-
-
                     **fun greetPerson(greeting:String ="hello",name:String="kotlin")=println("$greeting $name")
-
                     fun main(){
                         greetPerson(name="Nate")
                     }
 
 
-                    sayHello(greeting="hi",*interestingthings)      --gives error after you use name argument syntax everything that follows 
-                                                                        must be named
+                    sayHello(greeting="hi",*interestingthings)      --gives error after you use name argument syntax everything that follows must be named
                     sayHello(greeting="hi",itemsToGreet=*interestingthings)
 
                     class Person{
+                      --properties
+                      val name="andriod tv"
+                      val category='entertainment'
+                      var deviceStatus="online"
 
                     }
+                    val per1=Person();
+                    class Person{
+                      fun turnOn(){
+                       } 
+                    }
+                    --getters and setters in kotlin
 
                     --creating an instance
                     val person=Person()
+
+                    --getters and setters in kotlin
+                    var speakervolume=2
+                      set(value){
+                        if(value in 0..100){
+                          field=value
+                        }
+                      }
+--primary and secondary constructors
+primary--     
+                    only one per class defined as part of class header
+                    can be default or parameterized 
+                    no body hence no code
+
+                    class name constructor (parameter){
+                      body
+                    }
+
+secondary--         can have multiple
+                    can define with or without param
+                    can initialize a class and has body
+                    if a class has primary constructor each secondary constructor needs to initialize the primary constructor
+
+                      --it has three parts sec declaration initialization body
+                      class name( parameters  --primary construc){
+
+                        //secondary constr declaration   //initialize primary const
+                        constructor(parameters) : this( primary constructor parame){
+                          body
+                        }
+                      }
+
+                      //eg
+                      class SmartDevice(val name:String, val category:String){
+                        var deviceStatus= "oneline"
+
+                        constructor(name:String,category:String,statusCode:Int):this(name,category){
+                          deviceStatus= when(statusCode){
+                            0 -> "offline"
+                            1 -> "online"
+                            else -> "unknown"
+                          }
+                        }
+                      }
 
                     class Person()      --() represents primary constructor |
                     class Person(firstName:String,lastName:String){         |
@@ -212,9 +282,32 @@ val person=Person("Nate","Ebel")    --primary constructor is going to invoke    
     ** init blocks are always going to run before the secondary constructor
 
 hence secondary constructor is not really necessary because of deafult paramters values
-
 class Person(val firstName:String="peter",val lastName:String="parker"){
 
 }
 
 the above class property has getters availabe but no setters
+
+
+
+
+
+----inheritence in action     --working with inheritence
+
+the base classs   --dwelling    abstract class    (properties must be abstract ,cannot create a instance)
+                                PROPERTY:
+                                  buildingmaterial:String
+                                  capacity:Int      --notmod
+                                  residents:Int   --private   --modifable
+
+        subclss   SqaureCabin
+                                PROPERTY:
+                                residents   --modifable 
+abstract class Dwelling(private var residents){
+    val buildingmaterial:String
+    val capapcity:Int
+    fun hasRoom():Boolean{
+        return residents<capacity
+      }
+  }
+

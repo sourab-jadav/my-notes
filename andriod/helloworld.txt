@@ -1,0 +1,53 @@
+onCreate()    --function is the entry point to this app
+setContent()   --function with setContent() is used to define your layout through composible functions
+              
+
+@composable
+fun DefaultPreview(){                       --this function enables us preview the ouput with out actually building it
+  MyApplicationTheme{
+    Greeting("andriod");                            
+}
+
+--@Composable function names are capitalized
+--they don't return anything
+
+---how do we start creating the first hello word project using composable interface
+
+--import all the necessary packages
+    --we inherit the ComponentActivity and override the onCreate(SavedInstance?:Bundle)   --function
+        --take onCreate method from the ComponentActivity() class and implement
+              --use setContent (){}   --function to change the layout 
+              --use Surface container to alter the ui throughout the container  
+              --Modifer method is used to change the properties like padding on the container
+
+class MainActivity : ComponentActivity(){
+  override fun onCreate(savedInstanceState:Bundle?){
+
+    super.onCreate(savedInstanceState){
+      setContent(){
+        --select the theme
+          MyApplicationTheme(){
+            Surface(color=Color.Magenta,modifier=Modifier.padding(24.dp)){
+              Greeting("sourab this from")
+            }
+          }
+            
+      }
+    }
+  }
+}
+@Composable
+fun Greeting(name:String){
+  Surface(color=Color.Green){
+    Text(text="Hello $name!",modifier=Modifier.padding(24.dp))
+  }
+}
+
+--code to preview without building the app
+@Preview(showBackground=true)
+@Composable
+fun DefaultPreview(){
+  MyApplicationTheme(){
+    Greeting("andriod");
+  }
+}

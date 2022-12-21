@@ -1,0 +1,75 @@
+
+jetpack compose is the modern way of building the ui with less code  powerful tools and inteviute kotlin api's
+
+three basic standard layout in compose are Column, Row and Box ,They are Composable functions that take Composable content, so you
+ can place items inside. For example, each child within a Row will be placed horizontally next to each other
+
+ Row( content= {
+   Text("some text")
+   Text("some more text")
+   Text("last text")
+   }
+)
+  --is similar to the below     --as last parameter of the Row expects function as a parameter below is the simplest way to do it
+ Row{
+   Text("some text")
+   Text("some more text")
+   Text("last text")
+ }
+
+
+--similar working with the Column 
+Column{
+  Text(
+    text="message of something",
+    fontSize=24.sp
+    )
+  Text(
+    text="some another text",
+    fontSize=24.sp,
+    )
+}
+
+
+---working from the bottom from the top to create a basic ui
+1--import the required compose compnonents and libraries
+2--inherit the ComponentActivity
+3--override the onCreate()  --fun
+4--override the onCreate()  --method
+    5--implement setContent() --property
+
+
+class MainActivity : ComponentActivity(){
+  override fun onCreate(savedInstanceState:Bundle?){
+  super.onCreate(savedInstanceState){
+    setContent(){
+      MyApplicationTheme(){
+          Surface(modifier=Modifier.fillMaxSize(),color=MaterialTheme.colors.background){
+            Greeting("sourab")
+          }
+    }
+  }
+}
+}
+@Composable
+fun Greeting(name:String){
+  surface(color=Color.Green,modifier=Modifier.padding(24.dp)){
+    Row{
+      Text(
+      text="hello brother ",
+      fontSize=24.sp
+      )
+      Text(
+      text="$name",
+      fontSize=24.sp
+      )
+  }
+}
+
+@Preview(showBackground=true,showSystemUI=true)
+@Composable
+fun DefaultPreview(){
+  MyApplicationTheme{
+    Greeting("andriod")
+  }
+}

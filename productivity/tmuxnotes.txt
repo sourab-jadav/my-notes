@@ -12,10 +12,16 @@ prefix+ : -->to go into the command mode
 ctrl+b o toogle between the current and previoius pane
 
 set-window-option mode-keys vi ==>copy mode inn tmux
+ctrl+b &
 to start a new session :new
                         tmux new
                         tmux new-session
-                        tmux new -s myssession
+                        tmux new -s myssession    --start a new session with name mysession
+
+killing a session
+                    --tmux kill-session -a
+                    --tmux kill-session -a -t
+                    kill-session -t mysession
 
 rename the session    ctrl+b $
 rename the current window ctrl+b ,

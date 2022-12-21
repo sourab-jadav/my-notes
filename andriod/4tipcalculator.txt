@@ -1,0 +1,7 @@
+ui elements used in this project
+
+EditText
+TextView
+RadioButton
+RadioGroup
+Switch

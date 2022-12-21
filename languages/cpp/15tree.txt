@@ -1,2 +1,7 @@
 ----------------------------------------------working tree data structure
+binary heaps are mainly used to represent priority queues which are used for djikstra's algo halfman algo
+trie is used to reprsent dictonaries
+suffix tree is used to do fast searches in a stringc    --the time is proportionals to the length of the pattern not the text
+binary index tree is used for range query searches    --is fast for limited range
+segment tree does the same thing but more powerfull
 

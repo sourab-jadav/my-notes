@@ -552,7 +552,7 @@ eDP-1 connected primary 1366x768+0+0 (normal left inverted right x axis y axis) 
 HDMI-1 disconnected (normal left inverted right x axis y axis)
 DP-1 disconnected (normal left inverted right x axis y axis)
 HDMI-2 disconnected (normal left inverted right x axis y axis)
-❯ xrandr --output eDP-1 --brightness 0.5
+❯ xrandr --output eDP-1 --brightness 0.5      //to know the name of the output run just xrandr and you will know it
 
 ====================ctrl commands
 ctrl+a                  ----to go to the starting position
@@ -564,3 +564,6 @@ ctrl+d (delete)         ----to delete character after cursor
 
 try alacrity which is very fast
 
+xinput list     --to list the devices
+xinput float <id>   --to disable the device temporarily
+xinput reattach <id>    --to enable the device

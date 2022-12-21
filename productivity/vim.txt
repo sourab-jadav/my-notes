@@ -1,6 +1,7 @@
 shift+h shift+l  for switching between buffers
 gr to see the references
-gd  go to defination
+gd  go to defination        --jump to the variable declaration
+gD                          --go to the global declaration of the variable
 
 space+f  fuzzy search
 -------searching
@@ -16,7 +17,6 @@ vim.cmd "<vimscript>"  ==>runs the vim script
 vsplit
 split --horizontaally
 
-
 we are using packer.nvim as our plugin manager
 o
 ctrl+k
@@ -24,7 +24,6 @@ ctrl+j
 ctrl+e remove the popoup
 ce remove the word
 ctrl+space
-
 
 v% to select the text in the brackets in visual mode                                                     
 o                           --moves the cursor to the opposite end of hightlight                         
@@ -40,8 +39,7 @@ set tabstop?<cr>(wdith of the tab)
 set expandtab<cr>(inserts the appropriate number of spaces instead of tab characters)
 set list(for tabs to visible)
 
-
-**--------------------------------------indenting the lines go to the biggest line possible
+#*--------------------------------------indenting the lines go to the biggest line possible
 type $,o A type |
 :'<,'>center    --commands uses default of 80 columns to center with
 :'<,'>center[ce] 40  --centers within the column of 40
@@ -51,7 +49,6 @@ type $,o A type |
 
 **-----substitution in visual mode
 :'<,'>s/usa/USA/<cr>
-
 
 ~ - Switch case
 c - Change
@@ -67,22 +64,17 @@ U - Make uppercase
 > - Shift right
 < - Shift left
 
-
-
 cf<character>  
 
 gr   produces the quick fix list showwig the references
 gd   goes to the difination
 
-
 > in the fileexplorer to jump over the folders
 
 ctrl+o,i to move to prvious curson position
 
-
 substitute command
 use gc flag to do interactive replacement
-
 
 =============to navigate in a large text===========
 gk,gj,g^,g$,g-middle
@@ -101,10 +93,6 @@ z-          --current line under cursor at the end
 z.          --current line under curosr at the middle
 
 :jumps      [ju]
-
-
-
-
 
 =======================default buffers command===========
 :ls                             --list buffers
@@ -126,7 +114,7 @@ inactive                        --not loaded inoto meory
 h +                             --+ indicates we have usaved changes and h represents it is hidden buffer
 +                               --changes not saved
 
-
+:next *.txt                     --adding multiple files into a vim session
 set hidden                      --allows to switch between buffers witout saving them
 :badd <filename>(or):e <filename>--add file the current vim sessions
 :bd3                            --delete the buffer3
@@ -152,14 +140,12 @@ or
 :qall!                          --abanden the changes and quit
 :E<cr>                          --open explorer
 
-
 =============================window==================== 
 :sp  or  <ctrl w s>             --horizontal split
 :sp <filename>                  
 
 :vs  or <ctrl w v>              --vertical split
-:on=:only                       --close all windows except the current one
-
+**:on=:only                       --close all windows except the current one
 
 --------------open all the files in the seperate window
 qr                      --recording macro in the r register
@@ -192,15 +178,45 @@ ctrl w R --rotate in the opp direction
 ctrl w H -- moves the current window to the far left
 ctrl w L -- moves the current window to the far righr
 
-
 ctrl w J -- moves the current window to the far bottom
 ctrl w K -- moves the current window to the far top
 
 ba                          -----to open all the buffers as widow
 :windo %s/#/@/g | w
 
-                                                                     
+:marks                    --lists all the files that you visted
+`<mark num>               --goes to the required file
+:ju                       --lists of the jumps of the current file
+<num>ctrl-o               --goes back or upword in the ju list
+<num>ctrl-i               --goes forward or down in the ju list
+:g/^$/d                   --delete all the empty lines in the file
+:g/^\s*$/d                   --delete all the empty lines in the file
 
+             
+:g/^$/,/./-j              Reduce multiple blank lines into a single blank lines
+:g/pattern/d                  Delete the line which has a specific pattern
+:g/pattern/ .               Extract lines with specific pattern and write it into another file
+w>>filename               Reverse a file
+:g/^/m0                   Add a C Style comment ( /* text */ ) to all lines
+:g/^\s*PATTERN              matching the pattern
+/exe "norm! I/*
+\<ESC>A */\<ESC>"
+
+:g!/Sales/d                   --delete all lines except the one containing Sales
+
+. reg stores the previous typed text in the insert mode
+:abbr ss simply fantistic     --creates an abbrevation for ss as simply fantistic
+ls                            --type k on the word to visit its manpage
+:set keywordprg=perldoc\ -f           To look up things other than Unix man pages, specify a different keywordprg. 
+**use align.vim plugin to align the on one parameter :'<,'>Align =
+
+=========================g power
+gf                              --open a files undercursor
+
+
+
+
+                                                                     
 
 increement with ctrl+a on the number line |to get the above result vertical highlight go down and g ctrl a
 21                                        |1
@@ -215,7 +231,6 @@ increement with ctrl+a on the number line |to get the above result vertical high
                                            10
                                            11
 
-
 ---deleting a block of text
 ctrl v shift g shift d
 
@@ -224,7 +239,6 @@ ctrl v shift g shift d
     
 
     working on takiya vim config file
-
 
     what we will get 
         open a new tab
@@ -239,16 +253,7 @@ ctrl v shift g shift d
         autoimport with nvim-cmp
         tailwind css language server with mason.nvim
 
-
-
-
-
-
-
-
         ingredients
-
-
 
         packer.nvim     --a plugin manager foor nvim
 
@@ -296,8 +301,6 @@ ctrl v shift g shift d
 
         git.nvim            --a simple clsone of the plugin vim-fugitive
 
-
-
 writing lua in the nvim :lua print('hello')
 
 in .config mkdir nvim
@@ -306,7 +309,6 @@ where binary is located         --which nvim
 
 create symlink for the installed neovim or create an aliase for the neovim
             ln -s (which nvim) /opt/homebrew/bin/vim
-
 
 ----------in .config/nvim/    init.lua    -->add print('init.lua loaded')
 
@@ -322,16 +324,12 @@ config
         plugin
 --------------------
 
-
 now ready to write the base configuration of lua
-
-
 
 M=vim.opt
 M.scriptencoding='utf-8'
 M.encoding='utf-8'
 M.fileencoding='utf-8'
-
 
 M.nu=true;
 M.autoindent=true;
@@ -357,9 +355,7 @@ backspace='start,eol,indent'
 **path:append{'**'}               --finding files search down into subfolders
 wildignore:append{'*/node_modules/*'}
 
-
 --undercurl
-
 
 vim.api.nvim_create_autocmd("InsertLeave",{     --turn off paste mode when leaving insert mode
     pattern='*',
@@ -367,10 +363,6 @@ vim.api.nvim_create_autocmd("InsertLeave",{     --turn off paste mode when leavi
 })
 
 vim.apt.formatoptions:append{'r'}
-
-
-
-
 
 =================highlights.lua
 cursorline=true;
@@ -380,22 +372,17 @@ wildoptions='pum'
 publend=5
 background='dark
 
-
-
 ============================================maps
 
 local keymap=vim.keymap
 
 keymap.set('n','x',"_x")                    --do not yank with x
 
-
 keymap.set('n','+','<C-a>')                 ---****to increase
 keymap.set('n','-','<C-x>')                 ---****to decrease
 
 keymap.set('n','dw','vb"_d')                -----delete a word backwords
 keymap.set('n','<C-a>','gg<S-v>G')          -----**select all
-
-
 
         TABS
 keymap.set('n','te',':tabedit<Return>')

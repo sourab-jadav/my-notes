@@ -4,6 +4,7 @@ skyblue color #109ad
 
 
 too align the container at the middle of the page
+try using padding except the hight property for the container
 
 
         --> set the width to 800px
@@ -212,6 +213,18 @@ row-gap:40p
         justify-self
         align-self
         ================================
+grid areas****************************************
+.item1 {                                                    --checkout w3schools to look more breefly
+  grid-area: myArea;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas: 'myArea myArea myArea myArea myArea';
+  grid-gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
 
 
 
@@ -221,6 +234,8 @@ row-gap:40p
 grid-template-columns:repeat(4,1fr);
 grid-template-rows:1fr auto;  //auto takes only space that is needed to store the text
 
+**while working with grid layout no need to worry about the padding on left and right of the container items
+      grid layout is going to take care of it
 
 
 
@@ -298,6 +313,7 @@ websites==========>opecolors.github.io
                 text should not be completely black
 
                 on darkk colored backgrounds try too use a tint for the text
+                https://colors.artyclick.com/color-shades-finder/?color=#70E6D2
 
                 
 ===========================================================================
@@ -419,3 +435,58 @@ div{
     align-items:center;
     box-shadow:0px 0px 16px 0px rbga(0,0,0,0.5);
 }
+
+
+
+========================================TRANSITION PROPERTY
+has only two properties
+transition-property:  width;
+transition-duration:2s;
+----extra
+transition-timing-function:
+transition-delay:
+ease 	  --slow start fast end
+linear 	--same speed throughout
+ease-in --slow start
+ease-out --slow end	
+ease-in-out --slow start and slow end
+step-start 	--transition in step process
+step-end    --transition in steop process at the end of the time
+div {
+  width: 100px;
+  height: 100px;
+  background: red;
+  transition-property: width;
+  transition-duration: 2s;
+}
+div:hover {
+  width: 300px;
+}
+
+========================================TRANSFORM
+
+working with background iamges
+properties
+background-image:url("");
+background-repeat:no-repeat;
+background-size:cover;            ***--to make sure the image is fitted to the scrreen without zoom
+                                      if the image is small it will stretch it to fit
+background-blend-mode:multiply        --it will blend the background color with the background image and chooses the darkest color possible
+                      lighten         --it will blend the background color witht the background image and chooses the lightest color possible
+
+outline:2px solid black;          --it borders out the area of the container
+//background-size:100%(wide) 50px(tall);
+
+background-position:<x-axis> <y-axis>; 50% 10px;
+background-position:center right;
+**background-position:top 20px right 50px;
+
+----working with multiple images
+background-image:url(" "),url(" ");
+background-repeat:no-repeat,repeat;
+background-position:right -20% bottom 0px,top left;
+background-size:auto,10%;
+
+[class="bg-"]{        --selecting all classes starting with bg-
+
+  }

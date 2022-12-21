@@ -41,7 +41,7 @@ jonas                   ---uncaught reference error:jonas is not defined
 **********VAR KEYWORD
 global scope or function scope      --once declared globally can be accessed anywhere
 redeclaration is possible and update is possible
-**useing variable before declaration initializes with undefined value
+**useing variable before declaration initializes with undefined ionvalue
 hoisting is done width initializing as the default value undefined
 
 
@@ -184,7 +184,7 @@ console.log(`I'm ${2037 - 1991} years old ${me}`);--here inside {} javascript ex
 //the condition operator
 const age = 23;
 // age >= 18 ? console.log('I like to drink wine 🍷') : console.log('I like to drink water 💧');
-const drink = age >= 18 ? 'wine 🍷' : 'water 💧';
+const drink = age >= 18 ? 'wine 🍷' : 'water 💧';       --working with terinary opeartor
 console.log(drink);
 
 
