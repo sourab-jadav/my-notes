@@ -31,12 +31,13 @@ chekcout git worktree
        git branch -D <branch name> ------->force delete
 
 -----------------difffing-------
-
-
+git difftool --tool-help    --to see what diffind tools are available on your system
+git diff            to see what you've changed but not yet staged **git only show the unstaged changes
 git diff head  --> list all the changes to the working directory since your last commit
 git diff head currentworkdir
 
 git diff staged --> diff current directory staging area
+                    to see what you have staged that will go into the next commit **SHOW's ONLY THE STAGED CHANGES
 git diff cached --> diff last commit and staging area
 
 git diff head [filename] get the diff of the specific file

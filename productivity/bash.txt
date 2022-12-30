@@ -328,6 +328,9 @@ COMMANDS:
 =======================for checking the disk spcace=========
         df -h
         lsblk
+        blkid
+        umount
+        mount
         fdisk -l        --list all the divices on the system
         fdisk /dev/vda
         type m for help
@@ -397,6 +400,10 @@ COMMANDS:
 
 --------------------MOUNTING NTFS FILE SYSTEM (WHICHI S A WINDOWS SUPPORTED FILE SYSTEM)
 /dev/sda6	/media/sourab/backup	ntfs-3g rw,uid=1000,gid=1000,umask=0022,fmask=0022	0	0
+install ntfs-3g on the linux using pacman or apt to support mounting windows on linux
+        -------------read only file system error
+        umount the drive like   umount /dev/sdb6
+        do ntfsfix /dev/sdb6 and then mount /dev/sdb6
 
 sda6 is a drive name
 
@@ -561,8 +568,10 @@ ctrl+b                  ----to move towards left
 ctrl+c                  ----to interrupt
 ctrl+d (delete)         ----to delete character after cursor
 
-
+    ---terminal settings
 try alacrity which is very fast
+alt+f3    --to get the border options
+
 
 xinput list     --to list the devices
 xinput float <id>   --to disable the device temporarily

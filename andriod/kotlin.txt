@@ -311,3 +311,8 @@ abstract class Dwelling(private var residents){
       }
   }
 
+classes in kotlin are final by default make it open --so that it support inheritence and other class can inherite it 
+
+***override     --to override the the property ot method present in the parent class
+
+
