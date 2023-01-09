@@ -1,0 +1,6 @@
+take the example of the gcd of 84 and 96
+
+the remainder is 12 which is divisible by 84 if it is divsible by 84 then 
+it will surely be divisble by multiples of 84
+
+practise the example to understand how hcf works behind the hood

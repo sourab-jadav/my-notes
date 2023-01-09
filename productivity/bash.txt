@@ -2,9 +2,7 @@
 soft link if you remove the file the link will be pointed to the null
 ln -s <path of the file>
 hark link if you remove the file the link will not be pointed to the null and its still there ln <path of the file>
-
-
-
+export PATH="$PATH:$HOME/scripts"   --export the script to the global path environment variable
 
 read
 w
@@ -326,7 +324,7 @@ COMMANDS:
 
 
 =======================for checking the disk spcace=========
-        df -h
+        df -h   --to show the disk usages
         lsblk
         blkid
         umount
@@ -576,3 +574,8 @@ alt+f3    --to get the border options
 xinput list     --to list the devices
 xinput float <id>   --to disable the device temporarily
 xinput reattach <id>    --to enable the device
+
+
+
+===to the show the menu bar in the window 
+press ctrl+m

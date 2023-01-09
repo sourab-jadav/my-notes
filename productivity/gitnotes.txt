@@ -13,6 +13,7 @@ git config --global init.defaultBranch main
 git config --global color.ui auto
 git log
 git log --oneline
+git log -p    --the show the log with changes made along the way
 
 
 git branch <branch name>
@@ -36,8 +37,7 @@ git diff            to see what you've changed but not yet staged **git only sho
 git diff head  --> list all the changes to the working directory since your last commit
 git diff head currentworkdir
 
-git diff staged --> diff current directory staging area
-                    to see what you have staged that will go into the next commit **SHOW's ONLY THE STAGED CHANGES
+git diff staged --> to see what you have staged that will go into the next commit **SHOW's ONLY THE STAGED CHANGES
 git diff cached --> diff last commit and staging area
 
 git diff head [filename] get the diff of the specific file
@@ -49,6 +49,9 @@ git diff commit1..commit2  to compare between the two commits
 git diff HEAD HEAD~1 OR  git diff HEAD~1
 **git diff -->unstaged changes
 git diff HEAD --> staged and unstaged changes
+
+git rm --cached <filename>    --to remove the file from the staging area and make untracked
+git rm <filename>           --remove the file and stage the changes
 
 
 

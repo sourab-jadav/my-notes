@@ -1,73 +1,29 @@
+container-fluid --matches to the screen
+container       --matches the scrren at the 576px
 
-download the bootstrap and open in the vscode
+--working with the grid container
 
-create file index.html
+.container
+row
+col-2   --acquires 2 cols spaces out of 12 cols in the 1 row
+col-sm-2  --under small screen 2 col spaces
+col-md-4  --under mid screen 4 col spaces
 
-    <head>
-    <link rel="stylesheet" href="css/bootstrap.css" />
-    </head>
-    <body>
-    <h1>Hello world</h1>
-    <script src="js/bootstrap.js"></script>
-    </body>
-    </html>
+<div class="col-6 col-sm-4 col-mid-2"></div> --under extra small col-6 applies
 
+6 cols layout using row cols class="row row-cols-6"
+<div class="row row-cols-6">    --makes 6 cols in the rows different from col-6(occupies 6 cols of space)
+            <div class="col">1</div>
+            <div class="col">2</div>
+            <div class="col">3</div>
+            <div class="col">4</div>
+            <div class="col">5</div>
+            <div class="col">6</div>
+</div>
 
-    --using cdn
-    create index.html
-    copy past the jsDeilvr two links
-    css in the head
-    and js down below the body
-
-
-    --using package manager
-    npm init
-    creat index.html
-    npm install bootstrap
-
-
-    <head>
-        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css"/>
-    </head>
-
-    <body>
-        <h1>hello world</h1>
-        <script src="node_modules/bootstrap/dist/js/bootsrap.bundle.js"></script>
-    </body>
-
-
-    npm install @popperjs/core
+align-items-start
+align-itmes-end
+align-items-center
 
 
 
-    --grid system
-extra large    >1400px         split into 12 cols in a single row .col-xl
-large           >992px          split into 4 cols                   .col-lg
-medium          >768px          splits into 3cols                   .col.md
-small           >576px          splits into 2cols(6 unit each)      .col-sm
-extra small     <
-
-
-<div class="container border">container</div>
-<div class="container-fluid border">container</div>    --container  uses whole width
-<div class="containermd border">container</div>
-
-.container-md border
-
-div class="row"
-    div class="col" col1
-    div class="col" col2
-    div class="col" col3
-
-
-    div class="col-4" col1
-    div class="col-4"  col2
-    div class="col"  col3
-
-    div class="col-md-8" col1       --controlling the medium scrren
-    div class="col-md-4" col1
-
-
-    div class="col-lg-8 col-md-6" col1       --controlling the medium scrren
-    div class="col-lg-4 col-md-6" col1
-    
