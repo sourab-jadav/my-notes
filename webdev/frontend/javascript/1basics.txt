@@ -94,7 +94,30 @@ Uncaught ReferenceError: Cannot access 'a' before initialization
 
 7 premitive datatypes
 Number,String,Boolean,Undefined,Null,Symbol,BigInt(optional)
+Number object
+const numobj= new Number('123');  //number object
+or   const numobj= new Number(123);//the object is created with type Number
+const num= numob.valueOf()      //number primitive
+const numStr = numObj.toString() // string representation
+console.log(numObj === 123) // false
 
+
+=string Methods
+str.match(pattern)
+pattern.test(str)
+
+const strObj = new String("abcde") // String object
+const str = strObj.valueOf() // string primitive
+strObj.match(/ab/)
+str.match(/ab/) // both call will work
+
+
+//JSON
+--convert the string to json object  JSON.parse(strobj(orstring))
+
+--convert from json object to string  JSON.stringify(jsonobj)
+
+--make the string prettify with spaces and new lines JSON.stringify(obj,null,2)
 
 
 
@@ -242,6 +265,16 @@ console.log(yearsUntilRetirement(1991, 'Jonas')); console.log(yearsUntilRetireme
 
 
 //arrays
+in javascript there are two ways to create arrays
+as arrayobjects and as array literals
+array obj methods like
+      indexOf(),
+      map(),
+      slice(),
+      join();
+
+const arr= new Array()    --array object
+const arr=['this ','is','array','literal']; --array literal
 
 const friends = ['Michael', 'Steven', 'Peter'];
 const y = new Array(1991, 1984, 2008, 2020);
@@ -273,7 +306,7 @@ console.log(friends.includes('Steven')); --returns true or false
 
 
 
-//objects
+//objects     --these are  array objects
 const jonasArray = [
   'Jonas',
   'Schmedtmann',
@@ -282,6 +315,9 @@ const jonasArray = [
   ['Michael', 'Peter', 'Steven']
 ];
 
+--below are the data objects
+they can also be created as const obj= new Object({a:1});
+    their methods are  include .keys(),.entries(),.values(),.assign()
 const jonas = {
   firstName: 'Jonas',
   lastName: 'Schmedtmann',

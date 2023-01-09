@@ -1,0 +1,88 @@
+tech stacks
+
+frontend layer    --ui for the end user
+backend layer     --server side runtime   aws,cloud
+
+graph ql
+strype
+twilio
+
+mean    mongodb,express,angular,node
+mern    react
+mevn    view
+
+stackshare.io
+
+
+frontend layer
+
+web 
+    --frontend
+    typescript
+    --ui framework
+    react   --react native for mobile application
+    --statemanagement option
+    redux
+    tailwind for styling quickly
+    sass 
+    post css to purge unused css and put it to production
+
+    --module bundler
+    webpack
+
+    --database
+    mongodb 
+    cloud firestore
+        --relational databases
+        mysql
+        redis used as cache
+        --need server side runtime
+        python  --flask or django
+        spring  --java
+        nodejs runtime and nestjs framework to handle serverside webapplication stuff
+    --webserver like nginx or apache
+    
+    now that we have  a server framework we need to figure out
+    how to desploy it to do that we need to standardized the environment for our code
+    by containerizing it with docker this creates a standard linux environment
+    that we can use to deploy our code in a cloud server
+
+    but as our app scales we need to orcastrate multiple containers
+    for that we need kubernetes then we need to chose one of the cloud
+      providers to this infastructure
+
+      we use --terraform to programetically create our infrastructre
+      and version it for the better reliability
+
+      now we also need a place to host our source code  --github
+          --the reason to host our source code is to setup a continous integration pipeline
+
+      --github actions to test and redeploy our code any time we push and update to our repository
+
+
+      building an api to communicate the frontend with the backend
+      --graphql with the library apollo which will provide code for both our frontend and backend
+      that help us build our graphql api 
+
+
+      --stripe for managing the payment which provides sdks for both the frontedn and server to collect payments 
+      --auth0   for userauthentication
+      --aws rekognition with its deep learning dick detection capabilites
+      --twilio    to send text messages to our users 
+
+    
+ios
+andirod
+desktop
+iot
+
+
+
+petite-vue  --we do not need a module bundler
+bootstrap   --for the css
+ionic       --to wrap our application in a web view allowing to quickly ship to ios and andriod
+
+--backend
+firebase
+firebase cloud function   and deploy it with the simple command
+

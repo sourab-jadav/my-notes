@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    //wokring with .createElement .setAttribute .createTextNode .appendChild
+
+    //create the html element div and set it attributes to id= main
+    const transContainer = document.createElement('div').setAttribute('id', 'main')
+
+    //create the content using textnode and append it to the transContainer
+    const content = document.createTextNode('<h1>something something</h1>')
+    transContainer.appendChild(content)
+    document.body.appendChild(transContainer)
+
+    const main = document.getElementById('main')
+    console.log(main, main.offsetWidth, main.offsetHeight);
+
+
+</script>
+
+<body>
+</body>
+
+</html>
