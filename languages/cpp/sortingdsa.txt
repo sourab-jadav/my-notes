@@ -10,6 +10,12 @@ char arr2[]={'b','c','a','c'};
     if you wish to do it in decrease order first do Arrays.sort() and call the reverse function on the array
 
 this comparator restriction is only for primitive types you can use comparator in case of non primitive types
+**IN THE COMPARATOR IF THE RETURN VALUE IS NEGATIVE THEN THE FIRST ARRAY ELEMENT IS GOING TO PREFFERED IF POSITIVE THEN THE SECOND 
+ARRAY ELEMENT IS GOING TO PREFER
+
+Arrays.sort() -->to sort normal array of primiteve type (unstable(dual pivot quick sort) and no comparator(use Collections.reverseOrder())to sort in reverse
+use -->(arr,[startindex],(endindex) to sort part of an array) and nonprimite type(stable(based on merge sort))
+Collections.sort()    -->to sort the elements that implements collection interface
 
 
 **Arrays.sort() can sort a sub array of a given array |Point arr[]{new Point(10,20),new Point(3,12),new Point(5,7)}
@@ -166,6 +172,32 @@ for(int i=1;i<n;i++){                 |        for(int i=0;i<n;i++){            
                                                                                           arr[k++]=arr[i++];
                                                                                       }
                                                                                   }
+---increasing the memory rights in the selection sorts
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[i]) {
+                swap(arr[j], arr[i]);
+            }
+        }
+    }
+    --variation of insertion sort which considers only increasing numbers
+        for (int i = 1; i < n; i++) {
+        int temp = arr[i];
+        int j = i - 1;
+        while (arr[j] > arr[i] && j >= 0) {
+            arr[j + 1] = arr[i];
+            j--;
+        }
+        if (j != i - 1) {
+            arr[j + 1] = temp;
+        }
+    }
+        before sorting
+    8 45 2 3 27 56 25 
+    the size of the array is 7 
+    after sorting the array is
+    2 2 2 3 25 25 25
+
 
 void mergesort(int arr[],int l,int r){ |                                     |cyclesort---
     if(r>l){                           |                                     |for(int cs=0;cs<n;cs++){
@@ -357,6 +389,53 @@ because he gone through the broswer battles he definately didn't was hesitent to
 and only when we have something to show we had a chance to show the product that got people exited but it is it's a good lesson if you have a set
 of commited people passionate people you can achieve even i couldn't have foreseen what it would eventually become shows the power of small group of
 committed people 
+
+--merging the intervls in cpp written by sourab
+#include <iostream>
+#include <algorithm>
+using namespace std;
+struct interval {
+    int start;
+    int end;
+};
+bool comparator(interval a, interval b) {
+    return a.start < b.start;
+}
+int main(int argc, char const *argv[]) {
+    interval arr[]{{1, 3}, {6, 8}, {2, 4}, {5, 7}};
+    cout << "before sorting the elements are " << endl;
+    for (auto x : arr) {
+        cout << x.start << " " << x.end << endl;
+    }
+    cout << "after sorting the elements are " << endl;
+    int n = sizeof(arr) / sizeof(arr[0]);
+    sort(arr, arr + n, comparator);
+    for (auto x : arr) {
+        cout << x.start << " " << x.end << endl;
+    }
+    // logic for merging the overlapping intervals
+    // how do you write a comparator for cpp sorting algorithm
+    // mergin overlapping intervals
+    //{{1,3},{2,4},{5,7},{6,8}}
+    cout << "after merging the values are " << endl;
+    int i = 0;
+    while (i < n) {
+        int j = i + 1;
+        while (j < n) {
+            if (arr[j - 1].end > arr[j].start) {
+                arr[i].start = min(arr[i].start, arr[j].start);
+                arr[i].end = max(arr[i].end, arr[j].end);
+                j++;
+            }
+            else {
+                break;
+            }
+        }
+        cout << arr[i].start << " " << arr[i].end << endl;
+        i = j;
+    }
+    return 0;
+}
 
 axiom.ai lets you create bots automate anything on the internet
 wolfrome alpha.com uses ai to answer complex questions in math,

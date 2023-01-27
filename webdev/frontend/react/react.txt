@@ -1,0 +1,5 @@
+frontend frameworks
+
+frameworks are larger than a typical library   eg moment js   date and time library for javascript 
+
+pseudo component

@@ -36,6 +36,7 @@
 
 
 std::vector<int> v{1,5,3};                                                |more details:-                                                                |
+vector<bool> m(24,false);
                                                                           |                                                                              |
 std::sort(v.begin(),v.end());                                             |    it is a hybrid of quick sort heap sort and insertion sort(intro sort)     |
 std::sort(v.begin(),v.end(),greater<int>);//descending order              |    by default it uses quick sort if it is doing unfair partitioning          |

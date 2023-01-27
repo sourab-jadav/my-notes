@@ -25,5 +25,55 @@ align-items-start
 align-itmes-end
 align-items-center
 
+working with the nav element in the bootstrap creating the navigation bar in the website
+
+nav class       --inside the ul element       --//removes the dot decoration from the li elemenets
+nav-item        --for the li element inside the ul tag
+nav-link        --for the a tag inn the inside the li tag
+
+--make the links disappear after the certain breakpoint
+navbar-expand-lg    --placeed on the nav tag   --for the content to expand at the specified breakpoint
+collapse navbar-collapse    --wrap the ul element with these classes on the container
 
 
+--time to add the brand link on click direct to the homepage of the screen
+navbar            --adding the class navbar to the nav wrapping element           --crucial for the whole styling of the navbar not only the brand link
+navbar-brand      --adding the class navbar-brand to the anchor wrapping element
+
+
+--adding some colors to your nav bar
+navbar-dark   or navbar-light     --at the nav element    --designed to expect the ul element to have the class navbar-nav
+combine it with the background color utility class
+bg-dark
+bg-light
+bg-white
+bg-transparent
+
+
+--adding the button to unfold the menu optios on the small devices
+  --inside the nav tag
+      
+      --making the button appear only on the small divices
+      navbar-toggler    --makes the button appear only at the expandable breakpoint set at the nav element
+      <button type="button" class="navbar-toggler"></button>
+
+--creatinng the hamburger from the button
+
+navbar-toggler-icon     apply on the span element inside the button element
+
+
+--adding the behavious to the button    --as on clicking the iconn nothing happens 
+    by addinng two data-* attributes to the button elemment
+    data-toggle="collapse"                --used to collapse/unfold a specific area of the html document
+    data-target="#navbar"           --tells the twitter bootstrap that the specific area that needs to be collapsed is the one that
+                                      contains the id as navbar since no id as navbar specified add the navbar id to the div container
+
+
+--final touches to the navbar
+  fixed-top   on the nav element will fix the position of the nav bar to the top of the page
+  active      --to the first menu item to indicate that you are on the page that this likn corresonds to
+
+  lead        --on the p tag for the element to stand out
+    
+--aligning the navbar contents with the contents of the page
+    put the whole contents inside the nav tag in the container class

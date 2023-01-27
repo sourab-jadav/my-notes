@@ -523,6 +523,7 @@ sda6 is a drive name
         ==============apt package manager===================
         sudo apt install htop
         apt search firefox
+        alt+shift+b               --for bookmarks
         apt purge vim               --remvos the program and the config related to it
         apt autoremove              --removes the not needed files
         type su                     --to enable the root user now you don't have to type sudo
