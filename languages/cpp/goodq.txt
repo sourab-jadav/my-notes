@@ -1,0 +1,26 @@
+daily quiz
+https://leetcode.com/problems/minimum-time-to-complete-trips/solutions/3267566/simple-bruteforce-to-crazy-binary-search-code-like-a-pro/
+
+//using advnance pointer in the set datastructure
+
+set::iterator<int> itr=s.begin();
+advance(itr,k-1);
+cout<<*itr<<endl;
+constructing the min heap
+you have the min element
+pop the items k-1 times and return the top element in the min heap dsa
+
+//constructring the minheap datastructure
+//it has the size;
+//int arr[];
+//methods:
+    
+    buildheap;
+    extractmin();
+    parent;
+    left;
+    right
+     
+      
+
+

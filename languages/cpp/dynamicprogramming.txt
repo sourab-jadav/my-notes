@@ -107,3 +107,8 @@ int min_coins(int arr[],int n,int value){
 
 17      ---working with knapsack problem
 
+
+
+18    --optimal strategy for a game
+input   20,5,4,6
+op      25

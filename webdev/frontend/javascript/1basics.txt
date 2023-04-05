@@ -567,35 +567,21 @@ javascript also exists outside the browers its simpiler  but as we don't have th
      
 
 
-----------------------------------------------------------------------------|---------------------------------------------------------------------------
-                                     scope                                  |                                    hoisting
-----------------------------------------------------------------------------|---------------------------------------------------------------------------
-global scope                                                                |console.log(me)
-outside  of any function block                                              |console.log(job)
-accessible every hwere                                                      |console.log(year)
-                                                                            |
-local scope                                                                 |var me='jonas'
-only inside the function                                                    |let job='teacher'
-                                                                            |const year=1991
-                                                                            |
-block scope                                                                 |
-    if(year>=1981 & year<=1986){                                            |just don't use var to delcare variables
-        const var1=lksd                                                     |use const most of the time and 'let' if you need ot change the variab
-        const var2=ksdjf;                                                   |les
-    }                                                                       |declare the variables at the top of the each scope
-    these var1 and var2 are accessed only inside the block                  |initilize all your functions first and use them only after 
-    only let and  const are block scoped                                    |
-    variables with var are accessable outside the block are function scoped |var x=1;
-                                                                            |let y=2;
-                                                                            |const z =3;
-    if in the current scope the variable is not there it looks up in the nex|                                                                           t
-        parent scoep                                                        |**window is the global object in the js type window in console
-                                                                            |console.log(x==window.x)//true;
- **the order of function calls doesn't effect the scope chain               |console.log(y==window.y)//false;
-                                                                            |console.log(z==window.z)//false;!!variables declared with var will create
-                                                                            |a property on a global window object that can have some implications
-------------------------------------------------------------------------------------------------------------------------------------------------------------
+scoping in simple words
+var   --declares a variable globally or local to a function   --redeclaration and reassigning is possible 
+          hoisted to the top
+          log(x);
+          var x=5;    --returns undefined
+      --x=10;
+        log(x);
+        var x;    -----returns 10 as output   --let and const are not hoisted to the top throws the reference error
 
+        except var accessing or calling function before declaration throws reference error
+        log(x);
+        const x;    --returns reference eror  --simpilar in the case of functions
+
+let   --block scope no redeclaration but reassigning is possible
+const   --block scope no redeclaration no reassigning
 |hoisting in variables
 |let,const variables throws uncaught reference error as they are in a
 |temporal ded zone

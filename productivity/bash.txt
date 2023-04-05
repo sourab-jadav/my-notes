@@ -11,6 +11,8 @@ u-you
 g-group
 o-other
 
+vscode command+d to insert multicursors in vscode
+
 
 to differ between the direc and the files             ---ls -F 
 **to list the size in the human readable format       ---ls -lh 

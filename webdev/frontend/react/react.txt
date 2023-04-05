@@ -3,3 +3,9 @@ frontend frameworks
 frameworks are larger than a typical library   eg moment js   date and time library for javascript 
 
 pseudo component
+To create a state variable in a React component, you can use the 
+useState hook. The useState hook takes an initial value as an argument
+and returns an array with two items: the current value of the stat
+e variable, and a function to update it. Here's an example of how 
+to use the useState hook to create a state variable called count with an initial value of 0:
+npm start
